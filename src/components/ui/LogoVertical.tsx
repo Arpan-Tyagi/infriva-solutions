@@ -1,3 +1,16 @@
+/**
+ * @file src/components/ui/LogoVertical.tsx
+ * @description Vertical Brand Monogram & SVG Vector Identity
+ *
+ * This component renders the vertical stacked monogram for Infriva Solutions.
+ * Utilized in the cinematic entry preloader (`Preloader.tsx`) and mobile navigation drawer.
+ *
+ * Vector Specs:
+ * - ViewBox: `0 0 778.21 667.91`
+ * - Geometry: Vertically stacked brand architecture emblem.
+ * - Fill: `fill="currentColor"` allows parent classes to dynamically govern color and opacity.
+ */
+
 import React from "react";
 
 export function LogoVertical({ className = "" }: { className?: string }) {

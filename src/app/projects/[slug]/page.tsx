@@ -1,9 +1,34 @@
+/**
+ * @file src/app/projects/[slug]/page.tsx
+ * @description Dynamic Case Study & Client Architectural Proof
+ *
+ * This Next.js Server Component dynamically renders deep case study narratives
+ * for client deployments (FlyingLyte, StarX Hotel).
+ *
+ * Case Study Architecture:
+ * 1. Build-Time Static Generation (SSG):
+ *    - `generateStaticParams()` pre-compiles all case studies into immutable HTML.
+ * 2. Dynamic Social Graph (OpenGraph):
+ *    - `generateMetadata()` injects project titles, taglines, and hero photography into `<head>`.
+ * 3. 3-Part Engineering Narrative:
+ *    - The Challenge: Legacy platform failure points and operational drop-offs.
+ *    - The Solution: Custom Next.js architectures, CRM pipelines, and messaging workflows.
+ *    - Measured Outcomes: Quantitative results grid (leads generated, commission saved).
+ * 4. Spatial Geometry:
+ *    - Asymmetric Golden Ratio grid ($38.2\%$ deliverables sidebar, $61.8\%$ narrative body).
+ *    - Inverted obsidian results section (`bg-[#0A0A0B]`) for high-contrast visual rhythm.
+ */
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
+/**
+ * Case Study Registry
+ * Maps unique slug identifiers to full case study narrative briefs, images, and metrics.
+ */
 const projects: Record<string, {
   id: string;
   title: string;
@@ -87,10 +112,16 @@ const projects: Record<string, {
   },
 };
 
+/**
+ * Pre-computes static parameters for build-time static page generation.
+ */
 export function generateStaticParams() {
   return Object.keys(projects).map((slug) => ({ slug }));
 }
 
+/**
+ * Computes dynamic metadata for social sharing and search indexing.
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -122,13 +153,16 @@ export default async function ProjectSlugPage({
 }) {
   const { slug } = await params;
   const project = projects[slug];
+  
+  // Trigger 404 boundary if requested case study does not exist
   if (!project) notFound();
 
+  // Resolve next case study for circular navigation footer
   const next = projects[project.nextProject];
 
   return (
     <div className="w-full bg-[#FBF8F3]">
-      {/* Back Link */}
+      {/* Back to Projects Navigation Anchor */}
       <div className="pt-32 px-4 md:px-12 max-w-7xl mx-auto">
         <Link
           href="/projects"
@@ -139,7 +173,7 @@ export default async function ProjectSlugPage({
         </Link>
       </div>
 
-      {/* Hero */}
+      {/* Case Study Header & Manifesto */}
       <section className="px-4 md:px-12 pt-12 pb-16 max-w-7xl mx-auto">
         <div className="mb-6">
           <span className="text-[10px] tracking-widest-caps font-medium text-black/40 uppercase font-mono">
@@ -154,7 +188,7 @@ export default async function ProjectSlugPage({
         </p>
       </section>
 
-      {/* Hero Image */}
+      {/* Hero Photography Banner */}
       <div className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden">
         <Image
           src={project.heroImage}
@@ -166,9 +200,9 @@ export default async function ProjectSlugPage({
         />
       </div>
 
-      {/* Case Study Body */}
+      {/* Case Study Narrative Body: Asymmetric 38.2% / 61.8% Golden Ratio Grid */}
       <div className="max-w-7xl mx-auto px-4 md:px-12 py-20 md:py-24 grid grid-cols-1 lg:grid-cols-[38.2fr_61.8fr] gap-16 lg:gap-24">
-        {/* Sidebar: Deliverables */}
+        {/* Sidebar: Deliverables Stack */}
         <div>
           <p className="text-[10px] tracking-widest-caps font-medium text-black/40 uppercase font-mono mb-6">
             Deliverables
@@ -183,7 +217,7 @@ export default async function ProjectSlugPage({
           </ul>
         </div>
 
-        {/* Main Content */}
+        {/* Narrative Flow: Overview -> Challenge -> Solution */}
         <div className="flex flex-col gap-12">
           <div>
             <h2 className="text-[10px] tracking-widest-caps font-medium text-black/40 uppercase font-mono mb-4">
@@ -208,7 +242,7 @@ export default async function ProjectSlugPage({
         </div>
       </div>
 
-      {/* Results Grid */}
+      {/* Measured Outcomes: Inverted Dark Metrics Matrix */}
       <div className="bg-[#0A0A0B] text-[#FBF8F3] py-12 md:py-20 px-4 md:px-12">
         <div className="max-w-7xl mx-auto">
           <p className="text-[10px] tracking-widest-caps font-medium text-white/40 uppercase font-mono mb-12">
@@ -227,7 +261,7 @@ export default async function ProjectSlugPage({
         </div>
       </div>
 
-      {/* Additional Images */}
+      {/* Secondary Project Photography Gallery */}
       <div className="max-w-7xl mx-auto px-4 md:px-12 py-24 flex flex-col gap-8">
         {project.images.map((img, i) => (
           <div
@@ -246,7 +280,7 @@ export default async function ProjectSlugPage({
         ))}
       </div>
 
-      {/* Next Project */}
+      {/* Next Case Study Carousel Transition Anchor */}
       {next && (
         <div className="border-t border-black/10 px-4 md:px-12 py-16">
           <div className="max-w-7xl mx-auto flex items-center justify-between">

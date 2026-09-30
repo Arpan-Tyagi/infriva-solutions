@@ -1,20 +1,43 @@
+/**
+ * @file src/app/globals.css
+ * @description Tailwind CSS v4 Theme Configuration & Typography Engine
+ *
+ * This stylesheet defines the core design tokens, reset rules, and custom utility classes
+ * powering Infriva Solutions' Brutalist-Luxury design system.
+ *
+ * Tailwind CSS v4 Architecture:
+ * - Uses the native CSS-first configuration via `@theme` directives instead of legacy `tailwind.config.js`.
+ * - Color Palette:
+ *   - Brand 50: `#FBF8F3` (Champagne Beige — foundational warm light surface)
+ *   - Brand 900: `#0A0A0B` (Jet Black / Obsidian — high-contrast typography & dark sections)
+ *   - Accent / Surface: `#FFFFF0` (Pearl Ivory — elevated card surfaces)
+ * - Typography:
+ *   - Fonts wired directly to `--font-geist-sans` and `--font-geist-mono` CSS variables.
+ *   - Custom `@utility` definitions provide ergonomic typographic controls (`tracking-tight-display`).
+ * - Rich Text (.prose):
+ *   - Custom typographic styling for Markdown blog posts, case studies, and legal documents.
+ */
+
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #FBF8F3; /* Champagne Beige */
-  --color-brand-100: #F2EBE1; 
-  --color-brand-900: #0A0A0B; /* Jet Black / Obsidian */
+  /* Primary Brutalist-Luxury Palette Tokens */
+  --color-brand-50: #FBF8F3;  /* Champagne Beige: Primary light background */
+  --color-brand-100: #F2EBE1; /* Muted stone beige: Subtle borders and hover states */
+  --color-brand-900: #0A0A0B; /* Jet Black / Obsidian: Primary dark containers & typography */
   
-  --color-accent: #FFFFF0; /* Pearl Ivory */
+  --color-accent: #FFFFF0;    /* Pearl Ivory: Elevated cards and subtle contrast panels */
   
   --color-background: #FBF8F3;
   --color-foreground: #0A0A0B;
   --color-surface: #FFFFF0;
   
+  /* Next/Font Google Typography Variable Bindings */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Base Document Styles */
 :root {
   background-color: var(--color-background);
   color: var(--color-foreground);
@@ -24,19 +47,22 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Eliminate accidental horizontal scrolling on mobile viewports */
   overflow-x: hidden;
 }
 
-/* Base custom utilities */
+/* Modern Typography Utilities */
 @utility text-balance {
+  /* Balances headline line lengths to prevent single-word orphan wraps */
   text-wrap: balance;
 }
 
 @utility text-pretty {
+  /* Optimizes body text hyphenation and paragraph justification */
   text-wrap: pretty;
 }
 
-/* Hide scrollbar for clean UI where needed */
+/* Utility to hide native scrollbars in horizontal sliders or chat boxes */
 @utility no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -45,27 +71,28 @@ body {
   }
 }
 
-/* High-end Typography */
+/* Architectural Headline Kerning */
 @utility tracking-tight-display {
+  /* Tight tracking for large bold editorial display titles */
   letter-spacing: -0.03em;
 }
 
 @utility tracking-widest-caps {
+  /* Wide tracking for small-caps subheadings, badges, and section anchors */
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
-/* Tactile Button Press */
+/* Tactile Micro-Interactions */
 @utility pressable {
+  /* Applies subtle physics-based spring scale on active click/tap */
   transition: transform 150ms cubic-bezier(0.76, 0, 0.24, 1), filter 200ms cubic-bezier(0.76, 0, 0.24, 1);
   &:active {
     transform: scale(0.97);
   }
 }
 
-
-
-/* Custom Clip Paths */
+/* Circular Reveal Clip Paths */
 @utility clip-path-circle {
   clip-path: circle(0% at 50% 50%);
 }
@@ -73,7 +100,7 @@ body {
   clip-path: circle(150% at 50% 50%);
 }
 
-/* Editorial Typography for Rich Text (.prose) */
+/* Rich Text Editorial System for Long-Form Articles & Legal Text (.prose) */
 .prose {
   color: rgba(10, 10, 11, 0.85);
   font-size: 1.125rem;

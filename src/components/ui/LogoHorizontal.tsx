@@ -1,3 +1,17 @@
+/**
+ * @file src/components/ui/LogoHorizontal.tsx
+ * @description Horizontal Brand Wordmark & SVG Vector Identity
+ *
+ * This component renders the primary horizontal brand vector for Infriva Solutions.
+ * Used in the top desktop/mobile navigation header and agency footer.
+ *
+ * Vector Specs:
+ * - ViewBox: `0 0 1092.77 386.13`
+ * - Geometry: Asymmetric geometric monogram glyphs fused with typographic letterforms.
+ * - Fill: `fill="currentColor"` allows parent classes (`text-brand-900`, `text-white`)
+ *   to dynamically dictate brand color without SVG manipulation.
+ */
+
 import React from "react";
 
 export function LogoHorizontal({ className = "" }: { className?: string }) {

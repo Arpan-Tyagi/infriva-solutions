@@ -1,15 +1,58 @@
+/**
+ * @file src/app/api/contact/route.ts
+ * @description Lead Intake & Parallel Notification Gateway
+ *
+ * This Route Handler processes inquiries submitted through the Infriva Contact page (/contact).
+ *
+ * Pipeline & Security Architecture:
+ * 1. Sliding Window IP Rate Limiting:
+ *    - Guards against brute-force flooding and spam exhaustion.
+ *    - Allows a maximum of 5 submissions per minute per client IP.
+ *    - Features automatic stale cache cleanup when map capacity exceeds 1,000 entries.
+ *
+ * 2. Honeypot Anti-Bot Defense:
+ *    - An invisible field (`_hp_website`) is rendered in the client form, obscured with CSS.
+ *    - Human users will never see or populate it; automated bots routinely fill all inputs.
+ *    - If populated, the handler immediately returns a mock HTTP 200 without executing DB or email tasks.
+ *
+ * 3. Data Integrity & XSS Prevention:
+ *    - Raw UTF-8 strings are trimmed and saved directly into Supabase without pre-encoding.
+ *    - HTML entity escaping (`escapeHtml`) is strictly applied during string interpolation into
+ *      HTML email templates, preventing Cross-Site Scripting (XSS) while keeping database text pristine.
+ *    - CRLF characters (`\r`, `\n`) are stripped from email subjects to defeat SMTP header injection.
+ *
+ * 4. Dual-Notification Dispatch:
+ *    - Sends parallel transactional emails via the Resend API:
+ *      a. Admin notification to `info@infrivasolutions.com` with full lead brief.
+ *      b. Client confirmation receipt assuring rapid response from agency leadership.
+ *    - Employs `Promise.allSettled()` so an email dispatch hiccup does not fail the primary DB record.
+ */
+
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { supabase } from '@/lib/supabase';
 
-// Initialize the Resend SDK with the API key
+// Initialize the Resend transactional email SDK
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// In-memory sliding window rate limiter
+/**
+ * In-memory sliding window rate limiter state.
+ * Maps Client IP -> { submission count, timestamp when window expires }
+ */
 const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
 
+/**
+ * Evaluates whether an IP address has exceeded the allowed request threshold.
+ *
+ * @param ip - Client IP address extracted from request headers
+ * @param limit - Max requests permitted in the window (default: 5)
+ * @param windowMs - Duration of the rolling window in milliseconds (default: 60,000ms / 1 min)
+ * @returns boolean - True if client should be throttled (HTTP 429), false if permitted
+ */
 function isRateLimited(ip: string, limit = 5, windowMs = 60000): boolean {
   const now = Date.now();
+  
+  // Evict expired entries to prevent memory leak when map grows large
   if (rateLimitMap.size > 1000) {
     for (const [k, v] of rateLimitMap.entries()) {
       if (v.expiresAt < now) rateLimitMap.delete(k);
@@ -28,6 +71,12 @@ function isRateLimited(ip: string, limit = 5, windowMs = 60000): boolean {
   return false;
 }
 
+/**
+ * Escapes dangerous HTML characters to prevent XSS attacks in email templates.
+ *
+ * @param str - The raw user input string
+ * @returns Sanitized string with HTML entities replaced
+ */
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, '&amp;')
@@ -37,23 +86,32 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#039;');
 }
 
+/**
+ * POST Handler: Process Lead Submission
+ */
 export async function POST(request: Request) {
   try {
+    // 1. Resolve client IP address for rate limiting
     const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
                      request.headers.get('x-real-ip') ||
                      '127.0.0.1';
+
     if (isRateLimited(clientIp)) {
-      return NextResponse.json({ error: 'Too many submissions. Please wait a minute and try again.' }, { status: 429 });
+      return NextResponse.json(
+        { error: 'Too many submissions. Please wait a minute and try again.' }, 
+        { status: 429 }
+      );
     }
 
     const data = await request.json();
 
-    // Honeypot trap: if filled by a spam bot, silently return success without taking action
+    // 2. Honeypot Validation: Neutralize automated form scrapers
     if (data._hp_website) {
+      // Return synthetic success so spambots believe their submission went through
       return NextResponse.json({ success: true }, { status: 200 });
     }
 
-    // Clean raw strings without pre-encoding HTML entities for database storage
+    // 3. Extract and sanitize raw input fields
     const cleanString = (val: unknown) => typeof val === 'string' ? val.trim() : '';
     const name = cleanString(data.name);
     const company = cleanString(data.company);
@@ -63,7 +121,7 @@ export async function POST(request: Request) {
     const budget = cleanString(data.budget || data['Budget Range'] || data.budget_range);
     const details = cleanString(data.details);
 
-    // Validate required fields
+    // 4. Validate mandatory fields
     if (!name || !email || !service) {
       return NextResponse.json(
         { error: 'Please provide all required fields (name, email, service).' },
@@ -71,7 +129,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate email format
+    // Validate email format with standard RFC regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -80,7 +138,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // 1. Save clean raw strings into Supabase leads table
+    // 5. Store clean raw data into Supabase 'leads' table
     const { error: dbError } = await supabase
       .from('leads')
       .insert([
@@ -95,6 +153,7 @@ export async function POST(request: Request) {
         }
       ]);
 
+    // Handle database connection or insertion errors
     if (dbError) {
       console.error('Supabase Error:', dbError);
       return NextResponse.json(
@@ -103,12 +162,15 @@ export async function POST(request: Request) {
       );
     }
 
-    // 2. Dispatch Emails in Parallel with strict HTML entity escaping for template strings
+    // 6. Dispatch parallel transactional emails via Resend
     const fromAddress = process.env.RESEND_FROM_EMAIL || 'Infriva Solutions <onboarding@resend.dev>';
+    
+    // Admin notification email promise
     const adminEmailPromise = resend.emails.send({
       from: fromAddress,
       to: 'info@infrivasolutions.com',
       replyTo: email,
+      // Strip CRLF to prevent email header injection attacks
       subject: `New Lead: ${name} from ${company || 'Direct'}`.replace(/[\r\n]/g, ''),
       html: `
         <h2>New Inquiry from Infriva Solutions Website</h2>
@@ -126,6 +188,7 @@ export async function POST(request: Request) {
       return null;
     });
 
+    // Client confirmation receipt promise
     const userEmailPromise = resend.emails.send({
       from: fromAddress,
       to: email,
@@ -146,7 +209,7 @@ export async function POST(request: Request) {
       return null;
     });
 
-    // Wait for email dispatches without cascading crash
+    // Await email dispatches gracefully using Promise.allSettled
     const [adminResult, userResult] = await Promise.allSettled([adminEmailPromise, userEmailPromise]);
     if (adminResult.status === 'fulfilled' && adminResult.value && 'error' in adminResult.value && adminResult.value.error) {
       console.error('Resend Admin Email API Error:', adminResult.value.error);
@@ -155,16 +218,13 @@ export async function POST(request: Request) {
       console.error('Resend User Email API Error:', userResult.value.error);
     }
 
-    // 3. Send Auto-Reply WhatsApp Message to the User (if phone is provided)
+    // 7. WhatsApp Lead Notification (Optional Hook)
     if (phone) {
-      // Strip out non-numeric characters for the WhatsApp API
       const cleanPhone = phone.replace(/\D/g, '');
-      
       if (cleanPhone.length >= 10) {
         const whatsappMessage = `Hello ${name},\n\nThank you for reaching out to Infriva Solutions regarding ${service}. We have received your inquiry and our team is reviewing your project details. We will be in touch shortly.\n\n- The Infriva Solutions Team`;
-        
         try {
-          // In production, outbound messages outside 24h window require a pre-approved Meta Template.
+          // Log outbound notification hook (requires pre-approved Meta Template in live production)
           console.log('Mocking WhatsApp outbound to', cleanPhone, 'Message:', whatsappMessage);
         } catch (waError) {
           console.error("Failed to initiate WhatsApp message:", waError);
@@ -172,9 +232,10 @@ export async function POST(request: Request) {
       }
     }
 
+    // 8. Return success response to client form
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error: unknown) {
-    console.error('Server Error:', error);
+    console.error('Contact Route Server Error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

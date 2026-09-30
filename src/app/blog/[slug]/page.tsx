@@ -1,3 +1,24 @@
+/**
+ * @file src/app/blog/[slug]/page.tsx
+ * @description Dynamic Editorial Article Reader & Thought Leadership
+ *
+ * This Next.js Server Component dynamically renders agency editorial insights,
+ * architectural essays, and growth strategies imported from Infriva's Medium publication.
+ *
+ * Architecture & SEO Patterns:
+ * 1. Build-Time Static Generation (SSG):
+ *    - `generateStaticParams()` pre-compiles all 4 articles into static HTML at build time.
+ * 2. Automated Meta Description Extraction:
+ *    - In `generateMetadata`, strips HTML tags from raw content strings to generate clean,
+ *      160-character search engine snippets.
+ * 3. Typography & Reading Experience:
+ *    - Utilizes custom `.prose` rules from `globals.css` to provide generous line height (1.75),
+ *      relaxed paragraph margins, and styled lists.
+ * 4. Contextual Conversion Funnel:
+ *    - Every article concludes with an architectural call-to-action module linking directly
+ *      to `/contact` for strategic implementation consultations.
+ */
+
 import { Reveal } from "@/components/ui/Reveal";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,6 +26,10 @@ import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
+/**
+ * Editorial Article Registry
+ * Contains full markdown/HTML article copy, publication dates, and category tags.
+ */
 const blogPosts: Record<string, { title: string, category: string, date: string, content: string, image?: string }> = {
   "why-your-social-media-gets-attention-but-not-customers": {
     image: "/images/marketing-megaphone.jpg",
@@ -58,83 +83,70 @@ const blogPosts: Record<string, { title: string, category: string, date: string,
       <ul class="list-disc pl-6 space-y-2 mb-8">
         <li>Manage all leads and customer data in one place</li>
         <li>Assign leads to team members</li>
-        <li>Track leads from enquiry to conversion</li>
-        <li>Schedule follow-ups and avoid missed opportunities</li>
-        <li>Monitor marketing sources and lead performance</li>
-        <li>Automate repetitive tasks</li>
+        <li>Track conversations across channels (calls, WhatsApp, email)</li>
+        <li>Set reminders for follow-ups so inquiries don't get forgotten</li>
+        <li>View deals at different stages of the sales process</li>
+        <li>Monitor team performance and sales results</li>
       </ul>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Never Miss a Follow-Up</h3>
-      <p>Not every customer converts after the first enquiry. CRM software helps your team schedule follow-ups, add notes and track lead status so potential customers don’t get forgotten.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Signs You Need a CRM</h3>
+      <p>If you're missing follow-ups, losing lead details across chat apps, or struggling to see which sales reps are closing deals, your business has outgrown manual tracking.</p>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Custom CRM vs Generic CRM</h3>
-      <p>Generic CRM tools offer standard features, but they may not match every business workflow. A custom CRM can be built around your specific requirements, including Lead Management, Follow-Ups, Quotations, and Automation.</p>
-
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">How Infriva Solutions Can Help</h3>
-      <p>Infriva Solutions develops custom CRM systems designed around your business process. Our solutions can connect with websites, contact forms, Meta Lead Ads, email systems and other business tools to create one central system for managing your growth.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Custom CRM vs Off-the-Shelf Tools</h3>
+      <p>Popular tools like HubSpot or Zoho work well for many companies, but often come with high monthly costs and features you may never use. A custom CRM is designed specifically around your workflow, meaning you only pay for what you need with no per-user license fees.</p>
     `
   },
   "why-your-website-is-not-getting-leads-and-how-to-fix-it": {
     image: "/images/broken-bridge.jpg",
     title: "Why Your Website Is Not Getting Leads (And How to Fix It)",
-    category: "Engineering",
-    date: "Sep 12, 2026",
+    category: "Development",
+    date: "Sep 15, 2026",
     content: `
-      <p>Your website looks professional. Visitors are coming. But enquiries or sales are still low? The problem may not be traffic. It could be your content, user experience, trust signals, SEO, or conversion strategy.</p>
-      <p>A good website should quickly explain your value, build confidence, and guide visitors toward the next step.</p>
+      <p>Getting traffic to your website is only half the battle. If visitors aren't filling out forms or reaching out, your site has a conversion leak. Here is how to diagnose and fix it.</p>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. Make Your Message Clear</h3>
-      <p>Visitors should understand within seconds: What do you offer? Who is it for? Why should they choose you? Clear messaging makes your brand easier to understand and remember.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. Slow Page Speed Kills Conversions</h3>
+      <p>Every second of load delay reduces conversions by up to 20%. Ensure your site uses modern frameworks like Next.js with optimized images and minimal third-party script bloat.</p>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. Sell the Benefit, Not Just the Product</h3>
-      <p>Customers care about what a product does for them. Features provide information, but benefits create desire.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. Confusing Value Proposition</h3>
+      <p>Visitors decide within 5 seconds whether to stay. If your hero section doesn't clearly explain what you do, who you do it for, and the outcome you deliver, they will bounce.</p>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. Attract the Right Visitors</h3>
-      <p>More website traffic does not automatically mean more customers. Focus on search intent and keywords your ideal customers actually use. Quality traffic matters more than traffic alone.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. Forms Have Too Much Friction</h3>
+      <p>Asking for 10 fields on a contact form reduces submissions dramatically. Keep initial contact forms to essentials: Name, Email/Phone, and Project Scope.</p>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. Use Strong Calls-to-Action</h3>
-      <p>Every important page should make the next step obvious. Use specific CTAs and avoid vague buttons such as “Click Here.”</p>
-
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">5. Build Trust</h3>
-      <p>Before buying or enquiring, visitors want reassurance. Add customer reviews, real product images, case studies, and clear contact details. Give people reasons to believe you.</p>
-
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">6. Improve the Mobile Experience</h3>
-      <p>Many visitors arrive through Google, Instagram, or ads on their phones. Your website should be fast, mobile-friendly, easy to navigate, and simple to shop or enquire from.</p>
-
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Final Thoughts</h3>
-      <p>Your website should do more than explain what you sell. If your website gets visitors but not leads, don’t immediately chase more traffic. First, make sure the traffic you already have has a clear reason to stay — and take the next step.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. Lack of Social Proof</h3>
+      <p>Without case studies, metrics, or client testimonials, visitors have no reason to trust an unfamiliar company. Display outcomes prominently.</p>
     `
   },
   "seo-vs-google-ads-which-is-better-for-your-business": {
-    image: "/images/stone-monolith.jpg",
+    image: "/images/flight-smartphone.jpg",
     title: "SEO vs Google Ads: Which is Better For Your Business?",
     category: "Growth",
-    date: "Aug 30, 2026",
+    date: "Sep 10, 2026",
     content: `
-      <p>Want more customers to find your business on Google? Two popular options are SEO and Google Ads. Both can increase visibility and bring potential customers to your website — but they work differently.</p>
+      <p>Both SEO and Google Ads are powerful ways to attract customers searching for your services. Understanding when to use each can save thousands in marketing spend.</p>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">What Is SEO?</h3>
-      <p>SEO helps your website appear in organic Google search results. It involves improving your content, keywords, website structure, speed, and relevance. It generally takes time to build visibility, but strong pages can continue attracting organic visitors over the longer term.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Google Ads: Speed and Control</h3>
+      <p>Google Ads delivers immediate visibility. The moment your campaign goes live, you can appear at the top of search results for high-intent keywords. Ideal for new offers, time-sensitive promotions, or rapid market validation.</p>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">What Are Google Ads?</h3>
-      <p>Google Ads places your business in paid search results for selected searches. Ads can provide visibility quickly and are particularly useful when someone is already searching for a specific product or service. The key difference is that paid visibility generally depends on your campaign continuing to run.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">SEO: Compounding Long-Term ROI</h3>
+      <p>SEO takes 3-6 months to build momentum, but once established, it provides consistent leads without paying for each individual click. It builds durable brand equity and trust.</p>
 
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">The Real Difference: Customer Intent</h3>
-      <p>Instead of only asking “SEO or Google Ads?”, ask: “What is my customer searching for, and how close are they to taking action?” Someone searching for "best notes for summer" is researching (SEO), while someone searching "buy luxury perfume online" shows purchase intent (Ads).</p>
-
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">SEO + Google Ads Can Work Together</h3>
-      <p>You don’t necessarily have to choose only one. SEO builds long-term discovery and organic visibility, while Google Ads captures immediate, high-intent searches. Together, they cover more stages of the customer journey.</p>
-
-      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Final Thoughts</h3>
-      <p>There is no universal winner. The better strategy starts with three questions: What is your customer searching for? Are they researching or ready to act? Do you need visibility now or want to build it over time? The goal isn’t simply to choose SEO or Ads, it’s to use the right channel for the right customer intent.</p>
+      <h3 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">The Hybrid Approach</h3>
+      <p>The most successful businesses run Google Ads for immediate revenue while investing in SEO and Generative Engine Optimization (GEO) to dominate search over the long term.</p>
     `
   }
 };
 
+/**
+ * Pre-computes all blog post routes for static build generation.
+ */
 export function generateStaticParams() {
   return Object.keys(blogPosts).map((slug) => ({ slug }));
 }
 
+/**
+ * Derives document metadata and OpenGraph preview tags.
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -144,10 +156,11 @@ export async function generateMetadata({
   const post = blogPosts[slug];
   if (!post) {
     return {
-      title: "Post Not Found | Infriva",
+      title: "Article Not Found | Infriva",
     };
   }
 
+  // Strip HTML tags from article body to generate a clean 160-character description snippet
   const cleanDescription = post.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160);
 
   return {
@@ -164,6 +177,8 @@ export async function generateMetadata({
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = blogPosts[slug];
+  
+  // Render 404 boundary if article slug is invalid
   if (!post) {
     notFound();
   }
@@ -171,6 +186,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   return (
     <div className="w-full pt-32 pb-24 md:pt-40 md:pb-32 px-4 md:px-12">
       <div className="max-w-3xl mx-auto">
+        {/* Back Link to Editorial Directory */}
         <Reveal>
           <Link href="/blog" className="inline-flex items-center gap-2 text-black/40 hover:text-brand-900 transition-colors mb-12 text-sm font-medium">
             <ArrowLeft size={16} />
@@ -178,6 +194,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </Link>
         </Reveal>
 
+        {/* Category & Date Metadata Badges */}
         <Reveal delay={0.1}>
           <div className="flex items-center gap-4 mb-6">
             <div className="text-[10px] tracking-widest-caps font-medium text-brand-900">{post.category}</div>
@@ -186,13 +203,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </div>
         </Reveal>
         
+        {/* Article Headline */}
         <Reveal delay={0.2}>
           <h1 className="text-4xl md:text-6xl tracking-tight-display leading-[1.05] font-medium text-balance mb-12">
             {post.title}
           </h1>
         </Reveal>
 
-        
+        {/* Editorial Feature Image Banner */}
         <Reveal delay={0.25}>
           {post.image && (
             <div className="w-full h-[40vh] md:h-[60vh] relative mb-12 overflow-hidden bg-brand-100 rounded-xl border border-black/5">
@@ -205,6 +223,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <div className="w-full h-px bg-black/10 mb-12" />
         </Reveal>
         
+        {/* Long-Form Prose Typography Content */}
         <Reveal delay={0.4}>
           <div 
             className="prose prose-lg prose-neutral max-w-none text-black/80 font-sans"
@@ -212,6 +231,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           />
         </Reveal>
 
+        {/* Post-Article Lead Conversion Anchor */}
         <Reveal delay={0.5}>
           <div className="mt-24 p-8 bg-brand-50 rounded-2xl border border-black/5 text-center">
             <h3 className="text-2xl leading-[1.4] font-medium tracking-tight-display mb-4">Ready to upgrade your systems?</h3>

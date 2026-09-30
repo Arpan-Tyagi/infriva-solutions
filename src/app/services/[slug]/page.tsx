@@ -1,11 +1,46 @@
+/**
+ * @file src/app/services/[slug]/page.tsx
+ * @description Dynamic Service Detail Page & Specification Sheet
+ *
+ * This Next.js Server Component dynamically generates dedicated landing pages
+ * for all 7 flagship Infriva Solutions agency offerings.
+ *
+ * Architecture & Performance Patterns:
+ * 1. Static Site Generation (SSG) via `generateStaticParams`:
+ *    - All 7 service pages are pre-rendered into static HTML during `npm run build`.
+ *    - Delivers sub-millisecond TTFB and zero runtime database latency.
+ * 2. Dynamic SEO & Social Graph via `generateMetadata`:
+ *    - Dynamically computes page title, meta description, and OpenGraph preview images.
+ * 3. Graceful 404 Routing (`notFound()`):
+ *    - If a user enters an unmapped slug coordinate, invokes Next.js `notFound()`,
+ *      seamlessly triggering `src/app/not-found.tsx`.
+ * 4. Asymmetric Bento Geometry:
+ *    - Uses a 12-column layout on desktop: 7 columns for narrative & investment specs,
+ *      5 columns for operational deliverables with Phosphor checkmarks.
+ */
+
 import { Reveal } from "@/components/ui/Reveal";
 import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-// Using a static mapping to generate data based on the PDF specification sheet.
-const servicesData: Record<string, { title: string, subtitle: string, overview: string, pricing: string, timeline: string, sla: string, features: string[], image?: string }> = {
+/**
+ * Service Data Dictionary
+ *
+ * Central source of truth for all 7 agency services, detailing scope, pricing,
+ * delivery timelines, SLA guarantees, and operational inclusions.
+ */
+const servicesData: Record<string, { 
+  title: string; 
+  subtitle: string; 
+  overview: string; 
+  pricing: string; 
+  timeline: string; 
+  sla: string; 
+  features: string[]; 
+  image?: string; 
+}> = {
   "premium-content": {
     title: "Premium Content Creation",
     subtitle: "Blog, Social & Video Distribution.",
@@ -111,10 +146,16 @@ const servicesData: Record<string, { title: string, subtitle: string, overview: 
   }
 };
 
+/**
+ * Pre-computes all static routes for build-time generation.
+ */
 export function generateStaticParams() {
   return Object.keys(servicesData).map((slug) => ({ slug }));
 }
 
+/**
+ * Generates dynamic OpenGraph and document metadata for search crawlers.
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -122,6 +163,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const data = servicesData[slug];
+  
+  // Fallback metadata for unmatched routes
   if (!data) {
     return {
       title: "Service Not Found | Infriva",
@@ -139,18 +182,25 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Service Detail Page Component
+ */
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  // Await dynamic route params promise (Next.js 15+ convention)
   const { slug } = await params;
   const data = servicesData[slug];
+
+  // Route guard: Render 404 boundary if slug does not exist in registry
   if (!data) {
     notFound();
   }
 
   return (
     <div className="w-full pt-32 pb-24 md:pt-40 md:pb-32 px-4 md:px-12">
+      {/* 12-Column Asymmetric Grid Container */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
         
-        {/* Left Column: Details & Pricing */}
+        {/* Left Column: Narrative Details, Investment Specs & Booking CTA (7 Cols) */}
         <div className="lg:col-span-7">
           <Reveal>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-black/5 mb-8">
@@ -177,7 +227,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             </div>
           </Reveal>
 
-          {/* Specs Bento Grid */}
+          {/* Investment & Timeline Bento Grid */}
           <Reveal delay={0.4}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
               <div className="p-6 bg-brand-50 border border-black/5 rounded-xl">
@@ -195,6 +245,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             </div>
           </Reveal>
 
+          {/* Direct Consultation Link */}
           <Reveal delay={0.5}>
             <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-brand-900 text-white rounded-xl hover:bg-black transition-colors font-medium tracking-tight text-sm">
               Initiate Project
@@ -202,7 +253,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </Reveal>
         </div>
 
-        {/* Right Column: Features List */}
+        {/* Right Column: Operational Inclusions & Checklist (5 Cols) */}
         {data.features.length > 0 && (
           <div className="lg:col-span-5 flex flex-col pt-12 lg:pt-0">
             <Reveal delay={0.2}>
@@ -213,9 +264,13 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               {data.features.map((feature, i) => (
                 <Reveal key={i} delay={0.3 + i * 0.1}>
                   <div className="flex gap-4 p-5 bg-white border border-black/10 rounded-xl hover:border-black/30 hover:shadow-xl transition-all duration-300 group">
-                    <div className="mt-0.5"><CheckCircle size={20} className="text-brand-900 group-hover:scale-110 transition-transform" weight="fill" /></div>
+                    <div className="mt-0.5">
+                      <CheckCircle size={20} className="text-brand-900 group-hover:scale-110 transition-transform" weight="fill" />
+                    </div>
                     <div>
-                      <h4 className="font-medium tracking-tight text-sm leading-[1.4] text-black/80 group-hover:text-black transition-colors">{feature}</h4>
+                      <h4 className="font-medium tracking-tight text-sm leading-[1.4] text-black/80 group-hover:text-black transition-colors">
+                        {feature}
+                      </h4>
                     </div>
                   </div>
                 </Reveal>

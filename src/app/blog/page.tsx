@@ -1,3 +1,22 @@
+/**
+ * @file src/app/blog/page.tsx
+ * @description Editorial Insights & Thought Leadership Directory
+ *
+ * This client component renders the index of Infriva Solutions' engineering essays,
+ * technical analyses, and digital strategy guides.
+ *
+ * Layout & Interaction Architecture:
+ * 1. 12-Column Editorial Grid:
+ *    - 2 columns: Aspect-ratio [4/3] photographic thumbnail with hover zoom.
+ *    - 3 columns: Category taxonomy badge and monospace publication timestamp.
+ *    - 6 columns: Headline title and executive takeaway summary.
+ *    - 1 column: Directional arrow indicator reacting to row hover.
+ * 2. Motion Choreography:
+ *    - Rows are revealed with staggered scroll delays (`i * 0.1`).
+ *    - Hover state transitions row background to Champagne Beige (`bg-brand-50`)
+ *      and elevates the arrow icon with physical translations.
+ */
+
 "use client";
 
 import { Reveal } from "@/components/ui/Reveal";
@@ -5,6 +24,9 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import Image from "next/image";
 
+/**
+ * Editorial Article Index Registry
+ */
 const posts = [
   {
     image: "/images/marketing-megaphone.jpg",
@@ -44,6 +66,7 @@ export default function Blog() {
   return (
     <div className="w-full pt-32 pb-24 md:pt-40 md:pb-32 px-4 md:px-12">
       <div className="max-w-7xl mx-auto">
+        {/* Animated Eyebrow Badge */}
         <Reveal>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-black/5 mb-8">
             <span className="w-2 h-2 rounded-full bg-brand-900" />
@@ -51,12 +74,14 @@ export default function Blog() {
           </div>
         </Reveal>
         
+        {/* Main Display Headline */}
         <Reveal delay={0.1}>
           <h1 className="text-5xl md:text-7xl xl:text-8xl tracking-tight-display leading-[1.05] font-medium text-balance mb-24 max-w-4xl">
             Engineering thoughts & technical strategy.
           </h1>
         </Reveal>
 
+        {/* Editorial Articles Table */}
         <div className="flex flex-col border-t border-black/10">
           {posts.map((post, i) => (
             <Reveal key={post.id} delay={i * 0.1}>
@@ -66,22 +91,35 @@ export default function Blog() {
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 px-4 items-start">
                   
+                  {/* Article Feature Image Thumbnail (2 Cols) */}
                   <div className="md:col-span-2">
                     <div className="relative w-full aspect-[4/3] overflow-hidden bg-brand-100 mb-4 md:mb-0">
-                      {post.image && <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]" />}
+                      {post.image && (
+                        <Image 
+                          src={post.image} 
+                          alt={post.title} 
+                          fill 
+                          className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]" 
+                        />
+                      )}
                     </div>
                   </div>
-                  <div className="md:col-span-3">
 
+                  {/* Taxonomy Badge & Date (3 Cols) */}
+                  <div className="md:col-span-3">
                     <div className="text-[10px] tracking-widest-caps text-black/40 mb-2">{post.category}</div>
                     <div className="text-sm font-mono text-black/60">{post.date}</div>
                   </div>
                   
+                  {/* Headline & Executive Brief (6 Cols) */}
                   <div className="md:col-span-6">
-                    <h2 className="text-2xl leading-[1.4] md:text-3xl tracking-tight-display font-medium mb-4 group-hover:text-black/80 transition-colors">{post.title}</h2>
+                    <h2 className="text-2xl leading-[1.4] md:text-3xl tracking-tight-display font-medium mb-4 group-hover:text-black/80 transition-colors">
+                      {post.title}
+                    </h2>
                     <p className="text-black/60 max-w-2xl text-pretty leading-[1.4]">{post.desc}</p>
                   </div>
                   
+                  {/* Directional Action Icon (1 Col) */}
                   <div className="md:col-span-1 flex justify-end">
                     <div className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center group-hover:bg-brand-900 group-hover:text-white group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300">
                       <ArrowUpRight size={20} weight="light" />
@@ -96,4 +134,3 @@ export default function Blog() {
     </div>
   );
 }
-

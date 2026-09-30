@@ -1,57 +1,96 @@
-import { Reveal } from "@/components/ui/Reveal";
+"use client"; // Marks this as a Client Component, allowing React hooks and Framer Motion
+
+import { Reveal } from "@/components/ui/Reveal"; // Custom component for scroll-based fade-up animations
+import { CheckCircle } from "@phosphor-icons/react/dist/ssr"; // Scalable SVG icons from Phosphor
+import { motion, useScroll, useTransform, MotionValue } from "motion/react"; // Framer Motion hooks and components
+import { useRef } from "react";
+import Image from "next/image"; // React hook for creating DOM references
+
+// Helper component to animate individual words based on scroll progress
+function AnimatedWord({ word, progress, start, end }: { word: string, progress: MotionValue<number>, start: number, end: number }) {
+  // useTransform maps the scroll progress range [start, end] to an opacity range [0.1, 1]
+  const opacity = useTransform(progress, [start, end], [0.1, 1]);
+  return <motion.span style={{ opacity }}>{word}{" "}</motion.span>;
+}
 
 export default function About() {
-  return (
-    <div className="w-full pt-32 pb-8 md:pt-40 md:pb-24 px-4 md:px-12 min-h-[100dvh]">
-      <div className="max-w-7xl mx-auto">
-        <Reveal>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-black/5 mb-8">
-            <span className="w-2 h-2 rounded-full bg-brand-900" />
-            <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-brand-900">Growth Partner</span>
-          </div>
-        </Reveal>
-        
-        <Reveal delay={0.1}>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[1.05] font-medium text-balance mb-24 max-w-5xl">
-            Turning business ideas into <span className="text-black/40">scalable</span> digital systems.
-          </h1>
-        </Reveal>
+  // targetRef tracks the main headline container to calculate scroll progress
+  const targetRef = useRef<HTMLHeadingElement>(null);
+  
+  // useScroll tracks scroll progress specifically for the targetRef element.
+  // "start end" = track when top of element hits bottom of viewport.
+  // "end center" = stop tracking when bottom of element hits center of viewport.
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end center"]
+  });
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mt-12 border-t border-black/10 pt-24">
-          <div className="md:col-span-5">
-            <Reveal delay={0.2}>
-              <h2 className="text-4xl tracking-tighter font-medium mb-8">
-                The Infriva Advantage
-              </h2>
-            </Reveal>
-          </div>
+  // The text to be animated word-by-word
+  const words = "Turning business ideas into scalable digital systems.".split(" ");
+
+  return (
+    // Outer shell providing vertical padding and horizontal bounds
+    <div className="w-full pt-32 pb-24 md:pt-40 md:pb-32 px-4 md:px-12">
+      {/* 2-column grid layout for desktop, single column on mobile */}
+      
+      {/* Massive Hero Image */}
+      <Reveal delay={0.1} className="w-full max-w-7xl mx-auto h-[50vh] md:h-[70vh] relative mb-24 overflow-hidden bg-brand-100">
+        <Image src="/images/minimalist-office.jpg" alt="Infriva Office Architecture" fill className="object-cover" />
+      </Reveal>
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        
+        {/* Left Column: Mission Statement */}
+        <div className="lg:pr-12">
+          {/* Eyebrow tag with fade-in animation */}
+          <Reveal className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-black/5 mb-8">
+            <span className="w-2 h-2 rounded-full bg-brand-900" />
+            <span className="text-[10px] tracking-widest-caps font-medium text-brand-900">The Growth Partner</span>
+          </Reveal>
           
-          <div className="md:col-span-7 flex flex-col gap-12">
+          {/* Headline block mapped to individual AnimatedWord components */}
+          <h1 ref={targetRef} className="text-4xl sm:text-5xl md:text-7xl xl:text-8xl tracking-tight-display leading-[1.05] font-medium text-balance mt-8 flex flex-wrap gap-x-[0.25em] break-words">
+            {words.map((word, i) => {
+              // Calculate the fractional start and end points for this word's opacity animation
+              const start = i / words.length;
+              const end = start + (1 / words.length);
+              return <AnimatedWord key={i} word={word} progress={scrollYProgress} start={start} end={end} />;
+            })}
+          </h1>
+        </div>
+
+        {/* Right Column: The Infriva Advantage */}
+        <div className="flex flex-col justify-center">
+          {/* Introductory text block with slight animation delay */}
+          <Reveal delay={0.2}>
+            <h2 className="text-2xl leading-[1.4] font-medium tracking-tight-display mb-8">The Infriva Advantage</h2>
+            <p className="text-lg text-black/60 mb-12 text-pretty">
+              We transition brands from manual enquiries to structured digital lead management, offering 360° IT solutions that scale.
+            </p>
+          </Reveal>
+
+          {/* List of advantages dynamically rendered from an array */}
+          <div className="flex flex-col gap-6">
             {[
-              {
-                title: "From Manual to Automated",
-                desc: "We transition your business from chaotic, manual email enquiries to structured digital lead management.",
-              },
-              {
-                title: "360° IT Solutions",
-                desc: "We don't just hand off a website. We integrate CRM, configure analytics, and automate follow-ups.",
-              },
-              {
-                title: "Scalable Architecture",
-                desc: "Built on enterprise-grade frameworks ensuring your system grows alongside your revenue.",
-              }
+              { title: "Traffic Generation", desc: "Visitor comes through website, SEO, or targeted ads." },
+              { title: "Lead Capture", desc: "Enquiry form captures lead details with frictionless UI." },
+              { title: "Automated Routing", desc: "Lead enters CRM for tracking and automated assignment." },
+              { title: "Accelerated Conversion", desc: "Team follows up instantly and converts faster." }
             ].map((item, i) => (
-              <Reveal key={item.title} delay={0.3 + (i * 0.1)}>
-                <div className="flex flex-col">
-                  <h3 className="text-2xl tracking-tight font-medium mb-4">{item.title}</h3>
-                  <p className="text-lg text-black/60 max-w-2xl text-pretty leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
+              // Staggered reveal for each list item
+              <Reveal key={i} delay={0.3 + i * 0.1} className="flex gap-4 p-6 bg-brand-50 rounded-2xl border border-black/5 hover:border-black/20 transition-colors">
+                  {/* Item Icon */}
+                  <div className="mt-1"><CheckCircle size={24} className="text-brand-900" weight="light" /></div>
+                  {/* Item Content */}
+                  <div>
+                    <h3 className="font-medium tracking-tight mb-1">{item.title}</h3>
+                    <p className="text-black/60 text-sm leading-[1.4]">{item.desc}</p>
+                  </div>
               </Reveal>
             ))}
           </div>
         </div>
+        
       </div>
     </div>
   );

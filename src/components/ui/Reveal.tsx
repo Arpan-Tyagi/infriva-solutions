@@ -16,13 +16,14 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 32, filter: "blur(4px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.2 }}
+      initial={reduce ? false : { opacity: 0, y: 40, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
       transition={{
-        duration: 1,
+        type: "spring",
+        bounce: 0,
+        duration: 0.8,
         delay,
-        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}

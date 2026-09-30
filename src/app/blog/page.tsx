@@ -34,7 +34,7 @@ const posts = [
     title: "How Digital Marketing Helps Startups Build Their Brand",
     category: "Marketing",
     date: "Sep 30, 2026",
-    desc: "Starting a business is exciting, but building a brand people remember is the real challenge. Discover how digital marketing helps your startup gain visibility and trust."
+    desc: "Starting a business is exciting, but building a brand people remember is the real challenge. Discover how digital marketing helps startups achieve visibility, trust, and growth."
   },
   {
     image: "/images/marketing-megaphone.jpg",

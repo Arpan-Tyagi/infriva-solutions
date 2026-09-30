@@ -192,7 +192,25 @@ export function Chatbot() {
                       ? 'bg-brand-900 text-brand-50 rounded-2xl rounded-tr-sm' 
                       : 'bg-brand-50 text-brand-900 rounded-2xl rounded-tl-sm border border-black/5'
                   }`}>
-                    {msg.content}
+                    {msg.content.split('\n').map((line, i) => {
+                      const isBullet = line.trim().startsWith('* ');
+                      const cleanLine = isBullet ? line.replace(/^\*\s/, '') : line;
+                      const parts = cleanLine.split(/(\*\*.*?\*\*)/g);
+                      
+                      return (
+                        <span key={i} className={`block ${isBullet ? 'ml-2 flex items-start' : 'mb-2 last:mb-0'}`}>
+                          {isBullet && <span className="mr-2">•</span>}
+                          <span>
+                            {parts.map((part, j) => {
+                              if (part.startsWith('**') && part.endsWith('**')) {
+                                return <strong key={j} className="font-semibold">{part.slice(2, -2)}</strong>;
+                              }
+                              return part;
+                            })}
+                          </span>
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               ))

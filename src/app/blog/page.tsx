@@ -30,6 +30,14 @@ import Image from "next/image";
 const posts = [
   {
     image: "/images/marketing-megaphone.jpg",
+    id: "how-digital-marketing-helps-startups-build-their-brand",
+    title: "How Digital Marketing Helps Startups Build Their Brand",
+    category: "Marketing",
+    date: "Sep 30, 2026",
+    desc: "Starting a business is exciting, but building a brand people remember is the real challenge. Discover how digital marketing helps your startup gain visibility and trust."
+  },
+  {
+    image: "/images/marketing-megaphone.jpg",
     id: "why-your-social-media-gets-attention-but-not-customers",
     title: "Why Your Social Media Gets Attention But Not Customers",
     category: "Marketing",

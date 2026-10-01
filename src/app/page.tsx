@@ -306,23 +306,48 @@ export default function Home() {
       <section className="w-full py-24 md:py-40 px-4 md:px-12 border-t border-black/5">
         <div className="max-w-7xl mx-auto">
           <Reveal>
-            <h3 className="text-4xl md:text-5xl tracking-tight-display font-medium mb-24">The Engineering Process</h3>
+            <h3 className="text-4xl md:text-5xl tracking-tight-display font-medium mb-20">The Engineering Process</h3>
           </Reveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-8 relative">
-            {/* Background connecting timeline track (horizontal line) */}
-            <div className="hidden md:block absolute top-8 left-0 w-full h-[1px] bg-black/5" />
-            
-            {/* Map over the sequential steps to generate timeline nodes */}
-            {['Consultation', 'Planning', 'Design', 'Development', 'Launch', 'Support'].map((step, i) => (
-              <Reveal key={step} delay={i * 0.1}>
-                <div className="relative pt-8 group">
-                  {/* Interactive timeline indicator that fills from the left on hover (desktop only) */}
-                  <div className="absolute top-0 left-0 w-full h-[1px] bg-brand-900 origin-left scale-x-0 md:group-hover:scale-x-100 transition-transform duration-500" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+            {[
+              {
+                title: 'Consultation',
+                description: 'Deep dive into your current operations, tech stack, and growth bottlenecks. We identify exactly where a digital system can automate workflows and drive revenue.'
+              },
+              {
+                title: 'Planning',
+                description: 'Mapping out the data flow, CRM integrations, and tech stack. This blueprint ensures your website, marketing channels, and sales pipelines work as a unified engine.'
+              },
+              {
+                title: 'Design',
+                description: 'Crafting high-conversion, premium interfaces that build immediate trust. We design for the end-user while maintaining a strong, authoritative brand presence.'
+              },
+              {
+                title: 'Development',
+                description: 'Building the core infrastructure. Custom React frontends, robust backends, and seamless API connections to tools like WhatsApp, Meta, and your CRM.'
+              },
+              {
+                title: 'Launch',
+                description: 'Rigorous pre-launch stress testing across all devices. We ensure flawless performance, technical SEO readiness, and a seamless, zero-downtime deployment.'
+              },
+              {
+                title: 'Support',
+                description: 'Post-launch scale and optimization. We monitor system health, manage updates, and iteratively improve conversion rates based on real user data.'
+              }
+            ].map((step, i) => (
+              <Reveal key={step.title} delay={i * 0.1}>
+                <div className="relative pt-8 group border-t border-black/10 hover:border-transparent transition-colors">
+                  {/* Interactive timeline indicator that fills from the left on hover */}
+                  <div className="absolute top-[-1px] left-0 w-full h-[2px] bg-brand-900 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]" />
                   {/* Step number label (01, 02, etc.) */}
-                  <div className="text-[10px] tracking-widest-caps text-black/40 mb-4">0{i + 1}</div>
+                  <div className="text-[10px] tracking-widest-caps text-black/40 mb-4 group-hover:text-brand-900 transition-colors duration-300">0{i + 1}</div>
                   {/* Step Title */}
-                  <h4 className="text-xl font-medium tracking-tight-display">{step}</h4>
+                  <h4 className="text-xl font-medium tracking-tight-display mb-3 group-hover:translate-x-1 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">{step.title}</h4>
+                  {/* Step Description */}
+                  <p className="text-sm text-black/60 leading-relaxed group-hover:text-black/80 transition-colors duration-300">
+                    {step.description}
+                  </p>
                 </div>
               </Reveal>
             ))}

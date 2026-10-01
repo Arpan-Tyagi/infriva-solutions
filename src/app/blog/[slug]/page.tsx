@@ -422,10 +422,10 @@ export async function generateMetadata({
   const cleanDescription = post.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160);
 
   return {
-    title: \`\${post.title} | Infriva Insights\`,
+    title: `${post.title} | Infriva Insights`,
     description: cleanDescription,
     openGraph: {
-      title: \`\${post.title} | Infriva Insights\`,
+      title: `${post.title} | Infriva Insights`,
       description: cleanDescription,
       images: post.image ? [post.image] : undefined,
     },

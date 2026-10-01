@@ -34,7 +34,8 @@ export function Footer() {
             Engineering digital architecture and business systems with spatial precision, conversion discipline, and structural craft.
           </p>
           <div className="flex flex-col gap-2 text-white/80">
-            <a href="tel:+918287628307" className="hover:text-white transition-colors">+91 82876 28307</a>
+            <a href="tel:+918505885515" className="hover:text-white transition-colors">+91 85058 85515</a>
+            <a href="tel:+918796862021" className="hover:text-white transition-colors">+91 87968 62021</a>
             <a href="mailto:info@infrivasolutions.com" className="hover:text-white transition-colors">info@infrivasolutions.com</a>
           </div>
         </div>

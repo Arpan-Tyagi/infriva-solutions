@@ -37,6 +37,72 @@ import { sendMetaMessage } from '@/lib/meta';
 import { supabase } from '@/lib/supabase';
 import { createAiSessionId, createAiTraceId } from '@/lib/posthog-ai';
 
+interface NormalizedMessage {
+  platform: 'messenger' | 'whatsapp' | 'instagram';
+  senderId: string;
+  messageText: string;
+  isLead: boolean;
+  phoneNumberId?: string;
+}
+
+function normalizeMetaPayload(body: any): NormalizedMessage[] {
+  const messages: NormalizedMessage[] = [];
+
+  if (body.object === 'page' || body.object === 'instagram') {
+    if (Array.isArray(body.entry)) {
+      for (const entry of body.entry) {
+        if (!Array.isArray(entry.messaging)) continue;
+        
+        for (const webhookEvent of entry.messaging) {
+          if (webhookEvent.message?.is_echo) continue;
+          
+          const senderId = webhookEvent.sender?.id;
+          
+          if (webhookEvent.message?.text && senderId) {
+            const isLead = !!(webhookEvent.referral || webhookEvent.optin);
+            const platform = body.object === 'instagram' ? 'instagram' : 'messenger';
+            
+            messages.push({
+              platform,
+              senderId,
+              messageText: webhookEvent.message.text,
+              isLead,
+            });
+          }
+        }
+      }
+    }
+  } else if (body.object === 'whatsapp_business_account') {
+    if (Array.isArray(body.entry)) {
+      for (const entry of body.entry) {
+        if (!Array.isArray(entry.changes)) continue;
+        
+        for (const change of entry.changes) {
+          const value = change.value;
+          if (value && Array.isArray(value.messages)) {
+            for (const message of value.messages) {
+              const senderPhone = message.from;
+              const phoneNumberId = value.metadata?.phone_number_id;
+
+              if (message.type === 'text' && message.text?.body && senderPhone && phoneNumberId) {
+                messages.push({
+                  platform: 'whatsapp',
+                  senderId: senderPhone,
+                  messageText: message.text.body,
+                  isLead: !!message.referral,
+                  phoneNumberId
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return messages;
+}
+
 /**
  * Persists an inbound or outbound message event into Supabase for audit logging and context memory.
  *
@@ -95,8 +161,9 @@ export async function GET(request: Request) {
  */
 export async function POST(request: Request) {
   try {
-    // 1. Read raw request body as text for cryptographic HMAC verification
-    const rawBody = await request.clone().text();
+    // 1. Read raw request body as buffer for cryptographic HMAC verification
+    const rawBodyBuffer = Buffer.from(await request.clone().arrayBuffer());
+    const rawBody = new TextDecoder().decode(rawBodyBuffer);
     const signature = request.headers.get('x-hub-signature-256');
     const appSecret = process.env.META_APP_SECRET;
 
@@ -107,7 +174,7 @@ export async function POST(request: Request) {
 
     // 2. Derive expected HMAC-SHA256 signature using the app secret
     const hmac = crypto.createHmac('sha256', appSecret);
-    const digest = 'sha256=' + hmac.update(rawBody).digest('hex');
+    const digest = 'sha256=' + hmac.update(rawBodyBuffer).digest('hex');
     const sigBuffer = Buffer.from(signature);
     const digestBuffer = Buffer.from(digest);
 
@@ -119,129 +186,50 @@ export async function POST(request: Request) {
     // Parse verified payload JSON
     const body = JSON.parse(rawBody);
 
-    // 3. Process Facebook Messenger or Instagram Direct Events
-    if (body.object === 'page' || body.object === 'instagram') {
-      if (Array.isArray(body.entry)) {
-        for (const entry of body.entry) {
-          if (!Array.isArray(entry.messaging)) continue;
+    const messages = normalizeMetaPayload(body);
+
+    for (const msg of messages) {
+      const sessionId = createAiSessionId(msg.platform, msg.senderId);
+
+      // Decouple AI processing from immediate webhook response
+      after(async () => {
+        try {
+          // Fetch conversational context: Retrieve the user's last 10 messages from Supabase
+          const { data: recentHistory } = await supabase
+            .from('chat_messages')
+            .select('direction, message')
+            .eq('sender_id', msg.senderId)
+            .eq('platform', msg.platform)
+            .order('created_at', { ascending: false })
+            .limit(10);
+
+          const history = (recentHistory || []).reverse().map(h => ({
+            role: h.direction === 'inbound' ? ('user' as const) : ('model' as const),
+            parts: [{ text: h.message }]
+          }));
+
+          // Log inbound message from the user
+          await logChatMessage(msg.senderId, msg.platform, 'inbound', msg.messageText);
+
+          // Generate agency response with Gemini 2.5 Flash
+          const aiResponse = await generateContent(msg.messageText, msg.isLead, {
+            sessionId,
+            traceId: createAiTraceId(),
+            distinctId: sessionId,
+          }, history);
+
+          // Log outbound response from the AI
+          await logChatMessage(msg.senderId, msg.platform, 'outbound', aiResponse);
           
-          for (const webhookEvent of entry.messaging) {
-            // Guard: Ignore echoes (messages sent by our own page) to prevent infinite loops
-            if (webhookEvent.message?.is_echo) continue;
-            
-            const senderId = webhookEvent.sender?.id;
-            
-            if (webhookEvent.message && webhookEvent.message.text && senderId) {
-              const messageText = webhookEvent.message.text;
-              
-              // Detect if conversation originated from an ad click or lead ad opt-in
-              const isLead = !!(webhookEvent.referral || webhookEvent.optin);
-              const channel = body.object === 'instagram' ? 'instagram' : 'messenger';
-              const sessionId = createAiSessionId(channel, senderId);
-              
-              // Asynchronous background execution: Decoupled to acknowledge Meta within 2000ms
-              after(async () => {
-                try {
-                  // Fetch conversational context: Retrieve the user's last 10 messages from Supabase
-                  const { data: recentHistory } = await supabase
-                    .from('chat_messages')
-                    .select('direction, message')
-                    .eq('sender_id', senderId)
-                    .order('created_at', { ascending: false })
-                    .limit(10);
-
-                  // Map database directions to Gemini-compatible conversation history turns
-                  const history = (recentHistory || []).reverse().map(h => ({
-                    role: h.direction === 'inbound' ? ('user' as const) : ('model' as const),
-                    parts: [{ text: h.message }]
-                  }));
-
-                  // Log inbound message from the user
-                  await logChatMessage(senderId, channel, 'inbound', messageText);
-
-                  // Generate agency response with Gemini 2.5 Flash
-                  const aiResponse = await generateContent(messageText, isLead, {
-                    sessionId,
-                    traceId: createAiTraceId(),
-                    distinctId: sessionId,
-                  }, history);
-
-                  // Log outbound response from the AI
-                  await logChatMessage(senderId, channel, 'outbound', aiResponse);
-                  
-                  // Transmit response back to user via Meta Graph API v18.0
-                  await sendMetaMessage(senderId, aiResponse, channel);
-                } catch (err) {
-                  console.error(`Async ${channel} AI execution error:`, err);
-                }
-              });
-            }
-          }
+          // Transmit response back via Meta Graph API v18.0
+          await sendMetaMessage(msg.senderId, aiResponse, msg.platform, msg.phoneNumberId);
+        } catch (err) {
+          console.error(`Async ${msg.platform} AI execution error:`, err);
         }
-      }
-      // Return 200 OK immediately so Meta recognizes the event as successfully delivered
-      return new NextResponse('EVENT_RECEIVED', { status: 200 });
+      });
+    }
 
-    // 4. Process WhatsApp Business Account Cloud API Events
-    } else if (body.object === 'whatsapp_business_account') {
-      if (Array.isArray(body.entry)) {
-        for (const entry of body.entry) {
-          if (!Array.isArray(entry.changes)) continue;
-          
-          for (const change of entry.changes) {
-            const value = change.value;
-            if (value && Array.isArray(value.messages)) {
-              for (const message of value.messages) {
-                const senderPhone = message.from;
-                const phoneNumberId = value.metadata?.phone_number_id;
-
-                // Process inbound text messages with a valid sender and phone number ID
-                if (message.type === 'text' && message.text?.body && senderPhone && phoneNumberId) {
-                  const messageText = message.text.body;
-                  const isLead = !!message.referral;
-                  const sessionId = createAiSessionId('whatsapp', senderPhone);
-
-                  // Decouple AI processing from immediate webhook response
-                  after(async () => {
-                    try {
-                      // Fetch conversational context: Retrieve the user's last 10 messages from Supabase
-                      const { data: recentHistory } = await supabase
-                        .from('chat_messages')
-                        .select('direction, message')
-                        .eq('sender_id', senderPhone)
-                        .order('created_at', { ascending: false })
-                        .limit(10);
-
-                      const history = (recentHistory || []).reverse().map(h => ({
-                        role: h.direction === 'inbound' ? ('user' as const) : ('model' as const),
-                        parts: [{ text: h.message }]
-                      }));
-
-                      // Log inbound message from WhatsApp user
-                      await logChatMessage(senderPhone, 'whatsapp', 'inbound', messageText);
-
-                      // Generate agency response with Gemini 2.5 Flash
-                      const aiResponse = await generateContent(messageText, isLead, {
-                        sessionId,
-                        traceId: createAiTraceId(),
-                        distinctId: sessionId,
-                      }, history);
-
-                      // Log outbound response from AI
-                      await logChatMessage(senderPhone, 'whatsapp', 'outbound', aiResponse);
-                      
-                      // Transmit response back via WhatsApp Business Cloud API
-                      await sendMetaMessage(senderPhone, aiResponse, 'whatsapp', phoneNumberId);
-                    } catch (err) {
-                      console.error("Async WhatsApp AI execution error:", err);
-                    }
-                  });
-                }
-              }
-            }
-          }
-        }
-      }
+    if (messages.length > 0 || body.object === 'page' || body.object === 'instagram' || body.object === 'whatsapp_business_account') {
       return new NextResponse('EVENT_RECEIVED', { status: 200 });
     }
 

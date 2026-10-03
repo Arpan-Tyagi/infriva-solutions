@@ -71,8 +71,7 @@ export async function sendMetaMessage(
     requestBody = {
       recipient: { id: recipientId },
       message: { text: messageText },
-      // messaging_type: "RESPONSE" informs Meta this is an answer to an incoming user-initiated interaction
-      messaging_type: "RESPONSE"
+      ...(platform === 'messenger' && { messaging_type: 'RESPONSE' })
     };
   }
 

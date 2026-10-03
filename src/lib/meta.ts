@@ -96,3 +96,50 @@ export async function sendMetaMessage(
   // Return the parsed JSON response containing message_id / recipient_id
   return await response.json();
 }
+
+/**
+ * Dispatches an outbound WhatsApp template message for business-initiated conversations.
+ */
+export async function sendWhatsAppTemplate(
+  recipientPhone: string,
+  templateName: string,
+  languageCode: string = 'en_US',
+  components: any[] = [],
+  phoneNumberId?: string
+) {
+  const accessToken = process.env.META_ACCESS_TOKEN;
+  if (!accessToken) throw new Error("META_ACCESS_TOKEN is not configured in environment variables.");
+
+  const resolvedPhoneId = phoneNumberId || process.env.META_WHATSAPP_PHONE_ID;
+  if (!resolvedPhoneId) throw new Error("phoneNumberId parameter or META_WHATSAPP_PHONE_ID in .env is required for WhatsApp dispatches.");
+
+  const endpoint = `https://graph.facebook.com/v18.0/${resolvedPhoneId}/messages`;
+  const requestBody = {
+    messaging_product: "whatsapp",
+    recipient_type: "individual",
+    to: recipientPhone,
+    type: "template",
+    template: {
+      name: templateName,
+      language: { code: languageCode },
+      components
+    }
+  };
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`
+    },
+    body: JSON.stringify(requestBody)
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error(`Meta API Error (WhatsApp Template):`, errorText);
+    throw new Error(`Failed to send template via Meta API [Status: ${response.status}]: ${errorText}`);
+  }
+
+  return await response.json();
+}

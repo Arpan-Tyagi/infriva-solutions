@@ -126,7 +126,7 @@ export async function generateContent(
   ];
 
   const startedAt = Date.now();
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
   // Execute HTTP request to Gemini REST API
   const response = await fetch(endpoint, {
@@ -151,7 +151,7 @@ export async function generateContent(
       sessionId,
       traceId,
       input,
-      model: 'gemini-2.5-flash',
+      model: 'gemini-1.5-flash',
       provider: 'gemini',
       latencyMs: Date.now() - startedAt,
       isError: true,
@@ -171,7 +171,7 @@ export async function generateContent(
     sessionId,
     traceId,
     input,
-    model: 'gemini-2.5-flash',
+    model: 'gemini-1.5-flash',
     provider: 'gemini',
     latencyMs: Date.now() - startedAt,
     output: text,

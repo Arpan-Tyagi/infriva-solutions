@@ -31,6 +31,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { supabase } from '@/lib/supabase';
+import { sendMetaMessage, sendWhatsAppTemplate } from '@/lib/meta';
 
 // Initialize the Resend transactional email SDK
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -224,8 +225,15 @@ export async function POST(request: Request) {
       if (cleanPhone.length >= 10) {
         const whatsappMessage = `Hello ${name},\n\nThank you for reaching out to Infriva Solutions regarding ${service}. We have received your inquiry and our team is reviewing your project details. We will be in touch shortly.\n\n- The Infriva Solutions Team`;
         try {
-          // Log outbound notification hook (requires pre-approved Meta Template in live production)
-          console.log('Mocking WhatsApp outbound to', cleanPhone, 'Message:', whatsappMessage);
+          // Send outbound notification hook using Meta Graph API (Must use template outside 24h window)
+          await sendWhatsAppTemplate(cleanPhone, 'lead_confirmation', 'en_US', [
+            {
+              type: 'body',
+              parameters: [
+                { type: 'text', text: name }
+              ]
+            }
+          ]);
         } catch (waError) {
           console.error("Failed to initiate WhatsApp message:", waError);
         }

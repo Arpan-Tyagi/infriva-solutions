@@ -33,8 +33,9 @@
 import { NextResponse, after } from 'next/server';
 import crypto from 'crypto';
 import { generateContent } from '@/lib/gemini';
-import { sendMetaMessage } from '@/lib/meta';
+import { sendMetaMessage, sendWhatsAppTemplate } from '@/lib/meta';
 import { supabase } from '@/lib/supabase';
+import { supabaseAdmin } from '@/lib/supabase-admin';
 import { createAiSessionId, createAiTraceId } from '@/lib/posthog-ai';
 
 interface NormalizedMessage {
@@ -45,6 +46,7 @@ interface NormalizedMessage {
   phoneNumberId?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function normalizeMetaPayload(body: any): NormalizedMessage[] {
   const messages: NormalizedMessage[] = [];
 
@@ -117,7 +119,7 @@ async function logChatMessage(
   direction: 'inbound' | 'outbound', 
   messageText: string
 ) {
-  const { error } = await supabase.from('chat_messages').insert([{
+  const { error } = await supabaseAdmin.from('chat_messages').insert([{
     sender_id: senderId,
     platform,
     direction,
@@ -194,6 +196,38 @@ export async function POST(request: Request) {
       // Decouple AI processing from immediate webhook response
       after(async () => {
         try {
+          let isRateLimited = false;
+          try {
+            const nowTime = Date.now();
+            const { data: rlData } = await supabase.from('rate_limits').select('*').eq('ip_or_sender_id', msg.senderId).single();
+            
+            if (rlData && new Date(rlData.reset_time).getTime() > nowTime) {
+              if (rlData.count > 50) {
+                isRateLimited = true;
+              } else {
+                await supabaseAdmin.from('rate_limits').update({ count: rlData.count + 1 }).eq('ip_or_sender_id', msg.senderId);
+              }
+            } else {
+              await supabaseAdmin.from('rate_limits').upsert({ ip_or_sender_id: msg.senderId, count: 1, reset_time: new Date(nowTime + 60000).toISOString() });
+            }
+          } catch (err) {
+            console.warn('Rate limiter error, bypassing:', err);
+          }
+
+          if (isRateLimited) {
+            try {
+              await sendMetaMessage(
+                msg.senderId,
+                "You've reached the message limit for this session. Please email us at info@infrivasolutions.com for further assistance.",
+                msg.platform,
+                msg.phoneNumberId
+              );
+            } catch (fallbackErr) {
+              console.error("Failed to send rate limit fallback:", fallbackErr);
+            }
+            return;
+          }
+
           // Fetch conversational context: Retrieve the user's last 10 messages from Supabase
           const { data: recentHistory } = await supabase
             .from('chat_messages')
@@ -211,11 +245,21 @@ export async function POST(request: Request) {
           // Log inbound message from the user
           await logChatMessage(msg.senderId, msg.platform, 'inbound', msg.messageText);
 
+          if (msg.isLead) {
+            try {
+              const { error } = await supabaseAdmin.from('leads').insert({ platform: msg.platform, sender_id: msg.senderId, message: msg.messageText, created_at: new Date().toISOString() });
+              if (error) console.error('Lead insertion error:', error);
+            } catch (err) {
+              console.error('Lead insertion exception:', err);
+            }
+          }
+
           // Generate agency response with Gemini 2.5 Flash
           const aiResponse = await generateContent(msg.messageText, msg.isLead, {
             sessionId,
             traceId: createAiTraceId(),
             distinctId: sessionId,
+            platform: msg.platform,
           }, history);
 
           // Log outbound response from the AI
@@ -225,6 +269,29 @@ export async function POST(request: Request) {
           await sendMetaMessage(msg.senderId, aiResponse, msg.platform, msg.phoneNumberId);
         } catch (err) {
           console.error(`Async ${msg.platform} AI execution error:`, err);
+          try {
+            await sendMetaMessage(
+              msg.senderId,
+              "Our digital concierge is currently unavailable. Please email us directly at info@infrivasolutions.com, and an architect will assist you shortly.",
+              msg.platform,
+              msg.phoneNumberId
+            );
+          } catch (metaErr) {
+            console.error('Fallback message failed:', metaErr);
+            if (msg.platform === 'whatsapp') {
+              try {
+                await sendWhatsAppTemplate(
+                  msg.senderId,
+                  "ai_downtime_alert",
+                  "en_US",
+                  [],
+                  msg.phoneNumberId
+                );
+              } catch (templateErr) {
+                console.error('WhatsApp template fallback failed:', templateErr);
+              }
+            }
+          }
         }
       });
     }

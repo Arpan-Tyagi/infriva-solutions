@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
         <Reveal delay={0.2}>
           <div className="prose prose-lg prose-neutral max-w-none text-black/80 font-sans leading-[1.6]">
             <p className="mb-8">
-              At <strong>Infriva Solutions</strong> ("we," "our," or "us"), we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, process, and safeguard the data you provide to us when you visit our website, use our AI chatbot, interact with our Meta (WhatsApp/Messenger) integrations, or engage our digital architecture services.
+              At <strong>Infriva Solutions</strong> (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, process, and safeguard the data you provide to us when you visit our website, use our AI chatbot, interact with our Meta (WhatsApp/Messenger) integrations, or engage our digital architecture services.
             </p>
             
             <h2 className="text-2xl leading-[1.4] font-medium tracking-tight-display mt-12 mb-6 text-brand-900">1. Information We Collect</h2>
@@ -67,14 +67,14 @@ export default function PrivacyPolicy() {
             <p className="mb-4">Depending on your location, you have specific rights regarding your personal data:</p>
             <ul className="list-disc pl-6 mb-8 space-y-2">
               <li><strong>Right to Access:</strong> Request a copy of the personal data we hold about you.</li>
-              <li><strong>Right to Deletion:</strong> Request that we delete your data ("Right to be Forgotten").</li>
+              <li><strong>Right to Deletion:</strong> Request that we delete your data (&quot;Right to be Forgotten&quot;).</li>
               <li><strong>Right to Rectification:</strong> Request correction of inaccurate data.</li>
             </ul>
             <p className="mb-8">To exercise any of these rights, please contact us using the information below.</p>
             
             <h2 className="text-2xl leading-[1.4] font-medium tracking-tight-display mt-12 mb-6 text-brand-900">6. Changes to This Policy</h2>
             <p className="mb-8">
-              We may update this Privacy Policy periodically to reflect changes in our practices or regulatory requirements. Any updates will be posted on this page with a revised "Effective Date."
+              We may update this Privacy Policy periodically to reflect changes in our practices or regulatory requirements. Any updates will be posted on this page with a revised &quot;Effective Date.&quot;
             </p>
 
             <div className="bg-brand-50 border border-black/5 p-8 rounded-2xl mt-12">

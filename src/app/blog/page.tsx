@@ -17,7 +17,7 @@
  *      and elevates the arrow icon with physical translations.
  */
 
-"use client";
+ 
 
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
@@ -28,6 +28,15 @@ import Image from "next/image";
  * Editorial Article Index Registry
  */
 const posts = [
+  {
+    image: "/images/branding-uiux.jpg",
+    id: "why-branding-and-ui-ux-matter-more-than-ever-for-your-website",
+    title: "Why Branding and UI/UX Matter More Than Ever for Your Website",
+    category: "Design",
+    date: "Oct 6, 2026",
+    desc: "Your website is often the first place where people experience your brand. Branding and UI/UX are not just about making a website look attractive. They directly influence how people see, trust and remember your brand."
+  },
+
   {
     image: "/images/marketing-megaphone.jpg",
     id: "how-digital-marketing-helps-startups-build-their-brand",

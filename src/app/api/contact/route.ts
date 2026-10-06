@@ -31,7 +31,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { supabase } from '@/lib/supabase';
-import { sendMetaMessage, sendWhatsAppTemplate } from '@/lib/meta';
+import { sendWhatsAppTemplate } from '@/lib/meta';
 
 // Initialize the Resend transactional email SDK
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -223,7 +223,6 @@ export async function POST(request: Request) {
     if (phone) {
       const cleanPhone = phone.replace(/\D/g, '');
       if (cleanPhone.length >= 10) {
-        const whatsappMessage = `Hello ${name},\n\nThank you for reaching out to Infriva Solutions regarding ${service}. We have received your inquiry and our team is reviewing your project details. We will be in touch shortly.\n\n- The Infriva Solutions Team`;
         try {
           // Send outbound notification hook using Meta Graph API (Must use template outside 24h window)
           await sendWhatsAppTemplate(cleanPhone, 'lead_confirmation', 'en_US', [

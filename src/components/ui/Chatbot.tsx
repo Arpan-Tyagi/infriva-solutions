@@ -29,6 +29,8 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export function Chatbot() {
   // Modal visibility toggle state
@@ -93,7 +95,7 @@ export function Chatbot() {
     
     // Filter out previous client-side error fallback notifications so they don't pollute Gemini context
     const cleanHistory = messages.filter(
-      (m) => m.content !== "The AI is currently experiencing high demand. Please try again momentarily."
+      (m) => m.content !== "The AI is currently experiencing high demand. Please try again momentarily." && m.content !== "Our digital concierge is currently unavailable. Please email us directly at info@infrivasolutions.com, and an architect will assist you shortly." && m.content !== "Too many messages. Please wait a moment before trying again."
     );
     
     const newMessages: { role: 'user' | 'bot'; content: string }[] = [
@@ -111,16 +113,22 @@ export function Chatbot() {
       });
 
       if (!response.ok) {
-        throw new Error('API error response received');
+        const errData = await response.json().catch(() => null);
+        throw new Error(errData?.error || errData?.message || "Our digital concierge is currently unavailable. Please email us directly at info@infrivasolutions.com, and an architect will assist you shortly.");
       }
 
       const data = await response.json();
       setMessages(prev => [...prev, { role: 'bot', content: data.text }]);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Chatbot submission error:", error);
+      let content = "Our digital concierge is currently unavailable. Please email us directly at info@infrivasolutions.com, and an architect will assist you shortly.";
+      const err = error as Error;
+      if (err?.message && err.message !== 'Failed to fetch' && err.message !== 'API error response received') {
+        content = err.message;
+      }
       setMessages(prev => [
         ...prev, 
-        { role: 'bot', content: "The AI is currently experiencing high demand. Please try again momentarily." }
+        { role: 'bot', content }
       ]);
     } finally {
       setIsLoading(false);
@@ -192,25 +200,19 @@ export function Chatbot() {
                       ? 'bg-brand-900 text-brand-50 rounded-2xl rounded-tr-sm' 
                       : 'bg-brand-50 text-brand-900 rounded-2xl rounded-tl-sm border border-black/5'
                   }`}>
-                    {msg.content.split('\n').map((line, i) => {
-                      const isBullet = line.trim().startsWith('* ');
-                      const cleanLine = isBullet ? line.replace(/^\*\s/, '') : line;
-                      const parts = cleanLine.split(/(\*\*.*?\*\*)/g);
-                      
-                      return (
-                        <span key={i} className={`block ${isBullet ? 'ml-2 flex items-start' : 'mb-2 last:mb-0'}`}>
-                          {isBullet && <span className="mr-2">•</span>}
-                          <span>
-                            {parts.map((part, j) => {
-                              if (part.startsWith('**') && part.endsWith('**')) {
-                                return <strong key={j} className="font-semibold">{part.slice(2, -2)}</strong>;
-                              }
-                              return part;
-                            })}
-                          </span>
-                        </span>
-                      );
-                    })}
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        p: ({node: _node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
+                        ul: ({node: _node, ...props}) => <ul className="ml-4 list-disc mb-2 last:mb-0" {...props} />,
+                        ol: ({node: _node, ...props}) => <ol className="ml-4 list-decimal mb-2 last:mb-0" {...props} />,
+                        li: ({node: _node, ...props}) => <li className="mb-1 last:mb-0" {...props} />,
+                        strong: ({node: _node, ...props}) => <strong className="font-semibold" {...props} />,
+                        a: ({node: _node, ...props}) => <a className="underline underline-offset-2 hover:text-brand-500" {...props} />
+                      }}
+                    >
+                      {msg.content}
+                    </ReactMarkdown>
                   </div>
                 </div>
               ))
@@ -220,9 +222,9 @@ export function Chatbot() {
             {isLoading && (
               <div className="flex justify-start">
                 <div className="max-w-[80%] p-4 text-sm bg-brand-50 text-brand-900 border border-black/5 rounded-2xl rounded-tl-sm flex gap-1 items-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-black/40 animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-black/40 animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-black/40 animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-black/40 animate-luxury-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-black/40 animate-luxury-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-black/40 animate-luxury-bounce" style={{ animationDelay: '300ms' }} />
                 </div>
               </div>
             )}

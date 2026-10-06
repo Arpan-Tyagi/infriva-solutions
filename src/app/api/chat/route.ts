@@ -21,65 +21,13 @@
 
 import { NextResponse } from 'next/server';
 import { captureAiGeneration, createAiSessionId, createAiTraceId } from '@/lib/posthog-ai';
+import { AGENCY_SYSTEM_PROMPT } from '@/lib/gemini';
+import { supabase } from '@/lib/supabase';
+import { supabaseAdmin } from '@/lib/supabase-admin';
 
 /** Regular expression for validating client-provided session IDs */
 const aiIdentifierPattern = /^[A-Za-z0-9\-_~.@()!':|]+$/;
 
-/**
- * In-memory sliding window rate limiter state.
- * Maps IP address -> { request count, window expiration timestamp }
- */
-const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
-
-/**
- * Validates request frequency against the configured rate limit.
- *
- * @param ip - Client IP address
- * @param limit - Maximum requests allowed per window (default: 15)
- * @param windowMs - Time window in milliseconds (default: 60,000ms / 1 min)
- * @returns boolean - True if throttled, false if permitted
- */
-function isRateLimited(ip: string, limit = 15, windowMs = 60000): boolean {
-  const now = Date.now();
-  
-  // Clean up expired entries when map grows beyond 1,000 entries
-  if (rateLimitMap.size > 1000) {
-    for (const [key, value] of rateLimitMap.entries()) {
-      if (value.expiresAt < now) {
-        rateLimitMap.delete(key);
-      }
-    }
-  }
-
-  const entry = rateLimitMap.get(ip);
-  if (!entry || entry.expiresAt < now) {
-    rateLimitMap.set(ip, { count: 1, expiresAt: now + windowMs });
-    return false;
-  }
-  if (entry.count >= limit) {
-    return true;
-  }
-  entry.count += 1;
-  return false;
-}
-
-/**
- * Agency System Instructions
- * Defines Infriva's authority, services portfolio, and conversion goals.
- */
-const AGENCY_SYSTEM_PROMPT = `You are the AI Assistant for Infriva Solutions, a premier digital architecture and engineering agency.
-Infriva Solutions specializes in:
-1. Custom CRM Systems: Bespoke automation architectures tailored to sales workflows, lead routing, and customer lifecycle management.
-2. Web Dev & UI/UX Design: High-performance digital properties engineered on Next.js with cinematic spatial rhythm and conversion optimization.
-3. Full-Stack SEO & GEO: Technical search engine optimization, AI generative engine optimization, and authority link-building.
-4. Paid Advertising Management: Algorithmic media buying across Meta Ads and Google Ads with bi-weekly attribution reporting.
-5. Retention Marketing: WhatsApp messaging flows, cart abandonment triggers, and repeat customer retention sequences.
-6. Premium Content Creation: High-authority brand storytelling, editorial design, and multimedia distribution.
-
-Guidelines:
-- Tone: Professional, authoritative, minimalist, clear, and helpful.
-- Assist users with questions about Infriva's service offerings, timelines, deliverables, and capabilities.
-- When prospective clients show interest in initiating a project or requesting a quote, encourage them to submit an inquiry through the contact form at /contact or share their project details.`;
 
 /**
  * POST Handler: Process Web Chatbot Conversations
@@ -90,12 +38,24 @@ export async function POST(req: Request) {
     const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
                      req.headers.get('x-real-ip') ||
                      '127.0.0.1';
-                     
-    if (isRateLimited(clientIp, 15, 60000)) {
-      return NextResponse.json(
-        { error: 'Too many messages. Please wait a moment before trying again.' },
-        { status: 429 }
-      );
+
+    try {
+      const nowTime = Date.now();
+      const { data: rlData } = await supabase.from('rate_limits').select('*').eq('ip_or_sender_id', clientIp).single();
+      
+      if (rlData && new Date(rlData.reset_time).getTime() > nowTime) {
+        if (rlData.count >= 15) {
+          return NextResponse.json(
+            { error: 'Too many messages. Please wait a moment before trying again.' },
+            { status: 429 }
+          );
+        }
+        await supabaseAdmin.from('rate_limits').update({ count: rlData.count + 1 }).eq('ip_or_sender_id', clientIp);
+      } else {
+        await supabaseAdmin.from('rate_limits').upsert({ ip_or_sender_id: clientIp, count: 1, reset_time: new Date(nowTime + 60000).toISOString() });
+      }
+    } catch (err) {
+      console.warn('Rate limiter error, bypassing:', err);
     }
 
     const { messages, sessionId } = await req.json();
@@ -174,7 +134,7 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({
           systemInstruction: {
-            parts: [{ text: AGENCY_SYSTEM_PROMPT }]
+            parts: [{ text: AGENCY_SYSTEM_PROMPT() }]
           },
           contents: contents
         })
@@ -220,6 +180,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ text });
   } catch (error) {
     console.error('Chat API Error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Our digital concierge is currently unavailable. Please email us directly at info@infrivasolutions.com, and an architect will assist you shortly.' }, { status: 500 });
   }
 }

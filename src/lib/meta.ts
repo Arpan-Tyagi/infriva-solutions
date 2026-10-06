@@ -103,6 +103,7 @@ export async function sendWhatsAppTemplate(
   recipientPhone: string,
   templateName: string,
   languageCode: string = 'en_US',
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   components: any[] = [],
   phoneNumberId?: string
 ) {

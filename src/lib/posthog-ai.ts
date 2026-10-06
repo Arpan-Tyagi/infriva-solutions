@@ -147,5 +147,5 @@ export async function captureAiGeneration({
   });
 
   // Explicitly flush the PostHog event buffer to ensure delivery in serverless runtimes
-  await posthog.flush();
+  posthog.flush();
 }

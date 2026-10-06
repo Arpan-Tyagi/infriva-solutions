@@ -33,6 +33,8 @@ type AiGenerationContext = {
   traceId: string;
   /** PostHog user identifier for session recording and user profiles */
   distinctId: string;
+  /** The platform the user is on */
+  platform?: string;
 };
 
 /**
@@ -41,7 +43,7 @@ type AiGenerationContext = {
  * Defines Infriva Solutions' corporate persona, value propositions, service portfolio,
  * and conversational guidelines. Exported so Route Handlers can inspect or reuse it.
  */
-export const AGENCY_SYSTEM_PROMPT = `You are the AI Assistant for Infriva Solutions, a premier digital architecture and engineering agency.
+export const AGENCY_SYSTEM_PROMPT = (platform?: string) => `You are the AI Assistant for Infriva Solutions, a premier digital architecture and engineering agency.
 Infriva Solutions specializes in:
 1. Custom CRM Systems: Bespoke automation architectures tailored to sales workflows, lead routing, and customer lifecycle management.
 2. Web Dev & UI/UX Design: High-performance digital properties engineered on Next.js with cinematic spatial rhythm and conversion optimization.
@@ -54,7 +56,12 @@ Infriva Solutions specializes in:
 Guidelines:
 - Tone: Professional, authoritative, minimalist, clear, and helpful.
 - Assist users with questions about Infriva's service offerings, timelines, deliverables, and capabilities.
-- When prospective clients show interest in initiating a project or requesting a quote, encourage them to submit an inquiry through the contact form at /contact or share their project details.`;
+- When prospective clients show interest in initiating a project or requesting a quote, ${
+  ['whatsapp', 'messenger', 'instagram'].includes(platform || '')
+    ? 'ask them directly in this chat for their email address and phone number to schedule a strategic roadmap consultation.'
+    : 'encourage them to submit an inquiry through the contact form at /contact or share their project details.'
+}
+If asked about topics outside our core services, politely refuse and pivot back to our digital architecture capabilities.`;
 
 /**
  * Executes a conversational query against the Google Gemini 2.5 Flash API.
@@ -78,11 +85,10 @@ export async function generateContent(
     throw new Error("GEMINI_API_KEY is not configured in environment variables.");
   }
 
-  // Append lead-capture directive if context suggests an inbound marketing or ad lead
   const leadContext = isLead
     ? "\n\nContext: The user originated from an ad or lead form. Actively focus on qualifying them and capturing their email/phone for a strategic roadmap consultation."
     : "\n\nContext: Guide the user through Infriva's engineering capabilities and suggest booking a consultation at /contact.";
-  const systemInstruction = `${AGENCY_SYSTEM_PROMPT}${leadContext}`;
+  const systemInstruction = `${AGENCY_SYSTEM_PROMPT(context?.platform)}${leadContext}`;
 
   // Establish unique telemetry identifiers for PostHog AI tracking
   const traceId = context?.traceId ?? createAiTraceId();
@@ -126,7 +132,7 @@ export async function generateContent(
   ];
 
   const startedAt = Date.now();
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
   // Execute HTTP request to Gemini REST API
   const response = await fetch(endpoint, {
@@ -151,7 +157,7 @@ export async function generateContent(
       sessionId,
       traceId,
       input,
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.5-flash',
       provider: 'gemini',
       latencyMs: Date.now() - startedAt,
       isError: true,
@@ -171,7 +177,7 @@ export async function generateContent(
     sessionId,
     traceId,
     input,
-    model: 'gemini-1.5-flash',
+    model: 'gemini-2.5-flash',
     provider: 'gemini',
     latencyMs: Date.now() - startedAt,
     output: text,

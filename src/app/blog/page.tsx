@@ -38,7 +38,7 @@ const posts = [
   },
 
   {
-    image: "/images/marketing-megaphone.jpg",
+    image: "/images/digital-marketing.jpg",
     id: "how-digital-marketing-helps-startups-build-their-brand",
     title: "How Digital Marketing Helps Startups Build Their Brand",
     category: "Marketing",

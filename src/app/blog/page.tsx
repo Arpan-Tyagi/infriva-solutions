@@ -29,6 +29,15 @@ import Image from "next/image";
  */
 const posts = [
   {
+    image: "/images/seo-aeo-geo.jpg",
+    id: "seo-aeo-geo-three-strategies",
+    title: "SEO, AEO and GEO: Does Your Business Really Need Three Different Strategies?",
+    category: "SEO",
+    date: "Oct 8, 2026",
+    desc: "Discover how SEO, AEO and GEO work together in the era of AI-powered search, and how to build a unified strategy for maximum visibility."
+  },
+
+  {
     image: "/images/branding-uiux.jpg",
     id: "why-branding-and-ui-ux-matter-more-than-ever-for-your-website",
     title: "Why Branding and UI/UX Matter More Than Ever for Your Website",

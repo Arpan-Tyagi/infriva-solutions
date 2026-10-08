@@ -29,6 +29,15 @@ import Image from "next/image";
  */
 const posts = [
   {
+    image: "/images/website-trust-uiux.jpg",
+    id: "why-customers-trust-some-websites-instantly",
+    title: "Why Customers Trust Some Websites Instantly and Doubt Others",
+    category: "Design",
+    date: "Oct 8, 2026",
+    desc: "First impressions matter. Discover how consistent branding, clear content, good design, and fast speeds build instant trust with your customers."
+  },
+
+  {
     image: "/images/seo-aeo-geo.jpg",
     id: "seo-aeo-geo-three-strategies",
     title: "SEO, AEO and GEO: Does Your Business Really Need Three Different Strategies?",

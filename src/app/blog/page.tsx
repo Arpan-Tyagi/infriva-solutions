@@ -29,6 +29,15 @@ import Image from "next/image";
  */
 const posts = [
   {
+    image: "/images/brand-strategy.jpg",
+    id: "how-to-build-a-brand-from-scratch-start-with-strategy",
+    title: "How to Build a Brand From Scratch: Start With Strategy, Not a Logo",
+    category: "Branding",
+    date: "Oct 9, 2026",
+    desc: "A strong brand begins before the first font, colour or logo is chosen. Discover the 10-step strategy to building a memorable brand from the ground up."
+  },
+
+  {
     image: "/images/website-trust-uiux.jpg",
     id: "why-customers-trust-some-websites-instantly",
     title: "Why Customers Trust Some Websites Instantly and Doubt Others",

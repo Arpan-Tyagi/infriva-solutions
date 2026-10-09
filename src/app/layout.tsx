@@ -31,6 +31,7 @@ import { Navigation } from "@/components/ui/Navigation";
 import { Footer } from "@/components/ui/Footer";
 import { Preloader } from "@/components/ui/Preloader";
 import { Chatbot } from "@/components/ui/Chatbot";
+import { PostHogProvider } from "./providers";
 
 /**
  * Configure Geist Sans font variable.
@@ -71,6 +72,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased selection:bg-brand-900 selection:text-white`}
     >
       <body className="min-h-[100dvh] flex flex-col bg-background text-foreground">
+        <PostHogProvider>
         {/* Accessible Skip to Content Link (WCAG 2.1 AA Compliance) */}
         <a
           href="#main-content"
@@ -113,6 +115,7 @@ export default function RootLayout({
         
         {/* Global Agency Footer */}
         <Footer />
+        </PostHogProvider>
       </body>
     </html>
   );

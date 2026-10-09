@@ -82,7 +82,7 @@ export default function RootLayout({
         {/* Google Analytics (gtag.js) - Restricted strictly to production environments */}
         {process.env.NODE_ENV === "production" && (
           <>
-            <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-FMQLX056JX" />
+            <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-M3H7N4SS4X" />
             <Script
               id="google-analytics"
               strategy="afterInteractive"
@@ -92,7 +92,7 @@ export default function RootLayout({
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
 
-                  gtag('config', 'G-FMQLX056JX');
+                  gtag('config', 'G-M3H7N4SS4X');
                 `,
               }}
             />

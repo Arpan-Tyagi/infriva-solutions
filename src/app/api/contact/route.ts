@@ -29,6 +29,7 @@
  */
 
 import { NextResponse } from 'next/server';
+import { PostHog } from 'posthog-node';
 import { Resend } from 'resend';
 import { supabase } from '@/lib/supabase';
 import { sendWhatsAppTemplate } from '@/lib/meta';

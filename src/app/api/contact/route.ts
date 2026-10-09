@@ -239,7 +239,25 @@ export async function POST(request: Request) {
       }
     }
 
-    // 8. Return success response to client form
+        // 8. Capture PostHog Event for Contact Form Submission
+    if (process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+      const ph = new PostHog(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
+        host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com'
+      });
+      ph.capture({
+        distinctId: email,
+        event: 'contact_form_submitted',
+        properties: {
+          service: service,
+          budget: budget,
+          company_provided: !!company,
+          phone_provided: !!phone
+        }
+      });
+      await ph.shutdown();
+    }
+
+    // 9. Return success response to client form
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error: unknown) {
     console.error('Contact Route Server Error:', error);

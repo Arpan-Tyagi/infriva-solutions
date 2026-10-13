@@ -55,8 +55,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Thought Leadership Editorial Articles (4 Slugs)
+  // Thought Leadership Editorial Articles (10 Slugs)
   const blogSlugs: MetadataRoute.Sitemap = [
+    'why-some-brands-feel-instantly-right-the-psychology-behind-great-branding',
+    'how-to-build-a-brand-from-scratch-start-with-strategy',
+    'why-customers-trust-some-websites-instantly',
+    'seo-aeo-geo-three-strategies',
+    'why-branding-and-ui-ux-matter-more-than-ever-for-your-website',
+    'how-digital-marketing-helps-startups-build-their-brand',
     'why-your-social-media-gets-attention-but-not-customers',
     'why-every-small-business-needs-crm-software',
     'why-your-website-is-not-getting-leads-and-how-to-fix-it',

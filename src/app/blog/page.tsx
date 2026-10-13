@@ -29,6 +29,15 @@ import Image from "next/image";
  */
 const posts = [
   {
+    image: "/images/brand-psychology.jpg",
+    id: "why-some-brands-feel-instantly-right-the-psychology-behind-great-branding",
+    title: "Why Some Brands Feel Instantly Right: The Psychology Behind Great Branding",
+    category: "Branding",
+    date: "Oct 13, 2026",
+    desc: "Strong branding combines visual design principles with human psychology to influence what people notice, remember, and feel about a business."
+  },
+
+  {
     image: "/images/brand-strategy.jpg",
     id: "how-to-build-a-brand-from-scratch-start-with-strategy",
     title: "How to Build a Brand From Scratch: Start With Strategy, Not a Logo",

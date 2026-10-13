@@ -29,12 +29,15 @@ interface RevealProps {
   delay?: number;
   /** Optional CSS class names applied to the motion wrapper container */
   className?: string;
+  /** When true, skips initial transform for above-the-fold LCP elements */
+  priority?: boolean;
 }
 
 export function Reveal({ 
   children, 
   delay = 0, 
-  className = "" 
+  className = "",
+  priority = false,
 }: RevealProps) {
   // Query browser/OS preference for prefers-reduced-motion
   const reduce = useReducedMotion();
@@ -42,18 +45,18 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      // If reduced motion is requested by the user, bypass initial transform offsets
-      initial={reduce ? false : { opacity: 0, y: 40, scale: 0.95 }}
-      // Animate to standard resting position and full opacity when scrolled into view
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      // Keep opacity: 1 in SSR HTML so crawlers and LCP never encounter hidden content
+      initial={reduce || priority ? false : { opacity: 1, y: 16 }}
+      // Animate to standard resting position when scrolled into view
+      whileInView={{ opacity: 1, y: 0 }}
       // Trigger only once when first scrolled into view
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-20px" }}
       // Zero-bounce spring creates smooth, weighted deceleration
       transition={{
         type: "spring",
         bounce: 0,
-        duration: 0.8,
-        delay,
+        duration: 0.6,
+        delay: priority ? 0 : Math.min(delay, 0.25),
       }}
     >
       {children}

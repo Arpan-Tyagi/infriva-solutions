@@ -1,0 +1,141 @@
+# Infriva Solutions — Comprehensive Technical & Service Reference (llms-full.txt)
+
+> Canonical Domain: https://www.infrivasolutions.com
+> Organization: Infriva Solutions (New Delhi, India)
+> Principal Systems Architect: Arpan Tyagi
+> Contact: info@infrivasolutions.com | +91 85058 85515 | +91 87968 62021
+
+---
+
+## 1. Executive Summary
+
+Infriva Solutions is a full-stack digital engineering and revenue architecture agency headquartered in New Delhi, India. Unlike traditional web design shops or isolated ad agencies, Infriva engineers end-to-end business systems that connect high-speed frontend web properties (React 19, Next.js App Router), relational CRM databases (PostgreSQL, Supabase), organic search and AI citation engines (Technical SEO, AEO, GEO), paid acquisition (Meta Ads CAPI, Google Ads), and automated lifecycle retention (WhatsApp Cloud API).
+
+### Verified Production Benchmarks
+- **Enterprise & B2B Deployments:** 100+
+- **Total Projects Delivered:** 250+
+- **Engineering Track Record:** 5+ Years (Founded 2021)
+- **Client Satisfaction Rating:** 4.9 / 5.0
+- **Core Web Vitals Standard:** LCP < 1.5s, INP < 100ms, CLS < 0.05
+
+---
+
+## 2. Detailed Service Specifications, Pricing & SLAs
+
+### 2.1 Web Dev & UI/UX Design (`/services/web-development`)
+- **URL:** https://www.infrivasolutions.com/services/web-development
+- **Investment:** ₹80,000+ (One-time project fee)
+- **Delivery Timeline:** Launch in 45 Business Days
+- **SLA & Warranty:** 90-day Post-Launch Architectural & Bug-Free Warranty
+- **Tech Stack:** Next.js 16 (App Router), React 19, TypeScript 5, Tailwind CSS v4, PostgreSQL, Supabase, Vercel Edge Network
+- **Core Deliverables:**
+  - UI/UX Strategy, Information Architecture & Interactive Wireframing (up to 10 core templates)
+  - High-Fidelity Design System in Figma (custom typography, tokens, WCAG 2.1 AA contrast)
+  - Server-Rendered & Static Next.js Frontend with sub-1.5s LCP
+  - Native CRM, WhatsApp Cloud API, and Server-Side Analytics Integration
+  - Technical SEO, Schema.org JSON-LD Graph, and Pre-Launch Stress Testing
+
+### 2.2 Custom CRM Systems (`/services/crm-systems`)
+- **URL:** https://www.infrivasolutions.com/services/crm-systems
+- **Investment:** ₹90,000+ (One-time project fee)
+- **Delivery Timeline:** Launch in 60 Business Days
+- **SLA & Warranty:** 90-day Post-Launch Warranty & Schema Support
+- **Tech Stack:** PostgreSQL 16, Supabase (Auth & Row-Level Security), Next.js Server Actions, Meta Graph & WhatsApp Cloud API, Resend Transactional Email
+- **Core Deliverables:**
+  - Normalized Relational Database Modeling & Indexing
+  - Automated Lead Ingestion & Deterministic Round-Robin Routing
+  - Bi-Directional Webhooks for Meta Lead Ads, WhatsApp, and Payment Gateways
+  - Role-Based Access Control (RBAC) & Executive Revenue Dashboards
+
+### 2.3 Full-Stack SEO & GEO (`/services/seo-and-geo`)
+- **URL:** https://www.infrivasolutions.com/services/seo-and-geo
+- **Investment:** ₹65,000 / month
+- **Delivery Timeline:** Comprehensive Technical & Entity Audit by 10th Business Day
+- **SLA:** 6-month Incubation Period for Compounding Organic & AI Citation Authority
+- **Core Deliverables:**
+  - Technical SEO & Core Web Vitals Remediation
+  - Generative Engine Optimization (GEO) for Google AI Overviews, ChatGPT, Claude, and Perplexity (`/llms.txt`, passage-level answer blocks)
+  - Programmatic Schema.org JSON-LD (`Organization`, `ProfessionalService`, `Service`, `BlogPosting`, `BreadcrumbList`)
+  - 3 Long-Form Technical/Editorial Articles per Week + Multi-Platform Syndication
+  - Digital PR, Authority Backlink Acquisition & Local SEO (NAP Synchronization)
+
+### 2.4 Paid Advertising Management (`/services/paid-advertising`)
+- **URL:** https://www.infrivasolutions.com/services/paid-advertising
+- **Investment:** ₹50,000 / month + 10% of Ad Spend
+- **Delivery Timeline:** Attribution & Campaign Launch in Week 1
+- **SLA:** 90-day Algorithmic Learning & ROAS Optimization Window
+- **Core Deliverables:**
+  - Meta Advantage+ & Full-Funnel Campaign Architecture
+  - High-Intent Google Search, Performance Max & Remarketing Bidding
+  - Server-Side Meta Conversions API (CAPI) & Google Enhanced Conversions Setup
+  - Offline CRM Conversion Feedback Loops & Bi-Weekly CAC/ROAS Attribution Reports
+
+### 2.5 Retention Marketing — WhatsApp Add-On Ecosystem (`/services/retention-marketing`)
+- **URL:** https://www.infrivasolutions.com/services/retention-marketing
+- **Investment:** ₹25,000 / month
+- **Delivery Timeline:** Automation Logic Maps & Webhook Deployment by Week 2
+- **SLA:** 90-day Incubation, Support Response < 8 Hours
+- **Core Deliverables:**
+  - 4 Segmented WhatsApp Broadcast Campaigns per Month
+  - Real-Time Abandoned Cart & Drop-Off Recovery Triggers (15m, 4h, 24h)
+  - Automated Welcome & Onboarding Flows
+  - RFM Cohort Win-Back & Post-Purchase Review Sequences
+
+### 2.6 Premium Content Creation (`/services/premium-content`)
+- **URL:** https://www.infrivasolutions.com/services/premium-content
+- **Investment:** ₹60,000 / month
+- **Delivery Timeline:** Strategy in Week 1, Ongoing Rolling Production
+- **SLA:** Response < 2 Hours, Guaranteed Delivery Schedule
+- **Core Deliverables:**
+  - 2 Deep-Dive SEO/GEO Editorial Articles per Month (1,200+ words each)
+  - Daily Multi-Platform Social Distribution (LinkedIn, Instagram, X)
+  - 2 Short-Form Vertical Video Assets per Month
+  - Competitor Content Gap & Entity Authority Mapping
+
+### 2.7 Social Media Management (`/services/social-media-management`)
+- **URL:** https://www.infrivasolutions.com/services/social-media-management
+- **Investment:** ₹20,000 / month
+- **Delivery Timeline:** Monthly Content Calendar Delivered by the 20th
+- **SLA:** 90-day Incubation, 48-hour Client Approval Window
+- **Core Deliverables:**
+  - Custom Channel Strategy & Audience Sentiment Monitoring
+  - Daily Static & Carousel Design Posts
+  - 3 Short-Form Reels per Week
+  - 1 Long-Form Hero Video per Month
+
+---
+
+## 3. Verified Production Case Studies
+
+### 3.1 FlyingLyte (`/projects/flyinglyte`)
+- **Sector:** Travel, Flight Booking, Hotel Packages
+- **Problem:** 74% funnel drop-off at the booking step; manual WhatsApp enquiries tracked in spreadsheets with zero automated follow-up.
+- **Engineering Solution:** Rebuilt on Next.js App Router with a custom multi-step booking engine, optimistic UI validation, PostgreSQL CRM lead capture, and 12 automated WhatsApp Cloud API sequences.
+- **Measured Results:**
+  - +40% Increase in Qualified Leads
+  - −55% Reduction in Booking Funnel Drop-off
+  - 1.1s Largest Contentful Paint (LCP)
+  - 12 Automated WhatsApp Lifecycle Flows
+
+### 3.2 StarX Hotel (`/projects/starx`)
+- **Sector:** Boutique Hospitality & Direct Room Reservations
+- **Problem:** 100% reliance on third-party OTAs (Booking.com, MakeMyTrip) charging 15–20% commission per reservation; zero direct guest data ownership.
+- **Engineering Solution:** Engineered an editorial hospitality platform on Next.js with AVIF/WebP room showcases, a 2-step direct reservation engine backed by a custom availability CRM, and automated WhatsApp concierge flows (confirmations, pre-arrival check-in, post-stay reviews).
+- **Measured Results:**
+  - +35% Direct Booking Share within 90 Days
+  - ~18% OTA Commission Saved on Direct Reservations
+  - +0.4★ Review Score Improvement
+  - +22% Repeat Guest Rate
+
+---
+
+## 4. Consultation & Engagement Process
+
+1. **Consultation:** Technical audit of your existing web property, CRM workflows, search visibility, and unit economics.
+2. **Planning:** System architecture blueprint mapping database schemas, API webhooks, and acquisition funnels.
+3. **Design:** High-conversion, brand-aligned UI/UX prototypes with zero-CLS typography and responsive grids.
+4. **Development:** Clean React/Next.js frontend code, PostgreSQL backend modeling, and WhatsApp/Meta integrations.
+5. **Launch:** Core Web Vitals stress testing, Schema.org validation, and zero-downtime edge deployment.
+6. **Support:** 90-day post-launch warranty, real-time analytics telemetry, and continuous conversion rate optimization.
+
+To initiate a project or technical consultation, visit https://www.infrivasolutions.com/contact or email info@infrivasolutions.com.

@@ -1,32 +1,44 @@
 import { Reveal } from "@/components/ui/Reveal";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { AGENCY_NAP, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Infriva Solutions",
-  description: "Learn how Infriva Solutions collects, uses, and protects your personal data.",
+  title: "Privacy Policy",
+  description:
+    "Learn how Infriva Solutions collects, processes, and safeguards personal data across our Next.js web platforms, CRM databases, and AI/WhatsApp integrations.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Infriva Solutions",
+    description:
+      "Learn how Infriva Solutions collects, processes, and safeguards personal data across our Next.js web platforms, CRM databases, and AI/WhatsApp integrations.",
+    url: `${SITE_URL}/privacy-policy`,
+    type: "website",
+  },
 };
 
 export default function PrivacyPolicy() {
   return (
     <div className="w-full pt-32 pb-24 md:pt-40 md:pb-32 px-4 md:px-12 bg-white selection:bg-brand-900 selection:text-white">
       <div className="max-w-4xl mx-auto">
-        <Reveal>
+        <Reveal priority>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-black/5 mb-8">
             <span className="w-2 h-2 rounded-full bg-brand-900" />
             <span className="text-[10px] tracking-widest-caps font-medium text-brand-900 uppercase">Legal</span>
           </div>
         </Reveal>
         
-        <Reveal delay={0.1}>
+        <Reveal priority>
           <h1 className="text-5xl md:text-7xl tracking-tight-display leading-[1.05] font-medium text-balance mb-8">
             Privacy Policy
           </h1>
           <p className="text-lg text-black/60 mb-16 font-sans">
-            Effective Date: October 2026
+            Effective Date: April 2026
           </p>
         </Reveal>
         
-        <Reveal delay={0.2}>
+        <Reveal>
           <div className="prose prose-lg prose-neutral max-w-none text-black/80 font-sans leading-[1.6]">
             <p className="mb-8">
               At <strong>Infriva Solutions</strong> (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, process, and safeguard the data you provide to us when you visit our website, use our AI chatbot, interact with our Meta (WhatsApp/Messenger) integrations, or engage our digital architecture services.
@@ -37,7 +49,7 @@ export default function PrivacyPolicy() {
             <ul className="list-disc pl-6 mb-8 space-y-2">
               <li><strong>Personal Identification Data:</strong> Name, email address, phone number, and company details provided via our contact forms.</li>
               <li><strong>Conversational Data:</strong> Transcripts of interactions with our Gemini-powered AI chatbot and Meta webhooks (WhatsApp/Messenger) to improve response quality and context.</li>
-              <li><strong>Usage & Analytics Data:</strong> IP addresses, browser types, device information, and interaction events tracked via PostHog to optimize UI/UX performance.</li>
+              <li><strong>Usage &amp; Analytics Data:</strong> IP addresses, browser types, device information, and interaction events tracked via PostHog to optimize UI/UX performance.</li>
             </ul>
             
             <h2 className="text-2xl leading-[1.4] font-medium tracking-tight-display mt-12 mb-6 text-brand-900">2. How We Use Your Data</h2>
@@ -63,7 +75,7 @@ export default function PrivacyPolicy() {
               We implement robust, enterprise-grade security measures to protect your data. This includes HMAC-SHA256 payload verification for all Meta webhooks, strict CORS policies, and server-side input sanitization to prevent XSS and injection attacks. However, no electronic transmission over the internet can be guaranteed to be 100% secure.
             </p>
 
-            <h2 className="text-2xl leading-[1.4] font-medium tracking-tight-display mt-12 mb-6 text-brand-900">5. Your Data Rights (GDPR & CCPA)</h2>
+            <h2 className="text-2xl leading-[1.4] font-medium tracking-tight-display mt-12 mb-6 text-brand-900">5. Your Data Rights (GDPR, DPDP &amp; CCPA)</h2>
             <p className="mb-4">Depending on your location, you have specific rights regarding your personal data:</p>
             <ul className="list-disc pl-6 mb-8 space-y-2">
               <li><strong>Right to Access:</strong> Request a copy of the personal data we hold about you.</li>
@@ -80,8 +92,10 @@ export default function PrivacyPolicy() {
             <div className="bg-brand-50 border border-black/5 p-8 rounded-2xl mt-12">
               <h2 className="text-xl leading-[1.4] font-medium tracking-tight-display mb-4 text-brand-900">Contact Us</h2>
               <p className="mb-2">If you have any questions or concerns about this Privacy Policy, please contact our Data Protection Officer at:</p>
-              <p className="font-medium text-brand-900">Email: infrivasolutions@gmail.com</p>
-              <p className="font-medium text-brand-900">Website: https://www.infrivasolutions.com/contact</p>
+              <p className="font-medium text-brand-900">Email: {AGENCY_NAP.email}</p>
+              <p className="font-medium text-brand-900">Phone: {AGENCY_NAP.phones.map((p) => p.display).join(" / ")}</p>
+              <p className="font-medium text-brand-900">Location: {AGENCY_NAP.address.locality}, {AGENCY_NAP.address.region} {AGENCY_NAP.address.postalCode}, India</p>
+              <p className="font-medium text-brand-900">Website: {SITE_URL}/contact</p>
             </div>
           </div>
         </Reveal>

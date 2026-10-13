@@ -45,11 +45,18 @@ function CustomSelect({ id, listId, name, label, options, placeholder, value, on
 
   return (
     <div ref={containerRef} className="flex flex-col gap-2 relative">
-      <label htmlFor={id} className="text-sm font-medium tracking-tight">{label}</label>
+      <label
+        id={`${id}-label`}
+        onClick={() => setIsOpen(!isOpen)}
+        className="text-sm font-medium tracking-tight cursor-pointer"
+      >
+        {label}
+      </label>
       
       <div 
         id={id}
         role="combobox"
+        aria-labelledby={`${id}-label`}
         aria-controls={listId}
         aria-expanded={isOpen}
         tabIndex={0}
@@ -257,7 +264,13 @@ export function ContactForm() {
         name="Budget Range"
         label="Budget Range" 
         placeholder="Select your budget..."
-        options={["Below ₹15,000", "₹15,000 - ₹30,000", "₹30,000 - ₹50,000", "₹50,000 - ₹1,00,000", "Above ₹1,00,000"]} 
+        options={[
+          "₹20,000 – ₹40,000 / month",
+          "₹40,000 – ₹65,000 / month",
+          "₹65,000 – ₹1,00,000",
+          "₹1,00,000 – ₹2,50,000",
+          "Above ₹2,50,000 (Enterprise)"
+        ]} 
         value={budget}
         onChange={setBudget}
       />

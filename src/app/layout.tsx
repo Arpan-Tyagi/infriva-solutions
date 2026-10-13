@@ -32,33 +32,61 @@ import { Footer } from "@/components/ui/Footer";
 import { Preloader } from "@/components/ui/Preloader";
 import { Chatbot } from "@/components/ui/Chatbot";
 import { PostHogProvider } from "./providers";
+import { AGENCY_NAP, SITE_URL, buildGlobalGraphJsonLd } from "@/lib/site";
 
-/**
- * Configure Geist Sans font variable.
- * Used for primary headlines, navigation labels, and UI typography.
- */
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-/**
- * Configure Geist Mono font variable.
- * Used for monospaced metrics, code snippets, timestamps, and architectural labels.
- */
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
-/**
- * Base Application Metadata
- * Configures global search engine indexing, social graph OpenGraph tags, and canonical URLs.
- */
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://infrivasolutions.com'),
-  title: "Infriva | Premium Digital Architecture",
-  description: "We engineer digital experiences with cinematic spatial rhythm.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Infriva Solutions | B2B Digital Systems, Custom CRM & SEO/GEO Engineering",
+    template: "%s | Infriva Solutions",
+  },
+  description: AGENCY_NAP.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: SITE_URL,
+    siteName: AGENCY_NAP.name,
+    title: "Infriva Solutions | B2B Digital Systems, Custom CRM & SEO/GEO Engineering",
+    description: AGENCY_NAP.description,
+    images: [
+      {
+        url: "/images/glass-panels.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Infriva Solutions — B2B Digital Architecture & Revenue Engineering",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Infriva Solutions | B2B Digital Systems, Custom CRM & SEO/GEO Engineering",
+    description: AGENCY_NAP.description,
+    images: ["/images/glass-panels.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -66,12 +94,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const globalJsonLd = buildGlobalGraphJsonLd();
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased selection:bg-brand-900 selection:text-white`}
     >
       <body className="min-h-[100dvh] flex flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalJsonLd) }}
+        />
         <PostHogProvider>
         {/* Accessible Skip to Content Link (WCAG 2.1 AA Compliance) */}
         <a

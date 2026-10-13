@@ -17,74 +17,48 @@
  */
 
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
+import { SERVICES_LIST } from '@/lib/services';
+import { BLOG_POSTS_LIST } from '@/lib/blog';
+import { PROJECTS_LIST } from '@/lib/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://infrivasolutions.com';
-  const currentDate = new Date();
-
-  // Core static site landing pages
   const staticRoutes: MetadataRoute.Sitemap = [
-    '',
-    '/services',
-    '/projects',
-    '/about',
-    '/blog',
-    '/contact',
-    '/terms',
-    '/privacy',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: currentDate,
-    changeFrequency: (route === '' ? 'weekly' : 'monthly') as 'weekly' | 'monthly',
-    priority: route === '' ? 1.0 : 0.8,
+    { path: '', lastModified: '2026-10-13T00:00:00.000Z', changeFrequency: 'weekly', priority: 1.0 },
+    { path: '/services', lastModified: '2026-10-12T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.9 },
+    { path: '/projects', lastModified: '2026-10-02T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/about', lastModified: '2026-10-12T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/blog', lastModified: '2026-10-13T00:00:00.000Z', changeFrequency: 'weekly', priority: 0.8 },
+    { path: '/contact', lastModified: '2026-10-12T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.9 },
+    { path: '/terms', lastModified: '2026-10-01T00:00:00.000Z', changeFrequency: 'yearly', priority: 0.4 },
+    { path: '/privacy-policy', lastModified: '2026-10-01T00:00:00.000Z', changeFrequency: 'yearly', priority: 0.4 },
+  ].map((item) => ({
+    url: `${SITE_URL}${item.path}`,
+    lastModified: new Date(item.lastModified),
+    changeFrequency: item.changeFrequency as MetadataRoute.Sitemap[number]['changeFrequency'],
+    priority: item.priority,
   }));
 
-  // Flagship Agency Services (7 Slugs)
-  const serviceSlugs: MetadataRoute.Sitemap = [
-    'premium-content',
-    'social-media-management',
-    'seo-and-geo',
-    'retention-marketing',
-    'web-development',
-    'paid-advertising',
-    'crm-systems',
-  ].map((slug) => ({
-    url: `${baseUrl}/services/${slug}`,
-    lastModified: currentDate,
+  const serviceRoutes: MetadataRoute.Sitemap = SERVICES_LIST.map((service) => ({
+    url: `${SITE_URL}/services/${service.slug}`,
+    lastModified: new Date(service.lastModified),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }));
 
-  // Thought Leadership Editorial Articles (10 Slugs)
-  const blogSlugs: MetadataRoute.Sitemap = [
-    'why-some-brands-feel-instantly-right-the-psychology-behind-great-branding',
-    'how-to-build-a-brand-from-scratch-start-with-strategy',
-    'why-customers-trust-some-websites-instantly',
-    'seo-aeo-geo-three-strategies',
-    'why-branding-and-ui-ux-matter-more-than-ever-for-your-website',
-    'how-digital-marketing-helps-startups-build-their-brand',
-    'why-your-social-media-gets-attention-but-not-customers',
-    'why-every-small-business-needs-crm-software',
-    'why-your-website-is-not-getting-leads-and-how-to-fix-it',
-    'seo-vs-google-ads-which-is-better-for-your-business',
-  ].map((slug) => ({
-    url: `${baseUrl}/blog/${slug}`,
-    lastModified: currentDate,
+  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS_LIST.map((post) => ({
+    url: `${SITE_URL}/blog/${post.id}`,
+    lastModified: new Date(post.lastModified),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 
-  // Portfolio Client Case Studies (2 Slugs)
-  const projectSlugs: MetadataRoute.Sitemap = [
-    'flyinglyte',
-    'starx',
-  ].map((slug) => ({
-    url: `${baseUrl}/projects/${slug}`,
-    lastModified: currentDate,
+  const projectRoutes: MetadataRoute.Sitemap = PROJECTS_LIST.map((project) => ({
+    url: `${SITE_URL}/projects/${project.id}`,
+    lastModified: new Date(project.lastModified),
     changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    priority: 0.8,
   }));
 
-  // Combine and return unified sitemap array
-  return [...staticRoutes, ...serviceSlugs, ...blogSlugs, ...projectSlugs];
+  return [...staticRoutes, ...serviceRoutes, ...blogRoutes, ...projectRoutes];
 }

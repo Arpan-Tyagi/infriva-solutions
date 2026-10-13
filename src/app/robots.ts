@@ -13,10 +13,9 @@
  */
 
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://infrivasolutions.com';
-
   return {
     rules: [
       {
@@ -24,7 +23,21 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/'],
       },
+      {
+        userAgent: [
+          'GPTBot',
+          'OAI-SearchBot',
+          'ChatGPT-User',
+          'ClaudeBot',
+          'PerplexityBot',
+          'Google-Extended',
+          'Applebot-Extended',
+        ],
+        allow: ['/', '/llms.txt', '/llms-full.txt'],
+        disallow: ['/api/'],
+      },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    host: SITE_URL,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

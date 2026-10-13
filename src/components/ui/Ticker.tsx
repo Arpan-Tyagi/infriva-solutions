@@ -24,7 +24,7 @@
 
 "use client";
 
-import { useInView, useSpring } from "motion/react";
+import { useInView, useReducedMotion, useSpring } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 interface TickerProps {
@@ -35,48 +35,46 @@ interface TickerProps {
 }
 
 export function Ticker({ value, suffix = "" }: TickerProps) {
-  // DOM reference to the counter element
   const ref = useRef<HTMLSpanElement>(null);
-  
+  const reduceMotion = useReducedMotion();
+  const hasDecimals = value % 1 !== 0;
+  const formattedTarget = hasDecimals ? value.toFixed(1) : value;
+
   // Detect when the element scrolls into view (fires only once)
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   
   // High-mass spring configuration for dramatic deceleration
-  const springValue = useSpring(0, {
+  const springValue = useSpring(value, {
     damping: 100,
     stiffness: 100,
     mass: 3,
   });
 
-  // Local state holding the formatted string/number for rendering
-  const [displayValue, setDisplayValue] = useState<number | string>(0);
+  // Initialize with the real target value so SSR HTML and crawlers see 100+, 250+, 5+, 4.9/5 instead of 0+
+  const [displayValue, setDisplayValue] = useState<number | string>(formattedTarget);
 
-  // Trigger spring animation when the component enters viewport
+  // Trigger spring animation when the component enters viewport (unless reduced motion is enabled)
   useEffect(() => {
-    if (isInView) {
+    if (isInView && !reduceMotion) {
+      springValue.jump(0);
       springValue.set(value);
     }
-  }, [isInView, springValue, value]);
+  }, [isInView, reduceMotion, springValue, value]);
 
   // Subscribe to raw spring value changes and format for presentation
   useEffect(() => {
-    const hasDecimals = value % 1 !== 0;
-    
     return springValue.on("change", (latest) => {
       if (hasDecimals) {
-        // Format to 1 decimal place for ratings (e.g., 4.9)
         setDisplayValue(latest.toFixed(1));
       } else {
-        // Round down to integers for metrics (e.g., 98, 250)
         setDisplayValue(Math.floor(latest));
       }
     });
-  }, [springValue, value]);
+  }, [springValue, hasDecimals]);
 
   return (
-    // tabular-nums ensures uniform digit widths to eliminate layout jitter
     <span ref={ref} className="tabular-nums">
-      {displayValue}{suffix}
+      {`${displayValue}${suffix}`}
     </span>
   );
 }

@@ -22,7 +22,7 @@
  * Tracks whether the user is viewing the application during their initial page load session.
  * Defaults to `true` upon browser initialization.
  */
-export let isInitialLoad = true;
+export let isInitialLoad = false;
 
 /**
  * Updates the initial load status flag.

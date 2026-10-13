@@ -29,8 +29,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import dynamic from 'next/dynamic';
+
+const ChatbotMarkdown = dynamic(() => import('./ChatbotMarkdown'), {
+  ssr: false,
+  loading: () => <span className="opacity-70">...</span>,
+});
 
 export function Chatbot() {
   // Modal visibility toggle state
@@ -140,7 +144,7 @@ export function Chatbot() {
       {/* Floating Action Trigger Button (Bottom Right) */}
       <button 
         onClick={toggleChat}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-brand-900 text-brand-50 rounded-full shadow-[0_16px_32px_-12px_rgba(0,0,0,0.4)] hover:scale-105 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] transition-all duration-300 border border-white/10"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 p-3.5 sm:p-4 bg-brand-900 text-brand-50 rounded-full shadow-[0_16px_32px_-12px_rgba(0,0,0,0.4)] hover:scale-105 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] transition-all duration-300 border border-white/10"
         aria-label="Toggle chat"
       >
         {isOpen ? (
@@ -159,7 +163,7 @@ export function Chatbot() {
 
       {/* Floating Chat Window Overlay */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] sm:w-[380px] h-[600px] max-h-[80vh] flex flex-col bg-white border border-black/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.2)] overflow-hidden rounded-2xl origin-bottom-right transition-all duration-200">
+        <div className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[600px] max-h-[80vh] flex flex-col bg-white border border-black/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.2)] overflow-hidden rounded-2xl origin-bottom-right transition-all duration-200">
           {/* Header Bar */}
           <div className="bg-brand-50 text-brand-900 px-4 py-3 sm:px-5 sm:py-4 flex justify-between items-center border-b border-black/5">
             <div className="flex items-center gap-3">
@@ -200,19 +204,11 @@ export function Chatbot() {
                       ? 'bg-brand-900 text-brand-50 rounded-2xl rounded-tr-sm' 
                       : 'bg-brand-50 text-brand-900 rounded-2xl rounded-tl-sm border border-black/5'
                   }`}>
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        p: ({node: _node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-                        ul: ({node: _node, ...props}) => <ul className="ml-4 list-disc mb-2 last:mb-0" {...props} />,
-                        ol: ({node: _node, ...props}) => <ol className="ml-4 list-decimal mb-2 last:mb-0" {...props} />,
-                        li: ({node: _node, ...props}) => <li className="mb-1 last:mb-0" {...props} />,
-                        strong: ({node: _node, ...props}) => <strong className="font-semibold" {...props} />,
-                        a: ({node: _node, ...props}) => <a className="underline underline-offset-2 hover:text-brand-500" {...props} />
-                      }}
-                    >
-                      {msg.content}
-                    </ReactMarkdown>
+                    {msg.role === 'user' ? (
+                      <p className="mb-0">{msg.content}</p>
+                    ) : (
+                      <ChatbotMarkdown content={msg.content} />
+                    )}
                   </div>
                 </div>
               ))

@@ -1,0 +1,53 @@
+# Infriva Solutions
+
+> Infriva Solutions is a New Delhi-based B2B digital architecture, software engineering, and full-funnel growth studio. We design and engineer high-performance Next.js web platforms, custom PostgreSQL/Supabase CRM systems, full-stack technical SEO & Generative Engine Optimization (GEO), algorithmic Meta & Google Ads systems, and WhatsApp Cloud API retention workflows.
+
+## Studio Overview & Contact (NAP)
+
+- **Legal Name:** Infriva Solutions
+- **Canonical Website:** https://www.infrivasolutions.com
+- **Headquarters:** New Delhi, Delhi 110001, India
+- **Founder & Principal Systems Architect:** Arpan Tyagi
+- **Primary Email:** info@infrivasolutions.com
+- **Direct Engineering Lines:** +91 85058 85515 / +91 87968 62021
+- **Operating Hours:** Monday–Saturday, 10:00 AM – 7:00 PM IST
+- **Track Record:** 100+ Enterprise Deployments | 250+ Digital Systems Delivered | 5+ Years Experience | 4.9/5 Client Rating
+
+## Core Capabilities & Transparent Pricing
+
+- [Web Dev & UI/UX Design](https://www.infrivasolutions.com/services/web-development): High-performance B2B web platforms built on React 19, Next.js App Router, TypeScript, and PostgreSQL. Investment: ₹80,000+ (One-time), 45 Business Days delivery, 90-day post-launch warranty.
+- [Custom CRM Systems](https://www.infrivasolutions.com/services/crm-systems): Bespoke PostgreSQL & Supabase CRM systems with automated lead routing, Row-Level Security (RLS), and WhatsApp/Meta webhook ingestion. Investment: ₹90,000+ (One-time), 60 Business Days delivery, 90-day post-launch warranty.
+- [Full-Stack SEO & GEO](https://www.infrivasolutions.com/services/seo-and-geo): Technical SEO, Schema.org entity graphs, and Generative Engine Optimization (GEO) for Google AI Overviews, ChatGPT Search, and Perplexity. Investment: ₹65,000 / month.
+- [Paid Advertising Management](https://www.infrivasolutions.com/services/paid-advertising): Meta Advantage+ and Google Search/PMax performance engineering with server-side Conversions API (CAPI) and offline CRM attribution. Investment: ₹50,000 / month + 10% Ad Spend.
+- [Retention Marketing (WhatsApp API)](https://www.infrivasolutions.com/services/retention-marketing): Official Meta WhatsApp Cloud API lifecycle automation, abandoned cart recovery, and win-back sequences. Investment: ₹25,000 / month.
+- [Premium Content Creation](https://www.infrivasolutions.com/services/premium-content): Executive B2B thought leadership, long-form technical articles, and short-form video distribution. Investment: ₹60,000 / month.
+- [Social Media Management](https://www.infrivasolutions.com/services/social-media-management): Human-curated static posts, 3 reels/week, and 1 long-form video/month across Instagram, LinkedIn, and YouTube. Investment: ₹20,000 / month.
+
+## Verified Client Case Studies
+
+- [FlyingLyte — Travel & Flight Booking Engine](https://www.infrivasolutions.com/projects/flyinglyte): Rebuilt a legacy travel portal on Next.js with a custom multi-step booking engine, PostgreSQL CRM, and 12 automated WhatsApp API flows. Outcomes: +40% increase in qualified leads, −55% funnel drop-off reduction, 1.1s LCP.
+- [StarX Hotel — Direct Hospitality Booking & Guest CRM](https://www.infrivasolutions.com/projects/starx): Engineered a commission-free direct reservation platform, live inventory CRM, and automated WhatsApp guest concierge for a boutique hotel brand. Outcomes: +35% direct booking share, ~18% OTA commission saved, +22% repeat guest rate.
+
+## Core Navigation & Documentation
+
+- [Home](https://www.infrivasolutions.com/)
+- [Services Catalog](https://www.infrivasolutions.com/services)
+- [Case Studies Portfolio](https://www.infrivasolutions.com/projects)
+- [About Infriva Solutions](https://www.infrivasolutions.com/about)
+- [Engineering Insights & Blog](https://www.infrivasolutions.com/blog)
+- [Contact & Consultation Booking](https://www.infrivasolutions.com/contact)
+- [Full Machine-Readable Documentation](https://www.infrivasolutions.com/llms-full.txt)
+- [XML Sitemap](https://www.infrivasolutions.com/sitemap.xml)
+
+## Featured Engineering Insights (Blog)
+
+- [SEO, AEO and GEO: Does Your Business Really Need Three Different Strategies?](https://www.infrivasolutions.com/blog/seo-aeo-geo-three-strategies)
+- [Why Every Small Business Needs CRM Software](https://www.infrivasolutions.com/blog/why-every-small-business-needs-crm-software)
+- [Why Your Website Is Not Getting Leads (And How to Fix It)](https://www.infrivasolutions.com/blog/why-your-website-is-not-getting-leads-and-how-to-fix-it)
+- [SEO vs Google Ads: Which is Better For Your Business?](https://www.infrivasolutions.com/blog/seo-vs-google-ads-which-is-better-for-your-business)
+- [Why Customers Trust Some Websites Instantly and Doubt Others](https://www.infrivasolutions.com/blog/why-customers-trust-some-websites-instantly)
+- [Why Some Brands Feel Instantly Right: The Psychology Behind Great Branding](https://www.infrivasolutions.com/blog/why-some-brands-feel-instantly-right-the-psychology-behind-great-branding)
+- [How to Build a Brand From Scratch: Start With Strategy, Not a Logo](https://www.infrivasolutions.com/blog/how-to-build-a-brand-from-scratch-start-with-strategy)
+- [Why Branding and UI/UX Matter More Than Ever for Your Website](https://www.infrivasolutions.com/blog/why-branding-and-ui-ux-matter-more-than-ever-for-your-website)
+- [How Digital Marketing Helps Startups Build Their Brand](https://www.infrivasolutions.com/blog/how-digital-marketing-helps-startups-build-their-brand)
+- [Why Your Social Media Gets Attention But Not Customers](https://www.infrivasolutions.com/blog/why-your-social-media-gets-attention-but-not-customers)

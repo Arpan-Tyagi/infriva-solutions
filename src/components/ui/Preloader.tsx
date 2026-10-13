@@ -52,6 +52,10 @@ export function Preloader() {
     };
   }, []);
 
+  if (!loading) {
+    return null;
+  }
+
   return (
     <motion.div
       // Fullscreen fixed container with high z-index overlaying all navigation and page content

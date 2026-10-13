@@ -44,3 +44,7 @@ next-env.d.ts
 
 # caches
 .posthog-wizard-cache/
+
+# scratch and chart temp files
+/scratch/
+/charts/

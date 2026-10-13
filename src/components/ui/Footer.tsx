@@ -19,42 +19,61 @@
 
 import Link from "next/link";
 import { LogoHorizontal } from "@/components/ui/LogoHorizontal";
+import { AGENCY_NAP } from "@/lib/site";
 
 export function Footer() {
   return (
     <footer className="w-full bg-brand-900 text-white pt-24 pb-8 px-6 md:px-12 mt-auto rounded-t-[2rem]">
-      {/* Primary content grid: 2 columns on mobile, 4 columns on desktop */}
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 mb-24">
+      {/* Primary content grid: 2 columns on mobile, 5 columns on desktop */}
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-12 mb-24">
         {/* Brand identity & agency manifesto (spans 2 columns) */}
         <div className="col-span-2">
           <Link href="/" aria-label="Infriva Home" className="inline-block mb-8 transition-opacity hover:opacity-80">
             <LogoHorizontal className="h-10 w-auto text-white" />
           </Link>
-          <p className="text-white/60 text-balance max-w-sm text-lg mb-8">
-            Engineering digital architecture and business systems with spatial precision, conversion discipline, and structural craft.
+          <p className="text-white/65 text-balance max-w-sm text-base leading-relaxed mb-6">
+            Engineering B2B digital architecture, custom PostgreSQL CRMs, and full-stack SEO &amp; GEO acquisition systems with structural craft.
           </p>
-          <div className="flex flex-col gap-2 text-white/80">
-            <a href="tel:+918505885515" className="hover:text-white transition-colors">+91 85058 85515</a>
-            <a href="tel:+918796862021" className="hover:text-white transition-colors">+91 87968 62021</a>
-            <a href="mailto:info@infrivasolutions.com" className="hover:text-white transition-colors">info@infrivasolutions.com</a>
+          <div className="flex flex-col gap-1.5 text-sm text-white/80">
+            <a href={AGENCY_NAP.phones[0].href} className="hover:text-white transition-colors">{AGENCY_NAP.phones[0].display}</a>
+            <a href={AGENCY_NAP.phones[1].href} className="hover:text-white transition-colors">{AGENCY_NAP.phones[1].display}</a>
+            <a href={`mailto:${AGENCY_NAP.email}`} className="hover:text-white transition-colors">{AGENCY_NAP.email}</a>
+            <p className="text-white/50 text-xs mt-2">
+              {AGENCY_NAP.address.locality}, {AGENCY_NAP.address.region} {AGENCY_NAP.address.postalCode}, India &bull; {AGENCY_NAP.hours}
+            </p>
           </div>
         </div>
-        
+
         {/* Core agency navigation paths */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-widest text-white/40 mb-6">Studio</h4>
-          <ul className="space-y-4">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-white/45 mb-6">Studio</h2>
+          <ul className="space-y-3 text-sm">
             <li><Link href="/services" className="text-white/80 hover:text-white transition-colors">Services</Link></li>
-            <li><Link href="/projects" className="text-white/80 hover:text-white transition-colors">Projects</Link></li>
+            <li><Link href="/projects" className="text-white/80 hover:text-white transition-colors">Case Studies</Link></li>
             <li><Link href="/about" className="text-white/80 hover:text-white transition-colors">About Us</Link></li>
+            <li><Link href="/blog" className="text-white/80 hover:text-white transition-colors">Insights (Blog)</Link></li>
             <li><Link href="/contact" className="text-white/80 hover:text-white transition-colors">Contact</Link></li>
+          </ul>
+        </div>
+
+        {/* Core Service Capabilities */}
+        <div>
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-white/45 mb-6">Capabilities</h2>
+          <ul className="space-y-3 text-sm">
+            <li><Link href="/services/web-development" className="text-white/80 hover:text-white transition-colors">Web Dev &amp; UI/UX</Link></li>
+            <li><Link href="/services/crm-systems" className="text-white/80 hover:text-white transition-colors">Custom CRM Systems</Link></li>
+            <li><Link href="/services/seo-and-geo" className="text-white/80 hover:text-white transition-colors">Full-Stack SEO &amp; GEO</Link></li>
+            <li><Link href="/services/paid-advertising" className="text-white/80 hover:text-white transition-colors">Paid Advertising</Link></li>
+            <li><Link href="/services/retention-marketing" className="text-white/80 hover:text-white transition-colors">WhatsApp Retention</Link></li>
+            <li><Link href="/services/premium-content" className="text-white/80 hover:text-white transition-colors">Premium Content</Link></li>
+            <li><Link href="/services/social-media-management" className="text-white/80 hover:text-white transition-colors">Social Media Mgmt</Link></li>
           </ul>
         </div>
 
         {/* Live verified external social channels */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-widest text-white/40 mb-6">Social</h4>
-          <ul className="space-y-4">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-white/45 mb-6">Social</h2>
+          <ul className="space-y-3 text-sm">
             <li><a href="https://x.com/infrivasolutions" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Twitter (X)</a></li>
             <li><a href="https://linkedin.com/company/infriva" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">LinkedIn</a></li>
             <li><a href="https://instagram.com/infrivasolutions" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Instagram</a></li>
@@ -64,8 +83,8 @@ export function Footer() {
       </div>
 
       {/* Sub-footer: Copyright & Legal Policies */}
-      <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
-        <p>&copy; {new Date().getFullYear()} Infriva. All rights reserved.</p>
+      <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/45">
+        <p>&copy; {new Date().getFullYear()} Infriva Solutions. All rights reserved.</p>
         <div className="flex gap-6">
           <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>

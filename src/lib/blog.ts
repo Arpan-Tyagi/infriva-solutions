@@ -35,10 +35,10 @@ export interface BlogPostItem {
 }
 
 export const DEFAULT_AUTHOR: BlogAuthor = {
-  name: "Arpan Tyagi",
+  name: "Shalini Bhadoria",
   role: "Founder & Principal Systems Architect",
   credentials: "Full-Stack Next.js, PostgreSQL CRM & Search Architecture Lead at Infriva Solutions",
-  bio: "Arpan leads digital architecture, custom CRM engineering, and Full-Stack SEO/GEO systems at Infriva Solutions, helping B2B and growth-stage companies replace manual workflows with high-converting digital infrastructure.",
+  bio: "Shalini leads digital architecture, custom CRM engineering, and Full-Stack SEO/GEO systems at Infriva Solutions, helping B2B and growth-stage companies replace manual workflows with high-converting digital infrastructure.",
   linkedin: "https://linkedin.com/company/infriva",
 };
 

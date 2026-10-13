@@ -49,6 +49,10 @@ export const AGENCY_NAP = {
     "https://instagram.com/infrivasolutions",
     "https://medium.com/@infrivasolutions",
   ],
+  founder: {
+    name: "Shalini Bhadoria",
+    jobTitle: "Founder & Principal Systems Architect",
+  },
 } as const;
 
 export function absoluteUrl(path = "/"): string {
@@ -120,6 +124,11 @@ export function buildGlobalGraphJsonLd() {
             closes: "19:00",
           },
         ],
+        founder: {
+          "@type": "Person",
+          name: AGENCY_NAP.founder.name,
+          jobTitle: AGENCY_NAP.founder.jobTitle,
+        },
         sameAs: [...AGENCY_NAP.socialLinks],
       },
       {

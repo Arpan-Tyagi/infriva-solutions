@@ -7,7 +7,7 @@
 - **Legal Name:** Infriva Solutions
 - **Canonical Website:** https://www.infrivasolutions.com
 - **Headquarters:** New Delhi, Delhi 110001, India
-- **Founder & Principal Systems Architect:** Arpan Tyagi
+- **Founder & Principal Systems Architect:** Shalini Bhadoria
 - **Primary Email:** info@infrivasolutions.com
 - **Direct Engineering Lines:** +91 85058 85515 / +91 87968 62021
 - **Operating Hours:** Monday–Saturday, 10:00 AM – 7:00 PM IST

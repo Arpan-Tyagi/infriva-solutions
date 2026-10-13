@@ -176,9 +176,9 @@ export default function About() {
             </p>
             <div className="p-8 bg-brand-900 text-white rounded-2xl">
               <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Founder &amp; Principal Systems Architect</div>
-              <h3 className="text-2xl font-medium tracking-tight-display mb-3">Arpan Tyagi</h3>
+              <h3 className="text-2xl font-medium tracking-tight-display mb-3">Shalini Bhadoria</h3>
               <p className="text-sm text-white/75 leading-relaxed mb-6">
-                Arpan leads full-stack web architecture, PostgreSQL/Supabase CRM engineering, and technical SEO/GEO strategy at Infriva Solutions. Over the past five years, he has architected custom booking platforms, multi-channel WhatsApp Cloud API ecosystems, and organic acquisition systems for hospitality, travel, SaaS, and service enterprises across India and global markets.
+                Shalini leads full-stack web architecture, PostgreSQL/Supabase CRM engineering, and technical SEO/GEO strategy at Infriva Solutions. Over the past five years, she has architected custom booking platforms, multi-channel WhatsApp Cloud API ecosystems, and organic acquisition systems for hospitality, travel, SaaS, and service enterprises across India and global markets.
               </p>
               <div className="flex flex-wrap gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
                 <span>New Delhi, India</span>

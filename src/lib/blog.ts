@@ -2,7 +2,7 @@
  * @file src/lib/blog.ts
  * @description Unified Editorial Blog Registry, E-E-A-T Author Metadata & Schema.org BlogPosting Builders
  *
- * Single source of truth for all 10 Infriva Solutions thought-leadership articles.
+ * Single source of truth for all 11 Infriva Solutions thought-leadership articles.
  * Resolves metadata truncation, date/category/image drift between `/blog` and `/blog/[slug]`,
  * skipped H2 heading hierarchy, author E-E-A-T attribution, and contextual internal linking.
  */
@@ -43,6 +43,128 @@ export const DEFAULT_AUTHOR: BlogAuthor = {
 };
 
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
+  {
+    id: "your-b2b-brand-ranks-on-google-but-will-ai-recommend-it",
+    image: "/images/b2b-ai-search.jpg",
+    imageAlt: "B2B AI search optimization, Generative Engine Optimization, and digital brand credibility in the AI era",
+    title: "Your B2B Brand Ranks on Google — But Will AI Recommend It?",
+    category: "SEO",
+    date: "Oct 14, 2026",
+    isoDate: "2026-10-14",
+    lastModified: "2026-10-14",
+    readTime: "7 min read",
+    desc: "How B2B brands can stay visible as search moves into the AI era. Discover why ranking is no longer enough and how to build a brand AI engines will recommend.",
+    author: DEFAULT_AUTHOR,
+    relatedServiceSlugs: ["seo-and-geo", "web-development", "crm-systems", "premium-content"],
+    relatedProjectSlug: "flyinglyte",
+    content: `
+      <p>For years, B2B search followed a familiar, predictable pattern: a buyer identified an operational bottleneck, typed a query into Google, opened five to ten browser tabs, and evaluated service providers side by side.</p>
+      <p>Today, that decision journey is fundamentally shifting. That same enterprise buyer might now prompt:</p>
+      <p class="border-l-2 border-black/20 pl-4 py-1 italic font-medium text-black/80 my-4">
+        &ldquo;Our inbound leads are coming in, but follow-ups keep slipping through the cracks&mdash;what kind of CRM architecture could fix that?&rdquo;
+      </p>
+      <p>Instead of clicking through ten blue links, they read a consolidated, synthesized recommendation delivered directly by ChatGPT, Perplexity, or Google's AI Overviews.</p>
+      <p>That does not mean traditional Google rankings have ceased to matter. It means your digital presence now has to do far more than rank: <strong>it must be easy to parse, credible enough to trust, and distinct enough to be cited.</strong></p>
+      <p>This is where strategic B2B <a href="/services/seo-and-geo" class="underline underline-offset-4 font-medium hover:text-black">Generative Engine Optimization (GEO)</a> becomes essential.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. Make Your Business Easy to Understand at First Glance</h2>
+      <p>Countless B2B corporate websites rely on polished jargon that sounds sophisticated yet explains almost nothing. You have likely encountered hero banners proclaiming:</p>
+      <p class="border-l-2 border-black/20 pl-4 py-1 italic font-medium text-black/80 my-4">
+        &ldquo;Transforming enterprises through innovative, end-to-end digital solutions.&rdquo;
+      </p>
+      <p>It sounds corporate, but what does the organization actually build? Now contrast that with crisp architectural clarity:</p>
+      <p class="border-l-2 border-brand-900 pl-4 py-1 font-medium text-black my-4 bg-brand-50/50">
+        &ldquo;We help B2B businesses integrate their custom website, marketing automation, and lead follow-up pipeline so more pipeline opportunities convert into closed revenue.&rdquo;
+      </p>
+      <p>The second statement leaves zero ambiguity. A high-performing <a href="/services/web-development" class="underline underline-offset-4 font-medium hover:text-black">custom B2B web platform</a> makes crucial commercial information obvious before a prospect has to hunt for it:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li><strong>What you offer:</strong> The exact engineering and strategic deliverables.</li>
+        <li><strong>Who it is for:</strong> The specific enterprise profile or operational scale.</li>
+        <li><strong>What problem it solves:</strong> The commercial friction being eliminated.</li>
+        <li><strong>Why they should trust your expertise:</strong> Verifiable case studies and architecture audits.</li>
+      </ul>
+      <p>Uncompromising positioning helps human buyers understand your value proposition in seconds and gives Large Language Models (LLMs) a clean, structured semantic graph of what your brand represents. In AI-driven search, vague messaging is an immediate disqualifier.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. Average Content Is Getting Harder to Notice</h2>
+      <p>The internet is saturated with generic, boilerplate business content echoing the same truisms:</p>
+      <ul class="list-disc pl-6 mb-4">
+        <li><em>&ldquo;SEO improves organic visibility.&rdquo;</em></li>
+        <li><em>&ldquo;Social media builds audience engagement.&rdquo;</em></li>
+        <li><em>&ldquo;A modern website helps companies scale.&rdquo;</em></li>
+      </ul>
+      <p>These statements are not incorrect&mdash;they are simply invisible. When generative AI models can synthesize superficial summaries in milliseconds, publishing generic primers offers zero competitive moat.</p>
+      <p>B2B firms must provide granular, field-tested observations derived from real implementation work:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li>A web engineering agency should analyze <strong>why a visually stunning landing page can still suffer from lead-capture drop-off</strong> due to layout thrashing or unoptimized form latency.</li>
+        <li>A <a href="/services/crm-systems" class="underline underline-offset-4 font-medium hover:text-black">CRM architecture specialist</a> should diagnose <strong>where qualified opportunities vanish between form submission and first SDR contact</strong>.</li>
+        <li>A growth marketing team should explain <strong>why a campaign generating fewer clicks can yield significantly higher customer lifetime value</strong>.</li>
+      </ul>
+      <p>This level of specificity commands authority because it stems from authentic project experience. To secure citations across AI search engines, your <a href="/services/premium-content" class="underline underline-offset-4 font-medium hover:text-black">editorial content</a> must be specific enough to stand apart and practical enough to be indexed as a primary source.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. Write Around Real Business Decisions</h2>
+      <p>Targeting search volume keywords remains necessary, but enterprise buyers rarely query in rigid two-word fragments. An executive does not type <em>&ldquo;website conversion optimization services&rdquo;</em> into an AI prompt. Instead, they ask:</p>
+      <p class="border-l-2 border-black/20 pl-4 py-1 italic font-medium text-black/80 my-4">
+        &ldquo;Why are decision-makers visiting our technical landing pages without booking discovery calls?&rdquo;
+      </p>
+      <p>Similarly, a founder rarely queries <em>&ldquo;CRM implementation services&rdquo;</em>; they ask:</p>
+      <p class="border-l-2 border-black/20 pl-4 py-1 italic font-medium text-black/80 my-4">
+        &ldquo;At what stage does managing inbound leads across spreadsheets and inboxes start actively costing us revenue?&rdquo;
+      </p>
+      <p>These natural language queries mirror genuine commercial dilemmas. Anchor your technical publications around the actual strategic questions your prospects confront:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li>Is our current web stack accelerating growth, or has it become a bottleneck to technical scalability?</li>
+        <li>Should we allocate capital into long-term organic infrastructure first, or deploy paid acquisition campaigns now?</li>
+        <li>Does our CRM pipeline give sales reps actionable context, or does it demand tedious manual data entry?</li>
+        <li>Where in our digital onboarding flow are prospective enterprise accounts falling out?</li>
+      </ul>
+      <p>Content structured around nuanced business decisions ranks effectively on traditional SERPs while naturally matching the conversational queries processed by LLMs. True search strategy is about authoring the definitive answer that resolves the user's inquiry more thoroughly than any competing resource.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. Your Brand Should Feel Consistent Wherever It Appears</h2>
+      <p>Your commercial brand is shaped by far more than your homepage headline. Prior to submitting an enterprise inquiry, a prospect evaluates your footprint across multiple digital environments:</p>
+      <ul class="list-disc pl-6 mb-4">
+        <li>Google search results and Knowledge Graph panels</li>
+        <li>LinkedIn thought leadership and executive commentary</li>
+        <li>Client reviews and technical agency directories</li>
+        <li>Industry social commentary and case study breakdowns</li>
+        <li>LLM-synthesized search answers</li>
+      </ul>
+      <p>If a buyer discovers conflicting identities across these channels&mdash;your website claiming marketing focus, your LinkedIn positioning you as custom software engineers, and a directory cataloging you as an ad agency&mdash;clarity collapses. The prospect is left uncertain of your core competency.</p>
+      <p>Consistency across touchpoints builds authority. While your messaging need not be identical word-for-word, the underlying thesis, capabilities, and standards must align seamlessly whether someone encounters you on Google, Perplexity, LinkedIn, or WhatsApp.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">5. Do Not Let AI Hype Distract You From Strong SEO Foundations</h2>
+      <p>Whenever search algorithms evolve, an onslaught of industry buzzwords invariably follows: <em>AEO, GEO, LLMO, AI SEO</em>. It can lead organizations to believe foundational technical SEO has suddenly become obsolete.</p>
+      <p>It has not. AI search models do not pull information out of thin air; they crawl, parse, and cite well-architected web pages with established domain authority and clear semantic markup. Your web infrastructure still demands:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li>Dedicated, deep service architecture with clear entity relationships</li>
+        <li>Strict semantic HTML heading hierarchy (H1, H2, H3)</li>
+        <li>Logical internal linking connecting problems to client proof</li>
+        <li>Sub-second Time to First Byte (TTFB) and locked 60 FPS mobile performance</li>
+        <li>Descriptive OpenGraph metadata and structured Schema.org JSON-LD</li>
+        <li>Crawlable, accessible server-side rendered HTML</li>
+      </ul>
+      <p>A fast, structured, semantically clean web platform provides the necessary bedrock for newer AI search interfaces. AI visibility builds on top of strong technical SEO—it does not replace it. If the underlying website is slow, confusing, or broken, AI optimization tactics will not rescue it.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Ask a Better Question About AI Search</h2>
+      <p>Instead of chasing algorithmic loopholes and asking: <em>&ldquo;How do we manipulate ChatGPT into mentioning our agency?&rdquo;</em>, forward-thinking B2B leaders ask:</p>
+      <p class="border-l-2 border-brand-900 pl-4 py-1 font-medium text-black my-4 bg-brand-50/50">
+        &ldquo;What must we publish, demonstrate, and deliver to be genuinely worth recommending in an AI answer?&rdquo;
+      </p>
+      <p>That single reframing elevates every digital decision you make:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li>You refine your service definitions to eliminate vague promises.</li>
+        <li>You publish transparent, data-backed technical teardowns.</li>
+        <li>You showcase verified client case studies like our work with <a href="/projects/flyinglyte" class="underline underline-offset-4 font-medium hover:text-black">FlyingLyte</a>.</li>
+        <li>You make your engineering differentiators effortless to recognize.</li>
+      </ul>
+      <p>This is the sustainable approach to Generative Engine Optimization: it builds lasting institutional credibility that compounds even as search algorithms continue to shift.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">Final Thoughts</h2>
+      <p>Generative search is fundamentally altering how enterprise buyers discover solutions, shortlist partners, and validate competence. Yet the core truth of B2B commerce remains untouched: <strong>Trust still decides the sale.</strong></p>
+      <p>Even when an AI tool introduces a buyer to your company, that decision-maker still demands proof before investing capital. Your SEO generates discoverability. Your editorial content builds comprehension. Your engineering proof commands confidence. Your brand creates enduring recall.</p>
+      <p>Do not construct your digital strategy around trying to be mentioned by an algorithm. <strong>Build a business that is easy to understand and impossible to ignore.</strong></p>
+      <p>Because being visible is table stakes&mdash;<strong>being credible enough to recommend is where real enterprise value is won.</strong></p>
+    `,
+  },
   {
     id: "why-some-brands-feel-instantly-right-the-psychology-behind-great-branding",
     image: "/images/brand-psychology.jpg",

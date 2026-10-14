@@ -174,18 +174,35 @@ export default function About() {
             <p className="text-base text-black/70 leading-relaxed mb-6">
               Every engagement at Infriva Solutions is architected and reviewed directly by our senior engineering leadership—never outsourced to junior account managers or template assembly shops.
             </p>
-            <div className="p-8 bg-brand-900 text-white rounded-2xl">
-              <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Founder &amp; Principal Systems Architect</div>
-              <h3 className="text-2xl font-medium tracking-tight-display mb-3">Shalini Bhadoria</h3>
-              <p className="text-sm text-white/75 leading-relaxed mb-6">
-                Shalini leads full-stack web architecture, PostgreSQL/Supabase CRM engineering, and technical SEO/GEO strategy at Infriva Solutions. Over the past five years, she has architected custom booking platforms, multi-channel WhatsApp Cloud API ecosystems, and organic acquisition systems for hospitality, travel, SaaS, and service enterprises across India and global markets.
-              </p>
-              <div className="flex flex-wrap gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
-                <span>New Delhi, India</span>
-                <span>&bull;</span>
-                <a href={`mailto:${AGENCY_NAP.email}`} className="underline hover:text-white">
-                  {AGENCY_NAP.email}
-                </a>
+            <div className="space-y-6">
+              <div className="p-8 bg-brand-900 text-white rounded-2xl">
+                <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Founder &amp; Principal Systems Architect</div>
+                <h3 className="text-2xl font-medium tracking-tight-display mb-3">Shalini Bhadoria</h3>
+                <p className="text-sm text-white/75 leading-relaxed mb-6">
+                  Shalini leads full-stack web architecture, PostgreSQL/Supabase CRM engineering, and technical systems strategy at Infriva Solutions. Over the past five years, she has architected custom booking platforms, multi-channel WhatsApp Cloud API ecosystems, and organic acquisition systems for hospitality, travel, SaaS, and service enterprises across India and global markets.
+                </p>
+                <div className="flex flex-wrap gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
+                  <span>New Delhi, India</span>
+                  <span>&bull;</span>
+                  <a href={`mailto:${AGENCY_NAP.email}`} className="underline hover:text-white">
+                    {AGENCY_NAP.email}
+                  </a>
+                </div>
+              </div>
+
+              <div className="p-8 bg-brand-50 border border-black/10 rounded-2xl text-black">
+                <div className="text-[10px] tracking-widest-caps text-black/50 mb-2">Editorial Leadership &amp; SEO</div>
+                <h3 className="text-2xl font-medium tracking-tight-display text-brand-900 mb-1">Disha Rajput</h3>
+                <div className="text-xs font-mono text-black/55 mb-3">Head of Content &amp; SEO Strategy</div>
+                <p className="text-sm text-black/75 leading-relaxed mb-6">
+                  Disha directs editorial content, full-stack SEO, and Generative Engine Optimization (GEO) strategies across all Infriva publications and client search initiatives. She authors our thought leadership and engineering insights, ensuring every technical system and growth framework is backed by deep industry research, entity-rich clarity, and measurable organic impact.
+                </p>
+                <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-black/70 pt-4 border-t border-black/10">
+                  <span>New Delhi, India</span>
+                  <Link href="/blog" className="inline-flex items-center gap-1 font-medium text-brand-900 hover:underline">
+                    Read Published Insights <ArrowUpRight size={13} />
+                  </Link>
+                </div>
               </div>
             </div>
           </Reveal>

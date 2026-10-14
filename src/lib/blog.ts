@@ -35,10 +35,10 @@ export interface BlogPostItem {
 }
 
 export const DEFAULT_AUTHOR: BlogAuthor = {
-  name: "Shalini Bhadoria",
-  role: "Founder & Principal Systems Architect",
-  credentials: "Full-Stack Next.js, PostgreSQL CRM & Search Architecture Lead at Infriva Solutions",
-  bio: "Shalini leads digital architecture, custom CRM engineering, and Full-Stack SEO/GEO systems at Infriva Solutions, helping B2B and growth-stage companies replace manual workflows with high-converting digital infrastructure.",
+  name: "Disha Rajput",
+  role: "Head of Content & SEO Strategy",
+  credentials: "Head of Content, Organic Search & Editorial Strategy at Infriva Solutions",
+  bio: "Disha leads editorial content, search engine optimization (SEO), and Generative Engine Optimization (GEO) strategies at Infriva Solutions, transforming complex technical and architectural concepts into high-converting, authoritative B2B publications.",
   linkedin: "https://linkedin.com/company/infriva",
 };
 

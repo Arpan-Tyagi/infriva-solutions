@@ -53,6 +53,10 @@ export const AGENCY_NAP = {
     name: "Shalini Bhadoria",
     jobTitle: "Founder & Principal Systems Architect",
   },
+  headOfContent: {
+    name: "Disha Rajput",
+    jobTitle: "Head of Content & SEO Strategy",
+  },
 } as const;
 
 export function absoluteUrl(path = "/"): string {
@@ -129,6 +133,13 @@ export function buildGlobalGraphJsonLd() {
           name: AGENCY_NAP.founder.name,
           jobTitle: AGENCY_NAP.founder.jobTitle,
         },
+        employee: [
+          {
+            "@type": "Person",
+            name: AGENCY_NAP.headOfContent.name,
+            jobTitle: AGENCY_NAP.headOfContent.jobTitle,
+          },
+        ],
         sameAs: [...AGENCY_NAP.socialLinks],
       },
       {

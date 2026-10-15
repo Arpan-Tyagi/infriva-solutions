@@ -48,13 +48,13 @@ export const PROJECTS_LIST: ProjectItem[] = [
   {
     id: "flyinglyte",
     title: "FlyingLyte",
-    tagline: "A custom online travel platform engineered from scratch on React and Django, powered by real-time Travel Boutique Online (TBO) API integration.",
+    tagline: "A custom online travel platform engineered from scratch on React and Django, powered by real-time Travel Boutique Online (TBO) API integration and secure PayU payment gateway.",
     shortDesc:
-      "A complete custom travel portal built from the ground up on React and Django, integrating Travel Boutique Online's (TBO) API for live multi-airline flight booking, automated PNR generation, and CRM workflows.",
+      "A complete custom travel portal built from the ground up on React and Django, integrating Travel Boutique Online's (TBO) API and PayU payment gateway for live multi-airline flight booking, automated PNR generation, and CRM workflows.",
     metaDescription:
-      "FlyingLyte Case Study: How Infriva Solutions built a custom online travel platform from scratch using React, Django, and Travel Boutique Online (TBO) API integration.",
-    category: "Full-Stack Travel Portal · React & Django · TBO API",
-    indexCategory: "Full-Stack Web, React, Django, TBO API, Flight Booking",
+      "FlyingLyte Case Study: How Infriva Solutions built a custom online travel platform from scratch using React, Django, TBO API, and PayU payment gateway with automated PNR generation.",
+    category: "Full-Stack Travel Portal · React & Django · TBO & PayU",
+    indexCategory: "Full-Stack Web, React, Django, TBO API, PayU Gateway, Flight Booking",
     year: "2025",
     lastModified: "2026-10-15",
     clientIndustry: "Online Travel Agency (OTA) & Flight Aggregation",
@@ -63,6 +63,7 @@ export const PROJECTS_LIST: ProjectItem[] = [
       "Custom React Single Page Application (SPA)",
       "Django & Django REST Framework (DRF) Backend",
       "Travel Boutique Online (TBO) API Integration",
+      "PayU Payment Gateway Integration (SHA-512 Verification)",
       "Real-Time Flight Search & Dynamic Fare Matrix",
       "Automated PNR Generation & E-Ticket Issuance",
       "PostgreSQL Booking Database & Consultant CRM",
@@ -73,24 +74,25 @@ export const PROJECTS_LIST: ProjectItem[] = [
       "Django (Python)",
       "Django REST Framework",
       "Travel Boutique Online (TBO) API",
+      "PayU Payment Gateway",
       "PostgreSQL",
       "Redis Caching",
       "Tailwind CSS",
       "WhatsApp Cloud API",
     ],
     heroImage: "/images/flight-smartphone.jpg",
-    heroImageAlt: "FlyingLyte custom React and Django flight booking portal powered by Travel Boutique Online API",
+    heroImageAlt: "FlyingLyte custom React and Django flight booking portal with TBO API and PayU payment gateway integration",
     overview: [
-      "FlyingLyte is a full-service online travel agency providing corporate and leisure travelers with comprehensive domestic and international flight bookings, curated holiday itineraries, and boutique hotel reservations. To compete effectively against established travel aggregators, the leadership required an independent digital property that could deliver real-time airline inventories, dynamic fare calculations, and instantaneous booking confirmations without the crippling load times, generic layouts, and rigid commission restrictions of white-label travel templates.",
-      "They engaged Infriva Solutions to build their entire digital web platform completely from scratch. We designed and developed an end-to-end custom architecture: a responsive, state-driven Single Page Application in React, a high-throughput backend service engineered in Django (Python) and Django REST Framework, bidirectional integration with Travel Boutique Online's (TBO) global B2B travel distribution API, and an automated PostgreSQL CRM pipeline that synchronizes live PNRs, e-tickets, and booking alerts directly to travelers via WhatsApp.",
+      "FlyingLyte is a full-service online travel agency providing corporate and leisure travelers with comprehensive domestic and international flight bookings, curated holiday itineraries, and boutique hotel reservations. To compete effectively against established travel aggregators, the leadership required an independent digital property that could deliver real-time airline inventories, dynamic fare calculations, secure instant payment processing, and automated booking confirmations without the crippling load times, generic layouts, and rigid commission restrictions of white-label travel templates.",
+      "They engaged Infriva Solutions to build their entire digital web platform completely from scratch. We designed and developed an end-to-end custom architecture: a responsive, state-driven Single Page Application in React, a high-throughput backend service engineered in Django (Python) and Django REST Framework, bidirectional integration with Travel Boutique Online's (TBO) global B2B travel distribution API, robust checkout via the PayU payment gateway, and an automated PostgreSQL CRM pipeline that synchronizes live PNRs, e-tickets, and booking alerts directly to travelers via WhatsApp.",
     ],
     challenge: [
       "Building a modern online travel agency from scratch presents formidable technical hurdles. Off-the-shelf white-label platforms rely on heavy iframes and bloated script bundles that take upwards of 5 to 7 seconds to render, suffer severe cumulative layout shifts on mobile devices, and offer no ability to implement custom business logic or dynamic markup tiers. Prior to our build, FlyingLyte experienced over 70% funnel abandonment as users dropped off during sluggish multi-step search queries.",
-      "The core engineering challenge centered on the integration with Travel Boutique Online (TBO). TBO's API orchestrates live flight schedules, dynamic cabin classes, taxes, baggage allowances, and seat availability across hundreds of global carriers. Querying raw upstream endpoints synchronously on every search triggered rate-limit bottlenecks and unacceptable 4-to-5-second latency spikes. Furthermore, FlyingLyte's booking workflow required automated PNR generation, payment verification, dynamic agency markup calculation, and instantaneous itinerary dispatch without manual consultant intervention.",
+      "The core engineering challenge centered on orchestrating two critical external systems in real time: Travel Boutique Online (TBO) for live inventory and the PayU payment gateway for transaction settlement. TBO's API coordinates live flight schedules, dynamic cabin classes, taxes, and seat availability, while flight ticketing requires immediate, non-reversible PNR issuance upon payment. Without strict server-side cryptographic hash verification and idempotent webhook reconciliation between PayU and Django, any network drop or payment callback delay could result in unticketed payments or unauthorized booking locks.",
     ],
     solution: [
       "We engineered FlyingLyte's web application from the ground up using a decoupled React and Django architecture. On the client side, we built a modern React SPA featuring instant route switching (one-way, round-trip, multi-city), live airline filtering (by stops, baggage allowance, departure windows, and refundable fares), and a friction-free progressive checkout funnel that preserves traveler state across navigations.",
-      "On the backend, we constructed a robust Django REST Framework application to serve as the secure orchestration bridge. Django handles all communication with the Travel Boutique Online (TBO) API, abstracting vendor complexities into clean JSON endpoints. We implemented an intelligent multi-tier Redis caching layer to store high-frequency flight availability queries, custom dynamic margin and markup calculators, automated PNR creation upon payment confirmation, and real-time webhook listeners that trigger branded WhatsApp e-ticket dispatches within seconds.",
+      "On the backend, we constructed a robust Django REST Framework application to serve as the secure orchestration bridge. Django handles all communication with both the Travel Boutique Online (TBO) API and PayU payment gateway. We implemented an intelligent multi-tier Redis caching layer to store high-frequency flight availability queries, dynamic margin and markup calculators, server-side SHA-512 cryptographic hash generation for PayU checkout, automated PNR creation upon verified payment webhook confirmations, and real-time triggers that dispatch branded WhatsApp e-tickets within seconds.",
     ],
     architectureSections: [
       {
@@ -118,14 +120,15 @@ export const PROJECTS_LIST: ProjectItem[] = [
         ],
       },
       {
-        heading: "Automated PNR Generation, WhatsApp Dispatch & Booking CRM",
+        heading: "PayU Payment Gateway, Automated PNR Ticketing & WhatsApp Dispatch",
         body: [
-          "We eliminated manual booking entry by developing an automated end-to-end transaction pipeline. The moment payment is verified, the Django backend transmits the booking payload to TBO's API, generates the official airline PNR, and creates a branded PDF e-ticket with detailed flight itineraries, baggage policies, and barcode data.",
-          "Simultaneously, our event engine dispatches the confirmed e-ticket and booking receipt directly to the passenger's WhatsApp via the Meta WhatsApp Cloud API. If a traveler abandons an itinerary after selecting flights, their preferences are saved into the PostgreSQL CRM, enabling travel consultants to follow up with tailored quotes within minutes.",
+          "We eliminated manual booking entry by developing an automated end-to-end transaction pipeline. When a traveler confirms their itinerary, Django calculates the dynamic order total and signs the payload with PayU's SHA-512 cryptographic hash, supporting instant payments across UPI, credit/debit cards, NetBanking, and corporate wallets.",
+          "The moment PayU's server-to-server webhook verifies successful payment, Django commands TBO's API to generate the official airline PNR and renders a branded PDF e-ticket with detailed flight itineraries, baggage allowances, and barcode data. Simultaneously, our event engine dispatches the confirmed e-ticket directly to the passenger's WhatsApp via the Meta WhatsApp Cloud API.",
         ],
         bullets: [
+          "Seamless PayU payment gateway integration with server-side SHA-512 cryptographic verification and idempotent webhook processing.",
           "Zero-touch PNR generation and automated PDF ticket rendering directly within the Django backend.",
-          "12 automated WhatsApp Cloud API lifecycle flows for booking confirmations, flight status reminders, and post-trip reviews.",
+          "12 automated WhatsApp Cloud API lifecycle flows for booking confirmations, payment receipts, flight status reminders, and post-trip reviews.",
           "Centralized PostgreSQL booking database with consultant dashboard for real-time customer support, booking modifications, and cancellation handling.",
         ],
       },
@@ -134,7 +137,7 @@ export const PROJECTS_LIST: ProjectItem[] = [
       { label: "Increase in Leads", value: "+40%", detail: "Surge in qualified flight and holiday package inquiries within 60 days of launch" },
       { label: "Drop-off Reduction", value: "−55%", detail: "Booking funnel abandonment reduced from 74% down to 33% via React SPA UX" },
       { label: "Search Latency", value: "1.2s", detail: "Down from 4.8s via Django query optimization & Redis caching" },
-      { label: "Ticketing Automation", value: "100%", detail: "Automated TBO PNR generation, payment verification, and WhatsApp ticket dispatch" },
+      { label: "Ticketing Automation", value: "100%", detail: "Zero-touch PayU payment verification, TBO PNR creation, and WhatsApp ticket dispatch" },
     ],
     images: [
       {

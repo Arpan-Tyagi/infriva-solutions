@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         destination: "/privacy-policy",
         permanent: true,
       },
+      {
+        source: "/blog/why-businesses-are-ditching-hubspot-for-custom-supabase-crms",
+        destination: "/blog/when-hubspot-or-salesforce-starts-feeling-too-heavy-why-growing-teams-are-exploring-custom-supabase-crms",
+        permanent: true,
+      },
     ];
   },
   async headers() {

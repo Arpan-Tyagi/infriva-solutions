@@ -2,7 +2,7 @@
  * @file src/app/blog/[slug]/page.tsx
  * @description Dynamic Editorial Article Reader & Thought Leadership
  *
- * Pre-renders all 12 editorial articles from `@/lib/blog` with:
+ * Pre-renders all 14 editorial articles from `@/lib/blog` with:
  * - Curated 140-160 char meta descriptions (`post.desc`)
  * - Self-referencing canonical URLs and Twitter/OpenGraph cards
  * - Schema.org `BlogPosting` + `BreadcrumbList` JSON-LD

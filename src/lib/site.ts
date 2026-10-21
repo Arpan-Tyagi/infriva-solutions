@@ -57,9 +57,9 @@ export const AGENCY_NAP = {
     name: "Arpan Tyagi",
     jobTitle: "Chief Executive Officer (CEO)",
   },
-  headOfContent: {
+  headOfSeo: {
     name: "Disha Rajput",
-    jobTitle: "Head of Content & SEO Strategy",
+    jobTitle: "Head of SEO Strategy",
   },
 } as const;
 
@@ -145,8 +145,8 @@ export function buildGlobalGraphJsonLd() {
           },
           {
             "@type": "Person",
-            name: AGENCY_NAP.headOfContent.name,
-            jobTitle: AGENCY_NAP.headOfContent.jobTitle,
+            name: AGENCY_NAP.headOfSeo.name,
+            jobTitle: AGENCY_NAP.headOfSeo.jobTitle,
           },
         ],
         sameAs: [...AGENCY_NAP.socialLinks],

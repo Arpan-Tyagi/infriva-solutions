@@ -34,21 +34,23 @@ export interface BlogPostItem {
   content: string;
 }
 
-export const DEFAULT_AUTHOR: BlogAuthor = {
+export const AUTHOR_DISHA_RAJPUT: BlogAuthor = {
   name: "Disha Rajput",
-  role: "Head of Content & SEO Strategy",
-  credentials: "Head of Content, Organic Search & Editorial Strategy at Infriva Solutions",
-  bio: "Disha leads editorial content, search engine optimization (SEO), and Generative Engine Optimization (GEO) strategies at Infriva Solutions, transforming complex technical and architectural concepts into high-converting, authoritative B2B publications.",
+  role: "Head of SEO Strategy",
+  credentials: "Head of SEO Strategy & Organic Growth Architecture at Infriva Solutions",
+  bio: "Disha leads search engine optimization (SEO) and Generative Engine Optimization (GEO) strategies at Infriva Solutions, transforming complex technical and architectural concepts into high-converting, authoritative B2B publications.",
   linkedin: "https://linkedin.com/company/infriva",
 };
 
-export const ARPAN_TYAGI: BlogAuthor = {
+export const AUTHOR_ARPAN_TYAGI: BlogAuthor = {
   name: "Arpan Tyagi",
   role: "Chief Executive Officer (CEO)",
-  credentials: "Chief Executive Officer & Enterprise Systems Architect at Infriva Solutions",
-  bio: "Arpan is the Chief Executive Officer at Infriva Solutions, directing executive engineering strategy, enterprise cloud systems, and generative AI search architecture across global B2B deployments.",
+  credentials: "Chief Executive Officer & Full-Stack Systems Strategist at Infriva Solutions",
+  bio: "Arpan leads enterprise vision, core technology architecture, and full-funnel engineering initiatives at Infriva Solutions, helping B2B enterprises deploy scalable web applications and AI-ready infrastructures.",
   linkedin: "https://linkedin.com/company/infriva",
 };
+
+export const DEFAULT_AUTHOR: BlogAuthor = AUTHOR_DISHA_RAJPUT;
 
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
   {
@@ -62,7 +64,7 @@ export const BLOG_POSTS_LIST: BlogPostItem[] = [
     lastModified: "2026-10-21",
     readTime: "8 min read",
     desc: "Discover what the /llms.txt standard is, how it cuts AI token waste by 90%, and why modern websites need a machine-readable manifest to get cited by LLMs.",
-    author: ARPAN_TYAGI,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["seo-and-geo", "web-development", "premium-content"],
     relatedProjectSlug: "flyinglyte",
     content: `

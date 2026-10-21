@@ -179,7 +179,7 @@ export default function About() {
                 <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Founder &amp; Managing Director</div>
                 <h3 className="text-2xl font-medium tracking-tight-display mb-3">Shalini Bhadoria</h3>
                 <p className="text-sm text-white/75 leading-relaxed mb-6">
-                  Shalini oversees corporate governance, strategic growth, and multi-channel client engagements at Infriva Solutions. Over the past five years, she has guided enterprise digital transformations, custom booking platforms, and full-funnel retention systems for hospitality, travel, SaaS, and high-ticket service brands across India and global markets.
+                  Shalini directs executive operations, client engagements, and technical governance at Infriva Solutions. Over the past five years, she has guided architecture for custom booking platforms, multi-channel WhatsApp Cloud API ecosystems, and full-stack digital infrastructure for hospitality, travel, SaaS, and service enterprises across India and global markets.
                 </p>
                 <div className="flex flex-wrap gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
                   <span>New Delhi, India</span>
@@ -191,26 +191,26 @@ export default function About() {
               </div>
 
               <div className="p-8 bg-brand-900 text-white rounded-2xl">
-                <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Executive Leadership &amp; Engineering</div>
-                <h3 className="text-2xl font-medium tracking-tight-display mb-1">Arpan Tyagi</h3>
-                <div className="text-xs font-mono text-white/60 mb-3">Chief Executive Officer (CEO)</div>
+                <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Chief Executive Officer</div>
+                <h3 className="text-2xl font-medium tracking-tight-display mb-3">Arpan Tyagi</h3>
                 <p className="text-sm text-white/75 leading-relaxed mb-6">
-                  Arpan leads executive systems engineering, technical product direction, and enterprise cloud architecture at Infriva Solutions. He directs the architecture of our custom PostgreSQL/Supabase CRMs, Next.js web applications, and Generative Engine Optimization (GEO) pipelines, ensuring every client deployment operates with sub-second execution speeds, strict data security, and direct revenue attribution.
+                  Arpan leads enterprise vision, core technology architecture, and full-funnel engineering initiatives at Infriva Solutions. He specializes in high-performance Next.js web systems, custom PostgreSQL/Supabase CRM architectures, and Generative Engine Optimization (GEO) strategies that turn digital infrastructure into compounding revenue.
                 </p>
-                <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
+                <div className="flex flex-wrap gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
                   <span>New Delhi, India</span>
-                  <Link href="/blog/the-llms-txt-standard-explained-machine-readable-manifest" className="inline-flex items-center gap-1 font-medium text-white hover:underline">
-                    Read AI Architecture Guide <ArrowUpRight size={13} />
-                  </Link>
+                  <span>&bull;</span>
+                  <a href={`mailto:${AGENCY_NAP.email}`} className="underline hover:text-white">
+                    {AGENCY_NAP.email}
+                  </a>
                 </div>
               </div>
 
               <div className="p-8 bg-brand-50 border border-black/10 rounded-2xl text-black">
-                <div className="text-[10px] tracking-widest-caps text-black/50 mb-2">Editorial Leadership &amp; SEO</div>
+                <div className="text-[10px] tracking-widest-caps text-black/50 mb-2">Organic Search &amp; Discovery</div>
                 <h3 className="text-2xl font-medium tracking-tight-display text-brand-900 mb-1">Disha Rajput</h3>
-                <div className="text-xs font-mono text-black/55 mb-3">Head of Content &amp; SEO Strategy</div>
+                <div className="text-xs font-mono text-black/55 mb-3">Head of SEO Strategy</div>
                 <p className="text-sm text-black/75 leading-relaxed mb-6">
-                  Disha directs editorial content, full-stack SEO, and Generative Engine Optimization (GEO) strategies across all Infriva publications and client search initiatives. She authors our thought leadership and engineering insights, ensuring every technical system and growth framework is backed by deep industry research, entity-rich clarity, and measurable organic impact.
+                  Disha directs technical SEO, organic search architecture, and Generative Engine Optimization (GEO) across all Infriva client deployments and publications. She ensures every technical system and growth framework is backed by deep entity research, algorithmic clarity, and measurable organic impact.
                 </p>
                 <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-black/70 pt-4 border-t border-black/10">
                   <span>New Delhi, India</span>

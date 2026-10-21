@@ -6,7 +6,7 @@
  * - Curated 140-160 char meta descriptions (`post.desc`)
  * - Self-referencing canonical URLs and Twitter/OpenGraph cards
  * - Schema.org `BlogPosting` + `BreadcrumbList` JSON-LD
- * - Named E-E-A-T author attribution (`Disha Rajput — Head of Content & SEO Strategy`)
+ * - Named E-E-A-T author attribution (Arpan Tyagi — CEO, Disha Rajput — Head of SEO Strategy)
  * - Priority LCP hero image optimization with responsive `sizes`
  * - Contextual internal links to related services and client case studies
  */

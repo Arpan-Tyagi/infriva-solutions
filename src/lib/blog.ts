@@ -45,225 +45,213 @@ export const DEFAULT_AUTHOR: BlogAuthor = {
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
   {
     id: "the-llms-txt-standard-explained-machine-readable-manifest",
-    image: "/images/digital-system.jpg",
-    imageAlt: "The llms.txt standard and machine-readable AI manifest architecture for enterprise websites",
+    image: "/images/llms-txt-standard.jpg",
+    imageAlt: "The llms.txt standard explained: AI manifests, machine-readable documentation, and token-efficient website indexing for LLMs and AI agents",
     title: "The /llms.txt Standard Explained: Why Modern Websites Need an AI Manifest",
     category: "SEO",
     date: "Oct 21, 2026",
     isoDate: "2026-10-21",
     lastModified: "2026-10-21",
-    readTime: "9 min read",
-    desc: "Explore the /llms.txt open standard: why modern websites need a lightweight, token-efficient Markdown manifest to help LLMs and AI search engines index and cite their content.",
+    readTime: "8 min read",
+    desc: "Discover what the /llms.txt standard is, how it cuts AI token waste by 90%, and why modern websites need a machine-readable manifest to get cited by LLMs.",
     author: DEFAULT_AUTHOR,
     relatedServiceSlugs: ["seo-and-geo", "web-development", "premium-content"],
     relatedProjectSlug: "flyinglyte",
     content: `
-      <p>The <strong>/llms.txt standard</strong> is an open web specification that provides a curated, lightweight Markdown manifest of a website's core knowledge base, services, and architecture, engineered specifically for consumption by Large Language Models and AI search crawlers. While traditional search engines parse dense HTML document trees, AI retrieval engines require clean, token-efficient context. Serving an <code>/llms.txt</code> file at your domain root allows platforms like ChatGPT Search, Perplexity, and Claude to index your authoritative business facts without wasting context window budget on JavaScript bloat.</p>
+      <p>The modern web was engineered for human retinas, not neural networks. Every time an autonomous AI agent, coding assistant, or answer engine attempts to read a contemporary website, it encounters a labyrinth of JavaScript hydration bundles, cookie consent banners, CSS stylesheets, tracking scripts, and bloated navigation menus. The actual factual content is often buried under megabytes of visual markup.</p>
 
       <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-4 bg-brand-50/50">
-        &ldquo;The web was originally built for human eyes and browser rendering engines. But in an era where AI agents mediate commercial discovery, modern websites must also provide a clean, machine-readable manifest.&rdquo;
+        The <strong>/llms.txt standard</strong> is an open community convention&mdash;proposed in September 2024 by Jeremy Howard (Answer.AI and fast.ai)&mdash;that provides large language models and autonomous AI agents with a clean, curated, Markdown-based manifest of a website's core knowledge, capabilities, and documentation. Located at the root of a domain, it serves as a lightweight textual map that cuts LLM token waste by over 90% and eliminates web scraping hallucinations.
       </p>
 
-      <p>For three decades, web architecture prioritized visual presentation for human visitors. We layered sophisticated styling, animations, tracking scripts, and hydration bundles on top of raw content. This visual richness serves human users well, but it poses an immense computational barrier for autonomous AI models and retrieval-augmented generation (RAG) pipelines.</p>
+      <p>Just as <code>robots.txt</code> emerged in 1994 to govern search engine crawl permissions and <code>sitemap.xml</code> appeared in 2005 to index canonical URLs, <strong>/llms.txt</strong> represents the third pillar of web discovery: an opt-in, machine-readable interface tailored specifically for the context windows of modern AI models.</p>
 
-      <p>To understand why this standard has rapidly gained adoption among forward-thinking engineering teams, we must first examine the hidden friction of how AI crawlers actually interpret the modern web.</p>
+      <p>At Infriva Solutions, we implemented <a href="/llms.txt" class="underline underline-offset-4 font-medium hover:text-black">/llms.txt</a> and its companion <a href="/llms-full.txt" class="underline underline-offset-4 font-medium hover:text-black">/llms-full.txt</a> across our own production architecture as part of our <a href="/services/seo-and-geo" class="underline underline-offset-4 font-medium hover:text-black">Full-Stack SEO &amp; GEO strategy</a>. Here is an architectural deep dive into why this standard exists, how language models consume it, and why forward-thinking B2B companies are deploying it today.</p>
 
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. The Hydration Barrier: How Modern HTML Wastes AI Token Budgets</h2>
-      <p>When an autonomous AI agent or search crawler like GPTBot or PerplexityBot visits your URL, its goal is straightforward: extract the ground truth about your offerings, pricing, technical capabilities, and verified case studies as quickly and accurately as possible.</p>
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. The Token Economy Problem: Why the Human Web Breaks AI Agents</h2>
+      <p>To understand why an AI manifest is necessary, you have to look at your website through the lens of a language model's context window. An AI model like Claude 3.5 Sonnet, GPT-4o, or an open-source model running inside an IDE does not &ldquo;see&rdquo; a webpage as a rendered canvas. It consumes raw text converted into numeric tokens.</p>
 
-      <p>Unfortunately, standard modern web production creates severe friction for language models:</p>
-
-      <ul class="list-disc pl-6 space-y-2 my-4 text-black/80">
-        <li><strong>Low Signal-to-Noise Ratio:</strong> A standard 1,200-word marketing page often produces 3MB to 6MB of raw DOM transfer. Up to 85% of that payload consists of navigation headers, SVG icons, tracking pixels, cookie consent banners, and CSS class soup.</li>
-        <li><strong>The Client-Side Hydration Wall:</strong> Single-page applications built on client-rendered React or Vue often serve a nearly empty <code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code> shell to bots that do not execute full Chromium rendering pipelines.</li>
-        <li><strong>Context Window Waste:</strong> When an AI ingestion pipeline strips HTML, raw chunks are flooded with boilerplate navigation links and modal code. This pollutes vector embeddings and causes retrieval engines to miss crucial technical nuances.</li>
+      <p>Consider what happens when an autonomous agent fetches a typical modern B2B homepage:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li><strong>Payload Bloat:</strong> A standard web page weighs between 2MB and 5MB across initial HTML, script tags, SVG icons, and inline styles. Even after HTML stripping, thousands of tokens are wasted on navigation footers, copyright notices, modal dialogs, and tracking parameters.</li>
+        <li><strong>Token Cost &amp; Latency:</strong> Feeding 15,000 tokens of raw DOM trees into an LLM just to extract a company's pricing tiers or API endpoints wastes valuable context window space, increases latency by several seconds, and costs 10x more in API compute.</li>
+        <li><strong>Hallucination Risks:</strong> When text from marketing carousels, customer support widgets, and sidebar links is mixed with technical documentation, models frequently misattribute quotes, conflate feature tiers, or invent nonexistent capabilities.</li>
       </ul>
 
-      <p>Language models operate on a strict <strong>token budget</strong>. Every token spent parsing noisy HTML tags or deciphering minified script blocks is a token unavailable for understanding your actual value proposition. The <code>/llms.txt</code> standard completely eliminates this hydration tax by providing an unadorned, structured Markdown summary directly at the root level.</p>
+      <p>Markdown, by contrast, possesses near-perfect semantic density. One token represents roughly four characters of pure, unadorned meaning. By serving a curated Markdown manifest at <code>/llms.txt</code>, you hand AI models pure signal with zero noise.</p>
 
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. The Evolution of Web Manifests: robots.txt vs. sitemap.xml vs. llms.txt</h2>
-      <p>The concept of placing a plain-text architectural manifest at the domain root is not new. Rather, <code>/llms.txt</code> represents the natural third evolution in web crawler communication:</p>
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. What Exactly Is the /llms.txt Specification?</h2>
+      <p>Hosted at <a href="https://llmstxt.org" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 font-medium hover:text-black">llmstxt.org</a>, the official specification is deliberately minimal and elegant. It uses standard CommonMark Markdown and specifies four distinct structural components:</p>
+
+      <ol class="list-decimal pl-6 space-y-3 mb-6 font-medium">
+        <li><strong>H1 Heading (Required):</strong> The name of the organization, product, or project. This establishes the root entity for the model.</li>
+        <li><strong>Blockquote Summary (Optional but Recommended):</strong> A 1-to-2 sentence summary defining what the project or company is. This acts as the compressed executive summary an AI model commits to working memory.</li>
+        <li><strong>Preamble (Optional):</strong> Paragraphs providing core background context, operating principles, or guidelines. Crucially, the specification stipulates that <em>no subheadings may be used</em> inside this preamble section to preserve strict parsing hierarchy.</li>
+        <li><strong>H2 Categorized Sections (Zero or More):</strong> Logical groupings of Markdown links pointing to key documentation, service specs, or articles. Each link includes a short, descriptive sentence explaining what the linked document contains.</li>
+      </ol>
+
+      <p>Here is an illustrative example of a compliant <code>llms.txt</code> manifest:</p>
+
+      <div class="overflow-x-auto my-6">
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code># Infriva Solutions
+&gt; Infriva Solutions is a New Delhi-based B2B digital architecture, software engineering, and full-funnel growth studio. We engineer high-performance Next.js platforms, custom PostgreSQL CRMs, and full-stack SEO/GEO systems.
+
+Infriva Solutions delivers production systems for enterprise clients, travel portals, and hospitality brands across India and global markets.
+
+## Core Capabilities &amp; Pricing
+- [Web Dev &amp; UI/UX](https://www.infrivasolutions.com/services/web-development): Next.js App Router, React 19, sub-1.5s LCP. Investment: ₹80,000+.
+- [Custom CRM Systems](https://www.infrivasolutions.com/services/crm-systems): PostgreSQL &amp; Supabase pipelines with automated WhatsApp routing. Investment: ₹90,000+.
+- [Full-Stack SEO &amp; GEO](https://www.infrivasolutions.com/services/seo-and-geo): Technical entity graphs and AI Search optimization. Investment: ₹65,000/mo.
+
+## Verified Case Studies
+- [FlyingLyte Flight Booking Engine](https://www.infrivasolutions.com/projects/flyinglyte): Rebuilt travel engine on Next.js (+40% qualified inquiries, -55% drop-off).
+- [StarX Hotel Direct Booking CRM](https://www.infrivasolutions.com/projects/starx): Commission-free direct reservation system (+35% direct booking share).
+
+## Full Documentation
+- [Full Machine-Readable Reference](https://www.infrivasolutions.com/llms-full.txt): Complete company, service, and architectural documentation.</code></pre>
+      </div>
+
+      <p>Notice the clarity: any language model ingesting this file instantly understands who you are, what services you offer, your exact commercial pricing brackets, and where to find deep proof&mdash;all within less than 350 tokens.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. The Companion File: Understanding /llms-full.txt</h2>
+      <p>While <code>/llms.txt</code> acts as a concise directory or table of contents, the ecosystem introduced a natural companion standard: <strong>/llms-full.txt</strong>.</p>
+      
+      <p>The distinction between the two files is functional and operational:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li><strong>/llms.txt (The Map):</strong> Designed for multi-step agents (like Cursor, Claude Code, or LangChain agents) that have tools to read external files. The agent reads <code>/llms.txt</code> first, determines which specific link is relevant to the user's prompt, and fetches only that single Markdown file.</li>
+        <li><strong>/llms-full.txt (The Atlas):</strong> A single, monolithic Markdown document compiling the entirety of a site's technical documentation, service specifications, FAQs, and case studies. This is ideal for single-shot prompt ingestion or developer workflows where an engineer wants to upload a company's complete context into an LLM project window (such as a Claude Project or custom GPT) in a single click.</li>
+      </ul>
+
+      <p>By hosting both files at your domain root, you satisfy both iterative browsing agents and deep contextual models.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. The Discovery Matrix: robots.txt vs. sitemap.xml vs. llms.txt</h2>
+      <p>A common misconception is that <code>llms.txt</code> aims to replace existing web standards. It does not. Instead, it completes the discovery architecture of modern digital infrastructure:</p>
 
       <div class="overflow-x-auto my-8">
         <table class="w-full text-left border-collapse text-sm border border-black/10">
           <thead>
             <tr class="bg-brand-50 border-b border-black/10 text-brand-900 font-medium">
               <th class="p-4">Standard</th>
-              <th class="p-4">Year Introduced</th>
               <th class="p-4">Primary Consumer</th>
-              <th class="p-4">Format</th>
+              <th class="p-4">Underlying Format</th>
               <th class="p-4">Core Function</th>
+              <th class="p-4">Enforcement Level</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-black/10 text-black/80">
             <tr>
-              <td class="p-4 font-mono font-medium text-black">robots.txt</td>
-              <td class="p-4">1994</td>
-              <td class="p-4">Search Engine Spiders</td>
-              <td class="p-4">Plain Text Rules</td>
-              <td class="p-4"><strong>Permission Layer:</strong> Dictates where crawlers are allowed or forbidden to navigate.</td>
+              <td class="p-4 font-medium"><strong>robots.txt</strong></td>
+              <td class="p-4">Search Crawlers (Googlebot, Bingbot, GPTBot)</td>
+              <td class="p-4">Plain Text (Directives)</td>
+              <td class="p-4">Access governance (Allow / Disallow permissions)</td>
+              <td class="p-4">Voluntary web crawler standard (IETF RFC 9309)</td>
             </tr>
             <tr>
-              <td class="p-4 font-mono font-medium text-black">sitemap.xml</td>
-              <td class="p-4">2005</td>
-              <td class="p-4">Search Indexing Engines</td>
-              <td class="p-4">XML Metadata</td>
-              <td class="p-4"><strong>Discovery Layer:</strong> Catalogs all canonical URLs, hierarchies, and update timestamps.</td>
+              <td class="p-4 font-medium"><strong>sitemap.xml</strong></td>
+              <td class="p-4">Traditional Search Engine Indexers</td>
+              <td class="p-4">XML</td>
+              <td class="p-4">Inventory of canonical URLs, change frequencies &amp; last modified dates</td>
+              <td class="p-4">Search engine indexing standard</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-medium"><strong>Schema.org (JSON-LD)</strong></td>
+              <td class="p-4">Search Algorithms &amp; Knowledge Graphs</td>
+              <td class="p-4">JSON-LD</td>
+              <td class="p-4">Entity disambiguation, relationships, and rich snippets</td>
+              <td class="p-4">Structured data vocabulary (W3C community)</td>
             </tr>
             <tr class="bg-brand-50/50">
-              <td class="p-4 font-mono font-semibold text-brand-900">/llms.txt</td>
-              <td class="p-4">2024 &ndash; 2026</td>
-              <td class="p-4">LLMs, RAG Pipelines &amp; AI Agents</td>
-              <td class="p-4">Semantic Markdown</td>
-              <td class="p-4"><strong>Comprehension Layer:</strong> Condenses core business facts, capabilities, and specs into dense tokens.</td>
+              <td class="p-4 font-medium text-brand-900"><strong>llms.txt &amp; llms-full.txt</strong></td>
+              <td class="p-4 text-brand-900 font-medium">LLMs, AI Coding Agents &amp; Answer Engines</td>
+              <td class="p-4 text-brand-900 font-medium">CommonMark Markdown</td>
+              <td class="p-4 text-brand-900 font-medium">Curated, token-optimized textual knowledge map and documentation index</td>
+              <td class="p-4 text-brand-900 font-medium">Open community convention (llmstxt.org)</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p>While <code>robots.txt</code> tells crawlers <em>where they may go</em>, and <code>sitemap.xml</code> tells search engines <em>what URLs exist</em>, <strong>/llms.txt tells artificial intelligence what your organization actually does</strong> in the exact format neural networks understand best: semantic Markdown.</p>
+      <p>As illustrated above, <code>robots.txt</code> tells bots where they are allowed to go. <code>sitemap.xml</code> tells search engines what URLs exist. Schema.org defines how entities relate in a knowledge graph. But <code>llms.txt</code> is the only standard that directly formats your company's knowledge for ingestion inside an artificial neural network.</p>
 
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. The Anatomy of a Production /llms.txt File</h2>
-      <p>Proposed by Jeremy Howard and adopted across leading open-source repositories and enterprise platforms, the standard follows a clean, standardized Markdown hierarchy:</p>
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">5. How AI Agents and Developers Actually Use /llms.txt Today</h2>
+      <p>Adoption of <code>llms.txt</code> has accelerated across developer tooling, open-source frameworks, and AI-native products. Here is how modern systems leverage it in practice:</p>
 
-      <ol class="list-decimal pl-6 space-y-3 my-4 text-black/80">
-        <li><strong>H1 Project Header:</strong> Defines the authoritative entity name of the brand, studio, or software platform.</li>
-        <li><strong>Blockquote Summary:</strong> A dense 2&ndash;3 sentence factual summary that establishes the primary knowledge context for the LLM.</li>
-        <li><strong>Quick Facts &amp; Contact:</strong> Core business identifiers, including legal entity name, headquarters, founding team, and primary contact points.</li>
-        <li><strong>Curated Navigation Index:</strong> A structured list of markdown hyperlinks with descriptive text explaining what each linked document contains.</li>
-        <li><strong>Optional Sections:</strong> Specialized sections covering pricing models, verified case studies, and engineering guidelines.</li>
-      </ol>
-
-      <p>To see this in action, review the production implementation currently live on our own domain at <a href="/llms.txt" class="underline underline-offset-4 font-medium hover:text-black">infrivasolutions.com/llms.txt</a>:</p>
-
-      <div class="overflow-x-auto my-6">
-        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code># Infriva Solutions
-
-> Infriva Solutions is a New Delhi-based B2B digital architecture, software engineering, and full-funnel growth studio. We design and engineer high-performance Next.js web platforms, custom PostgreSQL/Supabase CRM systems, full-stack technical SEO & Generative Engine Optimization (GEO), algorithmic Meta & Google Ads systems, and WhatsApp Cloud API retention workflows.
-
-## Studio Overview & Contact (NAP)
-- **Legal Name:** Infriva Solutions
-- **Canonical Website:** https://www.infrivasolutions.com
-- **Founder & Principal Systems Architect:** Shalini Bhadoria
-- **Head of Content & SEO Strategy:** Disha Rajput
-- **Primary Email:** info@infrivasolutions.com
-- **Track Record:** 100+ Enterprise Deployments | 250+ Digital Systems Delivered
-
-## Core Capabilities & Transparent Pricing
-- [Web Dev & UI/UX Design](https://www.infrivasolutions.com/services/web-development): High-performance B2B web platforms built on React 19, Next.js App Router, TypeScript, and PostgreSQL. Investment: ₹80,000+ (One-time).
-- [Custom CRM Systems](https://www.infrivasolutions.com/services/crm-systems): Bespoke PostgreSQL & Supabase CRM systems with automated lead routing, Row-Level Security (RLS). Investment: ₹90,000+ (One-time).
-- [Full-Stack SEO & GEO](https://www.infrivasolutions.com/services/seo-and-geo): Technical SEO, Schema.org entity graphs, and Generative Engine Optimization (GEO) for Google AI Overviews and Perplexity. Investment: ₹65,000 / month.
-
-## Verified Client Case Studies
-- [FlyingLyte — Travel Booking Engine](https://www.infrivasolutions.com/projects/flyinglyte): Custom multi-step booking engine, PostgreSQL CRM, and automated WhatsApp API flows. Outcomes: +40% qualified leads, -55% funnel drop-off.
-- [StarX Hotel — Direct Hospitality CRM](https://www.infrivasolutions.com/projects/starx): Commission-free direct reservation platform and guest CRM. Outcomes: +35% direct booking share.</code></pre>
-      </div>
-
-      <p>Notice the deliberate restraint: no marketing hyperbole, no generic slogans, and no decorative code. Every line provides a factual, unambiguous data point that an AI engine can cite with complete confidence.</p>
-
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. The /llms-full.txt Extension: Feeding the Full Context Window</h2>
-      <p>In addition to the primary index file, the standard defines an extended sibling: <code>/llms-full.txt</code>.</p>
-
-      <p>While <code>/llms.txt</code> acts as a table of contents that points to detailed resources, <strong>/llms-full.txt concatenates your entire technical specification, documentation, and service catalogs into a single, comprehensive text document</strong>.</p>
-
-      <p>This provides an enormous advantage for modern developer and enterprise buyer workflows:</p>
-
-      <ul class="list-disc pl-6 space-y-2 my-4 text-black/80">
-        <li><strong>Instant Agent Evaluation:</strong> A prospective B2B client or engineer evaluating vendors can paste your <code>/llms-full.txt</code> URL directly into Claude, Cursor, or ChatGPT to analyze your architecture, SLAs, and technical fit in seconds.</li>
-        <li><strong>Single-Pass Ingestion:</strong> AI scrapers do not need to execute 40 recursive HTTP requests to map out your capabilities; they consume the entire operational blueprint in one atomic fetch.</li>
-        <li><strong>Zero Token Fragmentation:</strong> By controlling the concatenation order, you guarantee that related concepts (such as service pricing, deliverables, and SLAs) sit alongside one another in vector embedding space.</li>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li><strong>AI Coding Assistants (Cursor, Windsurf, Claude Code):</strong> When a developer prompts an AI assistant to integrate a third-party SDK or build a feature, the assistant can query <code>https://targetdomain.com/llms.txt</code>. Instead of relying on training data that may be 12 months outdated, the tool immediately reads current API signatures, preventing hallucinated methods and broken syntax.</li>
+        <li><strong>Anthropic Model Context Protocol (MCP):</strong> MCP servers like <code>mcpdoc</code> connect Claude Desktop or terminal agents directly to documentation repositories using <code>llms.txt</code> as the navigational index.</li>
+        <li><strong>Generative Answer Engines (Perplexity, ChatGPT Search):</strong> When users execute complex commercial queries (e.g., <em>&ldquo;What are the best Next.js development agencies in Delhi NCR with verified PostgreSQL CRM case studies?&rdquo;</em>), answer engines performing real-time retrieval-augmented generation (RAG) can parse an <code>llms.txt</code> file in milliseconds, extracting precise deliverables and client ratings with pristine factual accuracy.</li>
       </ul>
 
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">5. How /llms.txt Directly Powers Generative Engine Optimization (GEO)</h2>
-      <p>Traditional SEO focused on optimizing pages for keyword density and backlink signals. But in the emerging discipline of <a href="/services/seo-and-geo" class="underline underline-offset-4 font-medium hover:text-black">Generative Engine Optimization (GEO)</a>, the primary goal is earning direct citations when users ask complex multi-step questions in AI answer engines.</p>
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">6. Step-by-Step Implementation Guide for Modern Web Platforms</h2>
+      <p>Implementing <code>llms.txt</code> requires minimal developer overhead. In modern framework architectures like <a href="/services/web-development" class="underline underline-offset-4 font-medium hover:text-black">Next.js App Router</a>, the file can be deployed as a static asset or generated dynamically:</p>
 
-      <p>Deploying an <code>/llms.txt</code> manifest directly accelerates GEO performance in three measurable ways:</p>
+      <h3 class="text-lg font-medium text-black mt-6 mb-2">Step A: Place the Files in Your Static Root</h3>
+      <p>In Next.js, files placed in the <code>public/</code> directory are automatically served from the domain root:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li><code>public/llms.txt</code> &rarr; accessible at <code>https://yourdomain.com/llms.txt</code></li>
+        <li><code>public/llms-full.txt</code> &rarr; accessible at <code>https://yourdomain.com/llms-full.txt</code></li>
+      </ul>
 
-      <ol class="list-decimal pl-6 space-y-3 my-4 text-black/80">
-        <li><strong>Rock-Solid Entity Disambiguation:</strong> AI models frequently confuse businesses with similar names. By clearly listing your legal entity name, location, leadership team, and exact domains in <code>/llms.txt</code>, you anchor your brand in the model's knowledge graph.</li>
-        <li><strong>Higher Citation Density:</strong> Language models prefer quoting sources that provide concise, factual formulations. When an executive prompts Perplexity: <em>&ldquo;What does a custom Supabase CRM cost compared to HubSpot?&rdquo;</em>, an AI crawler pulling from your clean manifest can quote your exact pricing brackets and delivery timelines directly.</li>
-        <li><strong>Protection Against Hallucinations:</strong> When models are forced to parse cluttered HTML, they frequently invent pricing tiers or misattribute features. Supplying authoritative ground truth in Markdown ensures AI recommendations accurately reflect your real production capabilities.</li>
-      </ol>
-
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">6. How to Implement /llms.txt in Modern Frameworks (Next.js &amp; Static Sites)</h2>
-      <p>Implementing <code>/llms.txt</code> on a modern <a href="/services/web-development" class="underline underline-offset-4 font-medium hover:text-black">Next.js App Router website</a> requires only minutes of engineering time, yet pays long-term compounding dividends.</p>
-
-      <h3 class="text-xl font-medium tracking-tight mt-8 mb-3 text-black">Method A: Static Public Files (Simplest &amp; Most Performant)</h3>
-      <p>The simplest approach is placing your curated Markdown file directly in your project's <code>public/</code> folder as <code>public/llms.txt</code> and <code>public/llms-full.txt</code>. Next.js automatically serves files in the <code>public</code> directory from the root path.</p>
-
-      <p>To ensure high performance and prevent stale caching across global CDNs, configure explicit caching headers in your <code>next.config.ts</code>:</p>
+      <h3 class="text-lg font-medium text-black mt-6 mb-2">Step B: Configure Proper Caching and MIME Headers</h3>
+      <p>Because AI agents fetch these files frequently, ensure your server delivers them with standard <code>text/plain; charset=utf-8</code> content-type headers and reasonable caching directives. In <code>next.config.ts</code>:</p>
 
       <div class="overflow-x-auto my-6">
-        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code>// next.config.ts
-const nextConfig = {
-  async headers() {
-    return [
-      {
-        source: "/llms.txt",
-        headers: [
-          { key: "Content-Type", value: "text/plain; charset=utf-8" },
-          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
-        ],
-      },
-      {
-        source: "/llms-full.txt",
-        headers: [
-          { key: "Content-Type", value: "text/plain; charset=utf-8" },
-          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
-        ],
-      },
-    ];
-  },
-};
-
-export default nextConfig;</code></pre>
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code>// next.config.ts - Cache headers for AI manifests
+async headers() {
+  return [
+    {
+      source: "/(llms.txt|llms-full.txt)",
+      headers: [
+        {
+          key: "Content-Type",
+          value: "text/plain; charset=utf-8",
+        },
+        {
+          key: "Cache-Control",
+          value: "public, max-age=3600, stale-while-revalidate=86400",
+        },
+      ],
+    },
+  ];
+}</code></pre>
       </div>
 
-      <h3 class="text-xl font-medium tracking-tight mt-8 mb-3 text-black">Method B: Linking the Manifest in HTML Head</h3>
-      <p>To ensure automated crawlers discover your manifest even if they begin on a deep interior URL, declare the alternate representation in your root <code>&lt;head&gt;</code> layout:</p>
-
-      <div class="overflow-x-auto my-6">
-        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code>&lt;!-- Include in src/app/layout.tsx metadata or &lt;head&gt; --&gt;
-&lt;link rel=&quot;alternate&quot; type=&quot;text/markdown&quot; href=&quot;https://www.infrivasolutions.com/llms.txt&quot; title=&quot;LLM Manifest&quot; /&gt;
-&lt;link rel=&quot;alternate&quot; type=&quot;text/markdown&quot; href=&quot;https://www.infrivasolutions.com/llms-full.txt&quot; title=&quot;Full LLM Manifest&quot; /&gt;</code></pre>
-      </div>
-
-      <h3 class="text-xl font-medium tracking-tight mt-8 mb-3 text-black">Method C: Aligning robots.txt Permissions</h3>
-      <p>Ensure your <code>robots.txt</code> file does not inadvertently block major AI user-agents from reading your manifest. Explicitly allow legitimate AI crawlers (such as <code>GPTBot</code>, <code>OAI-SearchBot</code>, <code>ClaudeBot</code>, and <code>PerplexityBot</code>) to access root assets:</p>
+      <h3 class="text-lg font-medium text-black mt-6 mb-2">Step C: Reference the Manifest in robots.txt</h3>
+      <p>While not strictly required by the base spec, adding a pointer to your AI manifest inside <code>robots.txt</code> ensures autonomous web crawlers discover it automatically upon visiting your domain:</p>
 
       <div class="overflow-x-auto my-6">
         <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code># robots.txt
-User-agent: GPTBot
+User-agent: *
 Allow: /
-Allow: /llms.txt
-Allow: /llms-full.txt
 
-User-agent: ClaudeBot
-Allow: /
-Allow: /llms.txt
-
-User-agent: PerplexityBot
-Allow: /
-Allow: /llms.txt</code></pre>
+# Canonical Discovery
+Sitemap: https://www.infrivasolutions.com/sitemap.xml
+# AI Model Context Manifest
+# https://llmstxt.org
+# llms.txt: https://www.infrivasolutions.com/llms.txt</code></pre>
       </div>
 
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">7. Four Common Mistakes to Avoid When Publishing an AI Manifest</h2>
-      <p>While creating an <code>/llms.txt</code> file is straightforward, several critical implementation pitfalls can undermine its effectiveness:</p>
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">7. Generative Engine Optimization (GEO): Why Early Adopters Win</h2>
+      <p>The digital search landscape is undergoing its most radical transformation in three decades. In 2020, SEO meant ranking on a list of blue hyperlinks. In 2026 and 2027, winning organic discovery means being <strong>synthesized, cited, and recommended</strong> by autonomous AI engines answering user questions directly.</p>
 
-      <ul class="list-disc pl-6 space-y-2 my-4 text-black/80">
-        <li><strong>Copying Unedited Marketing Copy:</strong> Do not paste vague, flowery slogans like <em>&ldquo;We empower global transformation.&rdquo;</em> Use precise, concrete language detailing what you engineer, supported tech stacks, and delivery timeframes.</li>
-        <li><strong>Letting the Manifest Go Stale:</strong> If your pricing models, leadership team, or core service offerings change, immediately update your <code>/llms.txt</code>. Serving outdated information risks training AI models on inaccurate historical facts.</li>
-        <li><strong>Omitting Pricing or Qualification Criteria:</strong> AI search users frequently ask commercial comparison queries. If your manifest omits clear investment brackets, AI models will recommend competitors who transparently disclose pricing.</li>
-        <li><strong>Including Broken or Redirecting Links:</strong> Every hyperlink in your manifest should resolve with a clean <code>200 OK</code> status. Avoid URLs that trigger multi-hop 301 redirects, which drain crawler crawl budgets.</li>
+      <p>Deploying a clean <code>llms.txt</code> manifest provides immediate strategic advantages:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium">
+        <li><strong>Factual Control Over Your Brand Narrative:</strong> You define the exact summary, service pricing, and technical credentials that models ingest, dramatically reducing hallucinations about what your company does.</li>
+        <li><strong>Asymmetric Citation Share:</strong> When AI models look for verifiable third-party documentation, they prioritize sources that provide clean, structured Markdown over heavy, JavaScript-obfuscated sites.</li>
+        <li><strong>Developer &amp; Partner Friction Reduction:</strong> If your company provides APIs, software integrations, or B2B platforms, giving developers and AI coding agents an immediate <code>llms.txt</code> map reduces onboarding friction to near zero.</li>
       </ul>
 
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">8. The Future: Preparing for the Agentic Web</h2>
-      <p>The web is undergoing its most profound transition since the advent of mobile browsing. Over the next three to five years, a substantial percentage of online research, vendor vetting, and procurement will be conducted not by human individuals clicking through navigation menus, but by autonomous AI agents synthesizing data across the open web.</p>
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">8. The Dual-Layered Future of the Web</h2>
+      <p>The web is no longer single-audience. The future of web architecture is fundamentally <strong>dual-layered</strong>:</p>
+      <ol class="list-decimal pl-6 space-y-2 mb-6 font-medium">
+        <li><strong>The Human Layer:</strong> A high-performance, visually expressive, reactive web application engineered with sub-1.5s Largest Contentful Paint (LCP), rich typography, and seamless micro-interactions to build trust and emotional resonance with human decision-makers.</li>
+        <li><strong>The Machine Layer:</strong> A semantic, token-optimized Markdown ecosystem powered by Schema.org entity graphs, <code>robots.txt</code>, and <code>/llms.txt</code> manifests engineered to feed autonomous AI models with precision and zero friction.</li>
+      </ol>
 
-      <p>Websites that only provide bloated visual experiences will find themselves increasingly invisible to these agentic workflows. By deploying a clean, standardized <code>/llms.txt</code> manifest alongside high-performance <a href="/services/web-development" class="underline underline-offset-4 font-medium hover:text-black">Next.js architecture</a> and interconnected Schema.org graphs, you ensure your organization remains authoritative, discoverable, and citable across every human and artificial discovery channel.</p>
+      <p>Organizations that neglect the machine layer will find themselves invisible to the AI assistants that increasingly guide executive purchasing decisions. Organizations that embrace both will dominate organic visibility across both search algorithms and answer engines.</p>
 
       <p class="mt-8">
-        <strong>Looking to optimize your digital architecture for the AI search era?</strong> Explore our <a href="/services/seo-and-geo" class="underline underline-offset-4 font-medium hover:text-black">Full-Stack SEO &amp; Generative Engine Optimization (GEO) Retainer</a>, examine our verified case studies, or book a consultation directly with our engineering team to audit your machine-readable readiness.
+        <strong>Ready to optimize your digital architecture for the AI era?</strong> Explore our <a href="/services/seo-and-geo" class="underline underline-offset-4 font-medium hover:text-black">Full-Stack SEO &amp; Generative Engine Optimization (GEO) Retainer</a>, examine our live <a href="/llms.txt" class="underline underline-offset-4 font-medium hover:text-black">/llms.txt manifest</a>, or book an architectural consultation with our senior engineering team to inspect your web platform.
       </p>
     `,
   },

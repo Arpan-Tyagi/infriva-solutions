@@ -42,6 +42,14 @@ export const DEFAULT_AUTHOR: BlogAuthor = {
   linkedin: "https://linkedin.com/company/infriva",
 };
 
+export const ARPAN_TYAGI: BlogAuthor = {
+  name: "Arpan Tyagi",
+  role: "Chief Executive Officer (CEO)",
+  credentials: "Chief Executive Officer & Enterprise Systems Architect at Infriva Solutions",
+  bio: "Arpan is the Chief Executive Officer at Infriva Solutions, directing executive engineering strategy, enterprise cloud systems, and generative AI search architecture across global B2B deployments.",
+  linkedin: "https://linkedin.com/company/infriva",
+};
+
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
   {
     id: "the-llms-txt-standard-explained-machine-readable-manifest",
@@ -54,7 +62,7 @@ export const BLOG_POSTS_LIST: BlogPostItem[] = [
     lastModified: "2026-10-21",
     readTime: "8 min read",
     desc: "Discover what the /llms.txt standard is, how it cuts AI token waste by 90%, and why modern websites need a machine-readable manifest to get cited by LLMs.",
-    author: DEFAULT_AUTHOR,
+    author: ARPAN_TYAGI,
     relatedServiceSlugs: ["seo-and-geo", "web-development", "premium-content"],
     relatedProjectSlug: "flyinglyte",
     content: `

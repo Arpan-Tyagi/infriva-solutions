@@ -176,10 +176,10 @@ export default function About() {
             </p>
             <div className="space-y-6">
               <div className="p-8 bg-brand-900 text-white rounded-2xl">
-                <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Founder &amp; Principal Systems Architect</div>
+                <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Founder &amp; Managing Director</div>
                 <h3 className="text-2xl font-medium tracking-tight-display mb-3">Shalini Bhadoria</h3>
                 <p className="text-sm text-white/75 leading-relaxed mb-6">
-                  Shalini leads full-stack web architecture, PostgreSQL/Supabase CRM engineering, and technical systems strategy at Infriva Solutions. Over the past five years, she has architected custom booking platforms, multi-channel WhatsApp Cloud API ecosystems, and organic acquisition systems for hospitality, travel, SaaS, and service enterprises across India and global markets.
+                  Shalini oversees corporate governance, strategic growth, and multi-channel client engagements at Infriva Solutions. Over the past five years, she has guided enterprise digital transformations, custom booking platforms, and full-funnel retention systems for hospitality, travel, SaaS, and high-ticket service brands across India and global markets.
                 </p>
                 <div className="flex flex-wrap gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
                   <span>New Delhi, India</span>
@@ -187,6 +187,21 @@ export default function About() {
                   <a href={`mailto:${AGENCY_NAP.email}`} className="underline hover:text-white">
                     {AGENCY_NAP.email}
                   </a>
+                </div>
+              </div>
+
+              <div className="p-8 bg-brand-900 text-white rounded-2xl">
+                <div className="text-[10px] tracking-widest-caps text-white/50 mb-2">Executive Leadership &amp; Engineering</div>
+                <h3 className="text-2xl font-medium tracking-tight-display mb-1">Arpan Tyagi</h3>
+                <div className="text-xs font-mono text-white/60 mb-3">Chief Executive Officer (CEO)</div>
+                <p className="text-sm text-white/75 leading-relaxed mb-6">
+                  Arpan leads executive systems engineering, technical product direction, and enterprise cloud architecture at Infriva Solutions. He directs the architecture of our custom PostgreSQL/Supabase CRMs, Next.js web applications, and Generative Engine Optimization (GEO) pipelines, ensuring every client deployment operates with sub-second execution speeds, strict data security, and direct revenue attribution.
+                </p>
+                <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
+                  <span>New Delhi, India</span>
+                  <Link href="/blog/the-llms-txt-standard-explained-machine-readable-manifest" className="inline-flex items-center gap-1 font-medium text-white hover:underline">
+                    Read AI Architecture Guide <ArrowUpRight size={13} />
+                  </Link>
                 </div>
               </div>
 

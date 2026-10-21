@@ -51,7 +51,11 @@ export const AGENCY_NAP = {
   ],
   founder: {
     name: "Shalini Bhadoria",
-    jobTitle: "Founder & Principal Systems Architect",
+    jobTitle: "Founder & Managing Director",
+  },
+  ceo: {
+    name: "Arpan Tyagi",
+    jobTitle: "Chief Executive Officer (CEO)",
   },
   headOfContent: {
     name: "Disha Rajput",
@@ -134,6 +138,11 @@ export function buildGlobalGraphJsonLd() {
           jobTitle: AGENCY_NAP.founder.jobTitle,
         },
         employee: [
+          {
+            "@type": "Person",
+            name: AGENCY_NAP.ceo.name,
+            jobTitle: AGENCY_NAP.ceo.jobTitle,
+          },
           {
             "@type": "Person",
             name: AGENCY_NAP.headOfContent.name,

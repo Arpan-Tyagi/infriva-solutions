@@ -43,6 +43,8 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [How to Build a Custom Travel Booking Engine: React, Django, TBO API & PayU](https://www.infrivasolutions.com/blog/how-to-build-a-custom-travel-booking-engine-react-django-tbo-api)
+- [The /llms.txt Standard Explained: Why Modern Websites Need an AI Manifest](https://www.infrivasolutions.com/blog/the-llms-txt-standard-explained-machine-readable-manifest)
 - [SEO, AEO and GEO: Does Your Business Really Need Three Different Strategies?](https://www.infrivasolutions.com/blog/seo-aeo-geo-three-strategies)
 - [Why Every Small Business Needs CRM Software](https://www.infrivasolutions.com/blog/why-every-small-business-needs-crm-software)
 - [Why Your Website Is Not Getting Leads (And How to Fix It)](https://www.infrivasolutions.com/blog/why-your-website-is-not-getting-leads-and-how-to-fix-it)

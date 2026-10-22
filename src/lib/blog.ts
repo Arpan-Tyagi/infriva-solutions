@@ -54,6 +54,231 @@ export const DEFAULT_AUTHOR: BlogAuthor = AUTHOR_DISHA_RAJPUT;
 
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
   {
+    id: "how-to-build-a-custom-travel-booking-engine-react-django-tbo-api",
+    image: "/images/flight-smartphone.jpg",
+    imageAlt: "Custom travel booking engine architecture diagram with React, Django REST Framework, TBO API, and PayU integration engineered by Infriva Solutions",
+    title: "How to Build a Custom Travel Booking Engine: React, Django, TBO API & PayU [2026 Blueprint]",
+    category: "Web Development",
+    date: "Oct 22, 2026",
+    isoDate: "2026-10-22",
+    lastModified: "2026-10-22",
+    readTime: "11 min read",
+    desc: "Complete architectural blueprint on engineering an online travel booking engine from scratch using React, Django, Travel Boutique Online (TBO) APIs, and PayU.",
+    author: AUTHOR_ARPAN_TYAGI,
+    relatedServiceSlugs: ["web-development", "crm-systems", "retention-marketing"],
+    relatedProjectSlug: "flyinglyte",
+    content: `
+      <p>The online travel industry is dominated by high-commission aggregator portals and sluggish white-label booking frames. When independent travel operators, holiday agencies, or boutique flight consolidators attempt to scale their online acquisition, they invariably encounter a painful technical wall: off-the-shelf booking tools are bloated, take over 5 seconds to load on mobile devices, and shave 15% to 22% off top-line margins in third-party licensing fees.</p>
+
+      <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-4 bg-brand-50/50">
+        When our engineering team at Infriva Solutions partnered with <strong>FlyingLyte</strong> (<a href="/projects/flyinglyte" class="underline underline-offset-4 font-medium hover:text-black">read the full case study</a>), their legacy portal suffered from a 74% booking abandonment rate. We rebuilt their entire travel booking ecosystem from scratch using a decoupled architecture: an ultra-fast <strong>React single-page application (SPA)</strong>, an asynchronous <strong>Django REST Framework (DRF)</strong> orchestration gateway, live integration with <strong>Travel Boutique Online (TBO) APIs</strong>, and atomic <strong>PayU</strong> payment verification.
+      </p>
+
+      <p>The result was immediate: mobile Largest Contentful Paint (LCP) dropped from 5.4s to 1.1s, funnel drop-off plummeted by 55%, and qualified travel inquiries surged by +40% within 60 days. Here is the comprehensive architectural blueprint, backend code patterns, and production lessons learned from building an enterprise-grade travel engine from scratch.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. High-Level System Architecture: Decoupling the Travel Stack</h2>
+      <p>Flight and hotel inventory aggregation is fundamentally different from standard e-commerce. In e-commerce, product inventory and pricing are static records stored in your local database. In travel, seat availability and dynamic airfares fluctuate second-by-second across Global Distribution Systems (GDS like Amadeus and Sabre) and Low-Cost Carriers (LCCs like IndiGo, Air India, and SpiceJet).</p>
+
+      <p>To deliver a sub-second user experience while preventing stale pricing race conditions, we designed a strict four-layer architecture:</p>
+
+      <div class="overflow-x-auto my-6">
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code>[ Client Mobile / Desktop Browser (React SPA) ]
+                    │
+                    ▼ HTTPS / JSON REST API
+[ Django Backend Orchestration Layer (DRF) ]
+      ├── In-Memory Redis Cache (TBO Session Tokens & City Lookups)
+      ├── PostgreSQL Database (Local Bookings, Markups, Audit Logs)
+      │
+      ├── [ Supplier Layer: Travel Boutique Online (TBO) XML/JSON APIs ]
+      │         ├── 1. Flight / Hotel Search Aggregation
+      │         ├── 2. Pre-Payment Fare Quote & Seat Re-verification
+      │         └── 3. Post-Payment Ticket / PNR Issuance
+      │
+      ├── [ Payment Layer: PayU Payment Gateway ]
+      │         ├── Server-Side SHA-512 Hash Generation
+      │         ├── Webhook Callback Reconciliation Listener
+      │         └── Automated Reversal on Downstream Ticketing Faults
+      │
+      └── [ Retention Layer: WhatsApp Cloud API Engine ]
+                ├── Instant E-Ticket & Itinerary PDF Dispatch (&lt; 15s)
+                └── 20-Min Partial Itinerary Abandonment Recovery</code></pre>
+      </div>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. Frontend Engineering: Solving the 74% Drop-Off Bottleneck</h2>
+      <p>Prior to our engagement, FlyingLyte's legacy website confronted mobile travelers clicking through from Instagram Reels or Google Search Ads with a daunting 14-field static form. If a traveler tapped their mobile browser's back button to verify package dates, the entire form state vanished&mdash;driving an astronomical 74% abandonment rate.</p>
+
+      <p>We re-architected the client interface into a modern React single-page application utilizing optimistic client state and a progressive three-step sequence:</p>
+
+      <ol class="list-decimal pl-6 space-y-3 mb-6 font-medium">
+        <li><strong>Step 1 &mdash; Route &amp; Travel Date Configuration:</strong> Users select origins, destinations, departure dates, cabin classes, and passenger counts with instant reactive feedback. Destination landing pages are statically compiled with dynamic OpenGraph previews to ensure sub-1.2s first paint.</li>
+        <li><strong>Step 2 &mdash; Verified Traveler Details &amp; Contact Capture:</strong> Before asking for payment or complex passport numbers, the application captures verified intent (traveler name, phone number, and email). This critical architectural decision ensures that even if a traveler abandons before paying, their contact and itinerary requirements are already secured in the CRM.</li>
+        <li><strong>Step 3 &mdash; Instant Quote &amp; PayU Checkout Launch:</strong> The client triggers atomic fare verification, displays comprehensive breakdown taxes and airline baggage allowances, and smoothly initiates the PayU secure modal.</li>
+      </ol>
+
+      <div class="bg-brand-50 p-6 my-8 border border-black/10 rounded-xl">
+        <h3 class="text-lg font-semibold text-black mb-2">Core Frontend Metric: 5.4s &rarr; 1.1s Mobile LCP</h3>
+        <p class="text-black/70 text-sm">
+          By eliminating bloated third-party white-label iframe widgets, converting all destination photography to AVIF format with strict width/height boundaries, and code-splitting search results, we reduced mobile Largest Contentful Paint to 1.1 seconds on 4G networks.
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. Backend Orchestration: Django REST Framework &amp; TBO API</h2>
+      <p>Travel Boutique Online (TBO) is one of the world's largest B2B travel aggregators, providing XML and JSON APIs covering global airline inventories and hotel rooms. However, querying TBO directly from a client browser is impossible: it exposes confidential agency API keys, bypasses custom markup rules, and suffers from supplier latency.</p>
+
+      <p>We built our backend in Python using <strong>Django REST Framework</strong>, structuring the integration into modular services:</p>
+
+      <h3 class="text-xl font-medium tracking-tight mt-8 mb-3 text-black">A. Token Caching &amp; Session Management</h3>
+      <p>TBO requires an initial authentication call using agency credentials to generate a temporary <code>TokenId</code>. Requesting a new token on every search query adds 800ms of unnecessary latency. We implemented an in-memory caching pattern in Django:</p>
+
+      <div class="overflow-x-auto my-6">
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code># core/tbo_integration/client.py
+import requests
+from django.core.cache import cache
+from django.conf import settings
+
+class TBOClient:
+    AUTH_CACHE_KEY = "tbo_auth_token_id"
+    TOKEN_TTL = 3600 * 23  # Cache token for 23 hours
+
+    def __init__(self):
+        self.auth_url = settings.TBO_AUTH_URL
+        self.flight_url = settings.TBO_FLIGHT_URL
+        self.credentials = {
+            "ClientId": settings.TBO_CLIENT_ID,
+            "UserName": settings.TBO_USERNAME,
+            "Password": settings.TBO_PASSWORD,
+            "EndUserIp": settings.TBO_END_USER_IP,
+        }
+
+    def get_token(self) -&gt; str:
+        token = cache.get(self.AUTH_CACHE_KEY)
+        if not token:
+            response = requests.post(self.auth_url, json=self.credentials, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            token = data.get("TokenId")
+            cache.set(self.AUTH_CACHE_KEY, token, timeout=self.TOKEN_TTL)
+        return token</code></pre>
+      </div>
+
+      <h3 class="text-xl font-medium tracking-tight mt-8 mb-3 text-black">B. The Critical Two-Phase Price Verification</h3>
+      <p>A fatal flaw in novice travel builds is accepting the price displayed on the initial search results page as the final checkout price. If a user spends five minutes entering passenger names, an airline's fare bucket may change or sell out completely.</p>
+
+      <p>Our Django orchestration layer enforces a strict two-phase protocol:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium space-y-2">
+        <li><strong>Phase 1 (Search):</strong> Aggregates flight routes across LCC and GDS carriers, applies dynamic administrative markups, and returns clean JSON to the React frontend.</li>
+        <li><strong>Phase 2 (Fare Quote / Price Check):</strong> The instant a traveler advances to Step 3, Django calls TBO's <code>FareQuote</code> API to verify seat availability and freeze the fare. If the airline increased the fare by ₹500, the system gracefully alerts the user before their credit card is charged, eliminating failed booking disputes.</li>
+      </ul>
+
+      <h3 class="text-xl font-medium tracking-tight mt-8 mb-3 text-black">C. Dynamic Administrative Markup Engine</h3>
+      <p>Travel agencies earn revenue through supplier commissions and direct customer markups. We engineered a configurable database table in PostgreSQL that calculates real-time markups based on:</p>
+      <ul class="list-disc pl-6 mb-4 font-medium space-y-2">
+        <li>Domestic vs. International sectors</li>
+        <li>Specific airline carrier codes (e.g., IndiGo vs. Emirates)</li>
+        <li>Fixed flat fee per passenger vs. percentage of base fare</li>
+      </ul>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. Payment Security &amp; Reconciliation with PayU</h2>
+      <p>In financial transactions involving live airline inventory, integrity is non-negotiable. If a payment succeeds but the subsequent ticketing API call times out, the customer must not be left stranded in an unconfirmed limbo.</p>
+
+      <p>We engineered the payment flow with strict server-side safeguards using the <strong>PayU Payment Gateway</strong>:</p>
+
+      <div class="overflow-x-auto my-6">
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code># core/payment/payu_service.py
+import hashlib
+from django.conf import settings
+
+def generate_payu_hash(txnid: str, amount: str, productinfo: str, firstname: str, email: str) -&gt; str:
+    """
+    Generate SHA-512 payment hash on the backend to prevent client tampering.
+    Formula: sha512(key|txnid|amount|productinfo|firstname|email|udf1|...|udf5||||||SALT)
+    """
+    hash_sequence = (
+        f"{settings.PAYU_MERCHANT_KEY}|{txnid}|{amount}|{productinfo}|"
+        f"{firstname}|{email}|||||||||||{settings.PAYU_MERCHANT_SALT}"
+    )
+    return hashlib.sha512(hash_sequence.encode('utf-8')).hexdigest().lower()</code></pre>
+      </div>
+
+      <p>All payment checksums are generated strictly on the Django server, ensuring that malicious actors cannot modify transaction totals in browser developer tools. Furthermore, our system implements an asynchronous webhook listener. Even if a user accidentally closes their mobile browser immediately after entering their UPI PIN or OTP, PayU's server-to-server webhook hits our Django endpoint, verifies the transaction status, and triggers the TBO ticketing call automatically.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">5. Automated Retention: 15-Second WhatsApp Cloud API Ticketing</h2>
+      <p>In traditional booking systems, travelers receive an unformatted plain-text email with their PNR that often lands in their spam or promotions folder. When traveling, travelers check WhatsApp, not email.</p>
+
+      <p>Through our <a href="/services/retention-marketing" class="underline underline-offset-4 font-medium hover:text-black">Retention Marketing &amp; WhatsApp Cloud API automation</a>, we wired 12 event-driven communication flows:</p>
+
+      <ul class="list-disc pl-6 mb-4 font-medium space-y-2">
+        <li><strong>Instant E-Ticket Dispatch:</strong> Within 15 seconds of PayU payment confirmation, our webhook engine generates the official PDF itinerary and delivers it directly to the customer's WhatsApp with confirmed PNR, terminal info, and seat numbers.</li>
+        <li><strong>20-Minute Abandoned Funnel Recovery:</strong> If a prospective traveler completes Step 2 (origin, dates, phone number) but pauses before checkout, an automated WhatsApp flow triggers 20 minutes later with a direct one-tap link to resume their exact itinerary.</li>
+        <li><strong>Pre-Trip Visa &amp; Terminal Reminders:</strong> Automated reminders dispatched 24 hours prior to departure containing airline baggage allowances and web check-in links.</li>
+      </ul>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">6. The Technical Architecture Comparison</h2>
+      <p>When choosing how to build a modern travel portal, operators generally choose between three models:</p>
+
+      <div class="overflow-x-auto my-6">
+        <table class="w-full text-left text-sm border-collapse my-6">
+          <thead class="bg-brand-100/50 border-b border-black/10">
+            <tr>
+              <th class="p-3 font-semibold text-black">Feature / Performance Metric</th>
+              <th class="p-3 font-semibold text-black">Generic White-Label Portal</th>
+              <th class="p-3 font-semibold text-black">WordPress + Booking Plugin</th>
+              <th class="p-3 font-semibold text-brand-900">Custom React + Django + TBO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-black">Mobile Load Speed (LCP)</td>
+              <td class="p-3 border-b border-black/5 text-black/70">5.5s &ndash; 8.0s (Heavy iframes)</td>
+              <td class="p-3 border-b border-black/5 text-black/70">4.5s &ndash; 6.5s (Plugin bloat)</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">1.1s (Compiled Edge SPA)</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-black">Third-Party Commission Cuts</td>
+              <td class="p-3 border-b border-black/5 text-black/70">15% &ndash; 25% per booking</td>
+              <td class="p-3 border-b border-black/5 text-black/70">3% &ndash; 5% plugin royalty</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">0% (Owned Direct Engine)</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-black">Checkout Step Customization</td>
+              <td class="p-3 border-b border-black/5 text-black/70">Rigid / Non-editable</td>
+              <td class="p-3 border-b border-black/5 text-black/70">Limited to plugin templates</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">100% Progressive 3-Step Flow</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-black">Automated WhatsApp Integration</td>
+              <td class="p-3 border-b border-black/5 text-black/70">Unavailable / Expensive add-on</td>
+              <td class="p-3 border-b border-black/5 text-black/70">Manual Zapier hooks</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">Native Cloud API (&lt; 15s)</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-black">Customer Data Ownership</td>
+              <td class="p-3 border-b border-black/5 text-black/70">Masked by portal provider</td>
+              <td class="p-3 border-b border-black/5 text-black/70">Fragmented in WP tables</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">Centralized PostgreSQL CRM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">7. Summary &amp; Next Steps for Travel Brands</h2>
+      <p>Building a custom travel booking engine requires deep domain orchestration: balancing fast client interactions, handling volatile supplier fare checks, securing transaction verification, and driving automated post-booking retention. However, when executed correctly, it transforms an online travel business from a commodity reseller into a high-margin digital brand.</p>
+
+      <p>If your travel agency or hospitality business is losing customer momentum to slow booking portals, third-party aggregator commissions, or manual spreadsheet chaos, our engineering team can audit your tech stack and build an owned digital systems architecture.</p>
+
+      <div class="bg-brand-900 text-white p-8 my-8 rounded-xl">
+        <h3 class="text-xl font-medium tracking-tight mb-2">Ready to Build Your Owned Booking Engine?</h3>
+        <p class="text-white/70 text-sm mb-6 max-w-2xl leading-relaxed">
+          Book a 15-minute technical architecture consultation with our engineering directors. We will analyze your supplier APIs, diagnose your funnel bottlenecks, and lay out an implementation roadmap.
+        </p>
+        <a href="/contact" class="inline-flex items-center gap-2 bg-white text-brand-900 px-6 py-3 rounded-none text-sm font-medium hover:bg-white/90 transition-colors">
+          <span>Book a Technical Architecture Audit</span>
+          &rarr;
+        </a>
+      </div>
+    `,
+  },
+  {
     id: "the-llms-txt-standard-explained-machine-readable-manifest",
     image: "/images/llms-txt-standard.jpg",
     imageAlt: "The llms.txt standard explained: AI manifests, machine-readable documentation, and token-efficient website indexing for LLMs and AI agents",

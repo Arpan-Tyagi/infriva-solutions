@@ -9,7 +9,7 @@ import { PROJECTS_LIST } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Infriva Solutions | B2B Digital Systems, Custom CRM & SEO/GEO Engineering",
+    absolute: "Infriva Solutions | B2B Web Engineering, Custom CRM & SEO/GEO Systems [2026]",
   },
   description: AGENCY_NAP.description,
   alternates: {

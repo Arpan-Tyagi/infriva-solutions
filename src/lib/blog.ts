@@ -2,7 +2,7 @@
  * @file src/lib/blog.ts
  * @description Unified Editorial Blog Registry, E-E-A-T Author Metadata & Schema.org BlogPosting Builders
  *
- * Single source of truth for all 15 Infriva Solutions thought-leadership articles.
+ * Single source of truth for all 16 Infriva Solutions thought-leadership articles.
  * Resolves metadata truncation, date/category/image drift between `/blog` and `/blog/[slug]`,
  * skipped H2 heading hierarchy, author E-E-A-T attribution, and contextual internal linking.
  */
@@ -53,6 +53,242 @@ export const AUTHOR_ARPAN_TYAGI: BlogAuthor = {
 export const DEFAULT_AUTHOR: BlogAuthor = AUTHOR_DISHA_RAJPUT;
 
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
+  {
+    id: "how-to-build-a-direct-hotel-booking-engine-nextjs-postgresql-whatsapp-concierge",
+    image: "/images/hotel-keycard.jpg",
+    imageAlt: "Direct hotel booking engine architecture with Next.js, PostgreSQL room availability locks, and WhatsApp concierge engineered by Infriva Solutions",
+    title: "How to Build a Direct Hotel Booking Engine: Next.js, PostgreSQL & WhatsApp Concierge [StarX Blueprint]",
+    category: "Web Development",
+    date: "Oct 26, 2026",
+    isoDate: "2026-10-26",
+    lastModified: "2026-10-26",
+    readTime: "11 min read",
+    desc: "How we engineered a commission-free direct hotel reservation platform for StarX Hotel, saving 18% in OTA fees and driving a +35% direct booking lift.",
+    author: AUTHOR_ARPAN_TYAGI,
+    relatedServiceSlugs: ["web-development", "crm-systems", "retention-marketing"],
+    relatedProjectSlug: "starx",
+    content: `
+      <p>Boutique hotels and luxury resorts surrender between 15% and 22% of their gross revenue to third-party Online Travel Agencies (OTAs). On a room charging ₹12,000 per night, an OTA extracts up to ₹2,640 in intermediary fees.</p>
+
+      <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-4 bg-brand-50/50">
+        When our engineering team at <a href="/" class="underline underline-offset-4 font-medium hover:text-black">Infriva Solutions</a> partnered with <strong>StarX Hotel</strong> (<a href="/projects/starx" class="underline underline-offset-4 font-medium hover:text-black">read the case study</a>), 100% of their online bookings flowed through external aggregator apps. We engineered an owned reservation engine from scratch.
+      </p>
+
+      <p>Within 90 days of deploying the custom Next.js and PostgreSQL platform, StarX captured a <strong>+35% direct booking share</strong>, eliminated ₹180,000+ per month in OTA commissions, and raised repeat guest stays by +22%.</p>
+
+      <p>Here is the architectural blueprint, database concurrency logic, and WhatsApp concierge automation required to replace third-party travel portals with an owned booking system.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. The Economics of Intermediary OTA Dependency</h2>
+      <p>Hospitality research by Kalibri Labs reveals that direct hotel reservations generate 9% to 18% higher Net Revenue Per Available Room (Net RevPAR) than bookings acquired through aggregator portals.</p>
+
+      <p>The issue is rarely brand discovery. More than 60% of guests look up a hotel's direct website after discovering it on an OTA. This phenomenon is known as the billboard effect.</p>
+
+      <p>However, 78% of those travelers abandon the direct website when confronted with sluggish 5-second mobile load times, broken room date pickers, or confusing redirects to third-party booking frames.</p>
+
+      <p>When hotels outsource their booking flow to generic booking widgets, they lose margins, customer data ownership, and the ability to drive repeat stays through direct communication channels.</p>
+
+      <div class="overflow-x-auto my-6">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-brand-100/60 border-b border-black/10">
+            <tr>
+              <th class="p-3 font-semibold text-black">Booking Channel</th>
+              <th class="p-3 font-semibold text-black">Commission Fee</th>
+              <th class="p-3 font-semibold text-black">Guest Data Access</th>
+              <th class="p-3 font-semibold text-brand-900">Net Profit Retention</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-black">Third-Party OTAs (Agoda, MMT)</td>
+              <td class="p-3 border-b border-black/5 text-black/70">15% &ndash; 22% per night</td>
+              <td class="p-3 border-b border-black/5 text-red-600 font-medium">Masked email &amp; virtual phone</td>
+              <td class="p-3 border-b border-black/5 text-black/70">78% &ndash; 85% of rack rate</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-black">Generic White-Label Iframe</td>
+              <td class="p-3 border-b border-black/5 text-black/70">3% &ndash; 5% + monthly SaaS</td>
+              <td class="p-3 border-b border-black/5 text-black/70">Partial export via CSV</td>
+              <td class="p-3 border-b border-black/5 text-black/70">High mobile abandonment (72%)</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-brand-900">Owned Next.js Engine (StarX)</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">0% Commission</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">Full verified phone, email &amp; stay history</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">100% Direct revenue retention</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. The 4-Layer Direct Hospitality Architecture</h2>
+      <p>To eliminate mobile drop-off while handling high-season concurrency, our engineering team architected a decoupled four-layer technical stack:</p>
+
+      <div class="overflow-x-auto my-6">
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code>[ Guest Browser / Mobile Device ]
+              │ (1.1s LCP: Next.js App Router &amp; AVIF)
+              ▼
+[ Client Application Layer ]
+      ├── Interactive Date &amp; Room Picker (React State)
+      ├── Real-Time Nightly Pricing &amp; Addon Calculator
+      └── Progressive 2-Step Frictionless Checkout
+              │
+              ▼ HTTPS / JSON REST Actions
+[ Backend Business Logic &amp; API Gateway ]
+      ├── PostgreSQL Database (Rooms, Rates, Booking Records)
+      ├── Atomic Room Inventory Locking Engine
+      ├── PayU Payment Gateway (Server-Side SHA-512 Hash)
+      └── Meta WhatsApp Cloud API Concierge Service</code></pre>
+      </div>
+
+      <p>This decoupled design ensures room photography and amenities render instantly across mobile devices without waiting for database queries to resolve.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. Frontend Engineering: Sub-1.2s Mobile LCP and Zero CLS</h2>
+      <p>Luxury travelers booking weekend stays browse predominantly on mobile smartphones over 4G connections. Every second of render delay reduces checkout conversion by 7%.</p>
+
+      <p>We built the StarX Hotel frontend using <a href="/services/web-development" class="underline underline-offset-4 font-medium hover:text-black">Next.js App Router</a> with static page generation for all suite galleries:</p>
+
+      <ul class="list-disc pl-5 space-y-2 text-black/80 my-4 text-sm">
+        <li><strong>AVIF Image Optimization:</strong> High-resolution room photography is compressed into modern AVIF formats, reducing image payload from 14MB to 680KB.</li>
+        <li><strong>Zero Layout Shifts (CLS 0.00):</strong> All photo carousels enforce fixed aspect ratios and CSS container queries, preventing text jumping during image loads.</li>
+        <li><strong>Frictionless 2-Step Flow:</strong> Step 1 configures check-in, check-out, and suite tier. Step 2 captures traveler details and initiates secure payment in one view.</li>
+      </ul>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. Database Concurrency: Atomic Room Locks in PostgreSQL</h2>
+      <p>The critical engineering problem in direct hospitality engines is the double-booking hazard. When two travelers attempt to reserve the final Executive Suite for New Year's Eve simultaneously, a naive system accepts both cards.</p>
+
+      <p>We solved this using PostgreSQL row-level locks and atomic transactions with <code>SELECT ... FOR UPDATE</code>:</p>
+
+      <div class="overflow-x-auto my-6">
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code>-- Atomic reservation lock function in PostgreSQL
+CREATE OR REPLACE FUNCTION create_hotel_reservation(
+  p_room_type_id UUID,
+  p_check_in DATE,
+  p_check_out DATE,
+  p_guest_id UUID,
+  p_total_amount NUMERIC
+) RETURNS UUID AS $$
+DECLARE
+  v_available_room_id UUID;
+  v_booking_id UUID;
+BEGIN
+  -- Lock an available room that has zero conflicting active bookings
+  SELECT r.id INTO v_available_room_id
+  FROM hotel_rooms r
+  WHERE r.room_type_id = p_room_type_id
+    AND r.is_active = TRUE
+    AND NOT EXISTS (
+      SELECT 1 FROM hotel_bookings b
+      WHERE b.room_id = r.id
+        AND b.status IN ('confirmed', 'holding')
+        AND b.check_in_date &lt; p_check_out
+        AND b.check_out_date &gt; p_check_in
+    )
+  LIMIT 1
+  FOR UPDATE SKIP LOCKED;
+
+  IF v_available_room_id IS NULL THEN
+    RAISE EXCEPTION 'NO_ROOM_AVAILABLE';
+  END IF;
+
+  -- Create temporary holding reservation with 15-minute expiration
+  INSERT INTO hotel_bookings (
+    room_id, guest_id, check_in_date, check_out_date,
+    total_amount, status, expires_at
+  ) VALUES (
+    v_available_room_id, p_guest_id, p_check_in, p_check_out,
+    p_total_amount, 'holding', NOW() + INTERVAL '15 minutes'
+  ) RETURNING id INTO v_booking_id;
+
+  RETURN v_booking_id;
+END;
+$$ LANGUAGE plpgsql;</code></pre>
+      </div>
+
+      <p>This pattern prevents double bookings by isolating room state at the database engine level. If payment fails or times out after 15 minutes, the room automatically returns to available inventory.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">5. The WhatsApp Concierge: Instant Lifecycle Automation</h2>
+      <p>OTAs hide guest phone numbers and emails behind masked proxy relays, preventing direct communication. With an owned platform, the hotel captures verified contact data at checkout.</p>
+
+      <p>We coupled our <a href="/services/crm-systems" class="underline underline-offset-4 font-medium hover:text-black">custom CRM architecture</a> with the Meta WhatsApp Cloud API to automate three essential guest touchpoints:</p>
+
+      <ul class="list-disc pl-5 space-y-2 text-black/80 my-4 text-sm">
+        <li><strong>Instant Booking Voucher (&lt; 15s):</strong> The second payment clears, the guest receives an interactive WhatsApp message with confirmed booking reference, check-in instructions, and PDF voucher.</li>
+        <li><strong>Pre-Arrival Concierge (24h Before):</strong> An automated notification inquires about dietary requirements, arrival time, and airport transfer requests, lifting on-property food and beverage revenue by +18%.</li>
+        <li><strong>Post-Checkout Review Flow (2h After):</strong> Sends a personalized thank-you message with a direct Google Review link, raising StarX Hotel's rating from 4.1 to 4.5 stars.</li>
+      </ul>
+
+      <div class="overflow-x-auto my-6">
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code>// Edge route dispatcher for instant WhatsApp booking voucher
+export async function dispatchHotelVoucher(booking: HotelBooking) {
+  const payload = {
+    messaging_product: "whatsapp",
+    to: booking.guestPhone,
+    type: "template",
+    template: {
+      name: "hotel_booking_confirmed",
+      language: { code: "en" },
+      components: [
+        {
+          type: "body",
+          parameters: [
+            { type: "text", text: booking.guestName },
+            { type: "text", text: booking.roomTypeName },
+            { type: "text", text: booking.checkInDate },
+            { type: "text", text: booking.checkOutDate }
+          ]
+        },
+        {
+          type: "button",
+          sub_type: "url",
+          index: "0",
+          parameters: [{ type: "text", text: booking.referenceCode }]
+        }
+      ]
+    }
+  };
+
+  const endpoint = "https://graph.facebook.com/v20.0/" + process.env.WHATSAPP_PHONE_ID + "/messages";
+  const res = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + process.env.WHATSAPP_SYSTEM_TOKEN,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  return res.ok;
+}</code></pre>
+      </div>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">6. Measured Production Results at StarX Hotel</h2>
+      <p>Over the first 90 days following deployment, StarX transformed its revenue distribution:</p>
+
+      <ul class="list-disc pl-5 space-y-2 text-black/80 my-4 text-sm">
+        <li><strong>Direct Booking Ratio:</strong> Increased from 0% to 35% of total monthly room reservations.</li>
+        <li><strong>Commission Savings:</strong> Saved an average of 18% in intermediary fees per direct stay.</li>
+        <li><strong>Mobile Conversion Rate:</strong> Increased by 2.8x compared to their legacy brochure site.</li>
+        <li><strong>Repeat Guest Retention:</strong> Grew by +22% through automated WhatsApp anniversary and seasonal offers.</li>
+      </ul>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">7. Direct Booking Engine Implementation Checklist</h2>
+      <p>To reclaim revenue from intermediaries and build an owned hospitality asset, verify these five architectural benchmarks:</p>
+
+      <p><strong>1. Sub-1.5s Mobile Performance.</strong> Statically render room showcases with responsive AVIF media to capture travelers on cellular networks.</p>
+
+      <p><strong>2. Atomic Inventory Locks.</strong> Enforce database-level transactions with <code>FOR UPDATE SKIP LOCKED</code> to eliminate double bookings.</p>
+
+      <p><strong>3. Owned Contact Data Capture.</strong> Require verified mobile and email at Step 1 to retain traveler context even on abandoned sessions.</p>
+
+      <p><strong>4. Automated WhatsApp Dispatch.</strong> Replace unread email vouchers with instant WhatsApp confirmations and pre-arrival check-ins.</p>
+
+      <p><strong>5. Clean Direct Payment Reconciliation.</strong> Integrate server-side payment verification to protect against fraudulent chargebacks.</p>
+
+      <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-8 bg-brand-50/50">
+        Looking to engineer an owned, commission-free booking engine for your property or hospitality brand? Explore our <a href="/services/web-development" class="underline underline-offset-4 font-medium hover:text-black">Web Development</a> and <a href="/services/crm-systems" class="underline underline-offset-4 font-medium hover:text-black">Custom CRM Systems</a>, or <a href="/contact" class="underline underline-offset-4 font-medium hover:text-black">schedule an architectural consultation with Infriva Solutions</a> today.
+      </p>
+    `,
+  },
   {
     id: "the-5-minute-lead-decay-curve-and-15-second-lead-routing-automation",
     image: "/images/titanium-gears.jpg",

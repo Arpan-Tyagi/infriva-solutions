@@ -43,6 +43,7 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [How to Build a Direct Hotel Booking Engine: Next.js, PostgreSQL & WhatsApp Concierge](https://www.infrivasolutions.com/blog/how-to-build-a-direct-hotel-booking-engine-nextjs-postgresql-whatsapp-concierge)
 - [The 5-Minute Lead Decay Curve: Why 71% of Inbound B2B Leads Go Cold [And How to Automate 15-Second Lead Routing]](https://www.infrivasolutions.com/blog/the-5-minute-lead-decay-curve-and-15-second-lead-routing-automation)
 - [How to Build a Custom Travel Booking Engine: React, Django, TBO API & PayU](https://www.infrivasolutions.com/blog/how-to-build-a-custom-travel-booking-engine-react-django-tbo-api)
 - [The /llms.txt Standard Explained: Why Modern Websites Need an AI Manifest](https://www.infrivasolutions.com/blog/the-llms-txt-standard-explained-machine-readable-manifest)

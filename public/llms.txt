@@ -29,6 +29,7 @@
 
 - [FlyingLyte — Travel & Flight Booking Engine](https://www.infrivasolutions.com/projects/flyinglyte): Rebuilt a legacy travel portal on Next.js with a custom multi-step booking engine, PostgreSQL CRM, and 12 automated WhatsApp API flows. Outcomes: +40% increase in qualified leads, −55% funnel drop-off reduction, 1.1s LCP.
 - [StarX Hotel — Direct Hospitality Booking & Guest CRM](https://www.infrivasolutions.com/projects/starx): Engineered a commission-free direct reservation platform, live inventory CRM, and automated WhatsApp guest concierge for a boutique hotel brand. Outcomes: +35% direct booking share, ~18% OTA commission saved, +22% repeat guest rate.
+- [The Kesari Bagh — French-Colonial Countryside Estate](https://www.infrivasolutions.com/projects/the-kesari-bagh): Engineered an editorial French-colonial countryside estate web platform and direct reservation engine on Next.js and Cloudflare Workers edge runtime with 4-key suite availability locks and automated WhatsApp concierge. Outcomes: 100% direct booking capture, 1.1s mobile LCP, < 15s concierge SLA, ~20% OTA commission saved.
 
 ## Core Navigation & Documentation
 
@@ -43,6 +44,7 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [Meta Conversions API (CAPI) in Next.js & PostgreSQL: Recover 34% of Lost B2B Ad Conversions](https://www.infrivasolutions.com/blog/meta-conversions-api-nextjs-postgresql-server-side-tracking)
 - [How to Build a Direct Hotel Booking Engine: Next.js, PostgreSQL & WhatsApp Concierge](https://www.infrivasolutions.com/blog/how-to-build-a-direct-hotel-booking-engine-nextjs-postgresql-whatsapp-concierge)
 - [The 5-Minute Lead Decay Curve: Why 71% of Inbound B2B Leads Go Cold [And How to Automate 15-Second Lead Routing]](https://www.infrivasolutions.com/blog/the-5-minute-lead-decay-curve-and-15-second-lead-routing-automation)
 - [How to Build a Custom Travel Booking Engine: React, Django, TBO API & PayU](https://www.infrivasolutions.com/blog/how-to-build-a-custom-travel-booking-engine-react-django-tbo-api)

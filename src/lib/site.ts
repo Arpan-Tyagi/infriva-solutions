@@ -48,6 +48,7 @@ export const AGENCY_NAP = {
     "https://linkedin.com/company/infriva",
     "https://instagram.com/infrivasolutions",
     "https://medium.com/@infrivasolutions",
+    "https://github.com/Arpan-Tyagi/infriva-solutions",
   ],
   founder: {
     name: "Shalini Bhadoria",

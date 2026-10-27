@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Infriva Solutions | B2B Digital Systems, Custom CRM & SEO/GEO Engineering",
+    title: "Infriva Solutions | B2B Web Engineering, Custom CRM & SEO/GEO Systems [2026]",
     description: AGENCY_NAP.description,
     url: SITE_URL,
     type: "website",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Infriva Solutions | B2B Digital Systems, Custom CRM & SEO/GEO Engineering",
+    title: "Infriva Solutions | B2B Web Engineering, Custom CRM & SEO/GEO Systems [2026]",
     description: AGENCY_NAP.description,
     images: ["/images/glass-panels.jpg"],
   },
@@ -272,7 +272,7 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROJECTS_LIST.map((project, idx) => (
               <Reveal key={project.id} delay={idx * 0.1}>
                 <Link
@@ -284,7 +284,7 @@ export default function Home() {
                       src={project.heroImage}
                       alt={project.heroImageAlt}
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>

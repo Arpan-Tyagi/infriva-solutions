@@ -2,7 +2,7 @@
  * @file src/lib/projects.ts
  * @description Unified Client Case Studies Registry & Schema.org CreativeWork Generators
  *
- * Single source of truth for Infriva Solutions' portfolio deployments (FlyingLyte, StarX Hotel).
+ * Single source of truth for Infriva Solutions' portfolio deployments (FlyingLyte, StarX Hotel, The Kesari Bagh).
  * Consumed by:
  * - `src/app/sitemap.ts`
  * - `src/app/projects/page.tsx` & `src/app/projects/ProjectsGrid.tsx`
@@ -52,7 +52,7 @@ export const PROJECTS_LIST: ProjectItem[] = [
     shortDesc:
       "A complete custom travel portal built from the ground up on React and Django, integrating Travel Boutique Online's (TBO) API and PayU payment gateway for live multi-airline flight booking, automated PNR generation, and CRM workflows.",
     metaDescription:
-      "FlyingLyte Case Study: How Infriva Solutions built a custom online travel platform from scratch using React, Django, TBO API, and PayU payment gateway with automated PNR generation.",
+      "FlyingLyte Case Study: How Infriva Solutions built a custom travel platform from scratch with React, Django, TBO API, and PayU with automated PNR generation.",
     category: "Full-Stack Travel Portal · React & Django · TBO & PayU",
     indexCategory: "Full-Stack Web, React, Django, TBO API, PayU Gateway, Flight Booking",
     year: "2025",
@@ -248,6 +248,101 @@ export const PROJECTS_LIST: ProjectItem[] = [
       { slug: "crm-systems", title: "Custom CRM Systems" },
       { slug: "retention-marketing", title: "Retention Marketing" },
       { slug: "paid-advertising", title: "Paid Advertising Management" },
+    ],
+    nextProject: "the-kesari-bagh",
+  },
+  {
+    id: "the-kesari-bagh",
+    title: "The Kesari Bagh",
+    tagline: "An ultra-luxury 4-key French-Colonial Countryside Estate web experience and direct-reservation booking engine deployed on Cloudflare Workers edge network.",
+    shortDesc:
+      "Ultra-luxury French-Colonial countryside estate web platform and direct reservation engine engineered on Next.js and Cloudflare Workers, featuring real-time suite availability locks and WhatsApp concierge automation.",
+    metaDescription:
+      "The Kesari Bagh Case Study: How Infriva Solutions built an ultra-luxury French-Colonial estate booking platform on Next.js and Cloudflare Workers edge network.",
+    category: "Ultra-Luxury Hospitality · Next.js & Cloudflare Edge · WhatsApp Concierge",
+    indexCategory: "Next.js 16, Cloudflare Workers, Direct Booking Engine, WhatsApp Concierge, Ultra-Luxury Estate",
+    year: "2026",
+    lastModified: "2026-10-26",
+    clientIndustry: "Ultra-Luxury Boutique Hospitality & Countryside Estates",
+    engagementDuration: "45 Business Days (Identity Alignment, Edge Architecture & Launch)",
+    deliverables: [
+      "French-Colonial High-Contrast Editorial Design System",
+      "Next.js 16 App Router on Cloudflare Workers Edge Runtime",
+      "Direct 4-Key Suite Availability & Full Estate Buyout Engine",
+      "Automated Meta WhatsApp Cloud API Guest Concierge",
+      "Zero-CLS Responsive Image Optimization Pipeline (AVIF)",
+      "Technical Hospitality SEO & Schema.org LodgingBusiness Graph",
+    ],
+    techStack: [
+      "Next.js 16 (App Router)",
+      "React 19",
+      "Cloudflare Workers (Edge Runtime)",
+      "TypeScript 5",
+      "Tailwind CSS v4",
+      "Meta WhatsApp Cloud API",
+    ],
+    heroImage: "/images/kesari-estate-heritage.jpg",
+    heroImageAlt:
+      "The Kesari Bagh French-colonial countryside estate in Manesar with emerald lawns and Aravalli foothills engineered by Infriva Solutions",
+    overview: [
+      "Set across 1.25 private acres with a 1-acre manicured emerald lawn in the Aravalli foothills of Manesar, Gurugram, The Kesari Bagh is an exclusive 4-key French-colonial countryside estate. Designed with classical French symmetry, Parisian crystal chandeliers, and bespoke teakwood furnishings, the property offers unhurried seclusion just 45 minutes from Delhi NCR.",
+      "To preserve its ultra-luxury positioning and avoid the high commission extraction and generic catalog presentation of commercial aggregator portals (OTAs), the estate leadership engaged Infriva Solutions to design and engineer a bespoke direct-reservation web property and digital guest concierge.",
+    ],
+    challenge: [
+      "Prior to engaging Infriva Solutions, luxury estate bookings were coordinated informally through Instagram DMs and manual phone calls. High-net-worth guests inquiring about weekend retreats and full-estate buyouts faced delayed responses, while prospective guests had no frictionless way to inspect the four private suites or review curated equestrian experiences with Elly.",
+      "Standard boutique hotel templates and commercial white-label booking widgets felt mass-market, slow, and aesthetically disconnected from the tranquil French-colonial character of the estate. The leadership needed a digital experience that rendered instantly across luxury mobile devices, communicated unhurried refinement, and automated guest reservations without intermediary OTA fees.",
+    ],
+    solution: [
+      "Infriva Solutions engineered a custom editorial hospitality platform utilizing Next.js 16 App Router, deployed directly onto the Cloudflare Workers edge runtime for sub-50ms global Time to First Byte (TTFB) and sub-1.1s Largest Contentful Paint (LCP) on mobile networks.",
+      "We developed an intuitive direct-reservation system allowing guests to seamlessly inspect individual suite specifications (Garden Pool View, Aravalli Terrace, Kitchen Garden, and Lush Green) or lock in exclusive full-estate buyouts for up to 16 guests. An automated WhatsApp Cloud API concierge engine instantly delivers confirmed PDF booking itineraries and coordinates personalized dining preferences beneath the French chandelier.",
+    ],
+    architectureSections: [
+      {
+        heading: "Sub-50ms Edge Performance & Editorial Aesthetic Alignment",
+        body: [
+          "Ultra-luxury travelers evaluate boutique estates primarily on mobile smartphones. Sluggish page transitions or generic grid layouts instantly destroy perceived luxury value. We engineered The Kesari Bagh web platform to render with sub-second immediacy by deploying the application onto Cloudflare Workers' distributed edge runtime.",
+          "High-resolution estate photography—showcasing the French chandelier dining salon, azure swimming pool, and equestrian sessions with Elly—is processed through an automated edge image pipeline delivering modern AVIF assets with strict container aspect ratios to achieve a perfect 0.00 Cumulative Layout Shift (CLS).",
+        ],
+        bullets: [
+          "Cloudflare Workers edge rendering delivering sub-50ms TTFB across domestic and international luxury travelers.",
+          "High-contrast editorial typography pairing elegant French Didone serifs with Swiss sans-serif spatial structure.",
+          "Zero layout shifts (CLS 0.00) and 1.1s Largest Contentful Paint (LCP) across mobile 4G/5G connections.",
+        ],
+      },
+      {
+        heading: "Direct 4-Key Reservation Engine & WhatsApp Concierge SLA",
+        body: [
+          "With only four exclusive suites across 1.25 acres, avoiding double bookings while offering flexible full-estate buyouts was a vital operational requirement. We engineered a direct availability calendar that supports both individual suite stays and full-estate buyouts (up to 16 guests).",
+          "The moment a reservation is submitted, our event engine triggers the Meta WhatsApp Cloud API to dispatch an interactive booking voucher directly to the guest's mobile phone within 15 seconds. Automated pre-arrival notifications collect bespoke dietary preferences for the estate chef and coordinate sunset horseback sessions.",
+        ],
+        bullets: [
+          "100% direct, commission-free booking capture, bypassing the 18% to 22% fee extraction of commercial OTAs.",
+          "Sub-15 second automated WhatsApp booking voucher and PDF itinerary dispatch directly to guest handsets.",
+          "Curated pre-arrival concierge workflows capturing culinary preferences and horseback carriage bookings.",
+        ],
+      },
+    ],
+    results: [
+      { label: "Direct Booking Share", value: "100%", detail: "All estate reservations captured commission-free through the owned digital portal" },
+      { label: "Mobile LCP", value: "1.1s", detail: "Sub-second Largest Contentful Paint achieved via Cloudflare Workers edge delivery" },
+      { label: "Concierge SLA", value: "< 15s", detail: "Automated WhatsApp booking confirmations and pre-arrival dining preferences" },
+      { label: "OTA Commission Saved", value: "20%", detail: "Full margin retained by bypassing commercial aggregator portals" },
+    ],
+    images: [
+      {
+        src: "/images/kesari-suite-terrace.jpg",
+        alt: "The Kesari Bagh Luxury Aravalli Facing Pool View Suite with private terrace",
+      },
+      {
+        src: "/images/kesari-french-chandelier.jpg",
+        alt: "The Kesari Bagh Parisian crystal chandelier private dining salon and epicurean feast",
+      },
+    ],
+    relatedServices: [
+      { slug: "web-development", title: "Web Dev & UI/UX Design" },
+      { slug: "crm-systems", title: "Custom CRM Systems" },
+      { slug: "retention-marketing", title: "Retention Marketing" },
+      { slug: "seo-and-geo", title: "Full-Stack SEO & GEO" },
     ],
     nextProject: "flyinglyte",
   },

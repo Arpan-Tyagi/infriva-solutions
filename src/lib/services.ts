@@ -694,6 +694,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct bookings & ~18% OTA commission saved",
     },
     relatedBlogSlugs: [
+      "meta-conversions-api-nextjs-postgresql-server-side-tracking",
       "seo-vs-google-ads-which-is-better-for-your-business",
       "how-digital-marketing-helps-startups-build-their-brand",
       "why-your-website-is-not-getting-leads-and-how-to-fix-it",

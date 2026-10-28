@@ -38,7 +38,12 @@ BEGIN
         created_at,
         updated_at,
         aud,
-        role
+        role,
+        -- GoTrue scans these as strings; NULL breaks password sign-in.
+        confirmation_token,
+        recovery_token,
+        email_change_token_new,
+        email_change
     )
     VALUES (
         p_user_id,
@@ -51,11 +56,42 @@ BEGIN
         now(),
         now(),
         'authenticated',
-        'authenticated'
+        'authenticated',
+        '',
+        '',
+        '',
+        ''
     )
-    ON CONFLICT (id) DO UPDATE SET 
+    ON CONFLICT (id) DO UPDATE SET
         encrypted_password = v_encrypted_pw,
-        raw_app_meta_data = jsonb_build_object('provider', 'email', 'providers', array['email'], 'user_role', p_role, 'org_id', p_org_id);
+        raw_app_meta_data = jsonb_build_object('provider', 'email', 'providers', array['email'], 'user_role', p_role, 'org_id', p_org_id),
+        confirmation_token = COALESCE(auth.users.confirmation_token, ''),
+        recovery_token = COALESCE(auth.users.recovery_token, ''),
+        email_change_token_new = COALESCE(auth.users.email_change_token_new, ''),
+        email_change = COALESCE(auth.users.email_change, '');
+
+    -- Email/password sign-in also requires a matching identity row.
+    INSERT INTO auth.identities (
+        id,
+        user_id,
+        provider_id,
+        provider,
+        identity_data,
+        last_sign_in_at,
+        created_at,
+        updated_at
+    )
+    VALUES (
+        p_user_id,
+        p_user_id,
+        p_user_id::TEXT,
+        'email',
+        jsonb_build_object('sub', p_user_id::TEXT, 'email', p_email, 'email_verified', true),
+        now(),
+        now(),
+        now()
+    )
+    ON CONFLICT (provider_id, provider) DO NOTHING;
 
     -- Insert or update user_profiles
     INSERT INTO user_profiles (
@@ -74,10 +110,11 @@ BEGIN
         p_email,
         '919876543210'
     )
-    ON CONFLICT (id) DO UPDATE SET 
+    ON CONFLICT (id) DO UPDATE SET
         role = p_role,
         full_name = p_full_name,
-        org_id = p_org_id;
+        org_id = p_org_id,
+        is_active = TRUE;
 END;
 $$ LANGUAGE plpgsql;
 

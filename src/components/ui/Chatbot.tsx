@@ -29,6 +29,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 const ChatbotMarkdown = dynamic(() => import('./ChatbotMarkdown'), {
@@ -37,6 +38,7 @@ const ChatbotMarkdown = dynamic(() => import('./ChatbotMarkdown'), {
 });
 
 export function Chatbot() {
+  const pathname = usePathname();
   // Modal visibility toggle state
   const [isOpen, setIsOpen] = useState(false);
   
@@ -138,6 +140,10 @@ export function Chatbot() {
       setIsLoading(false);
     }
   };
+
+  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/portal") || pathname === "/login") {
+    return null;
+  }
 
   return (
     <>

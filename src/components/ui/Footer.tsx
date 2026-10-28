@@ -17,11 +17,20 @@
  *    - Logo link includes explicit `aria-label="Infriva Home"` for screen reader compliance.
  */
 
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LogoHorizontal } from "@/components/ui/LogoHorizontal";
 import { AGENCY_NAP } from "@/lib/site";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/portal") || pathname === "/login") {
+    return null;
+  }
+
   return (
     <footer className="w-full bg-brand-900 text-white pt-24 pb-8 px-6 md:px-12 mt-auto rounded-t-[2rem]">
       {/* Primary content grid: 2 columns on mobile, 5 columns on desktop */}
@@ -53,6 +62,7 @@ export function Footer() {
             <li><Link href="/about" className="text-white/80 hover:text-white transition-colors">About Us</Link></li>
             <li><Link href="/blog" className="text-white/80 hover:text-white transition-colors">Insights (Blog)</Link></li>
             <li><Link href="/contact" className="text-white/80 hover:text-white transition-colors">Contact</Link></li>
+            <li><Link href="/login" className="text-brand-300 hover:text-white transition-colors font-mono text-xs flex items-center gap-1.5 pt-2"><span>&rarr;</span> Enterprise CRM Login</Link></li>
           </ul>
         </div>
 

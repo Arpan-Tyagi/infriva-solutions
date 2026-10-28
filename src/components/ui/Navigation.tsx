@@ -110,6 +110,10 @@ export function Navigation() {
     }
   }, [isOpen]);
 
+  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/portal") || pathname === "/login") {
+    return null;
+  }
+
   return (
     <>
       {/* 
@@ -173,8 +177,15 @@ export function Navigation() {
             })}
           </nav>
 
-          {/* CTA Button in Desktop Navigation */}
-          <div className="hidden md:flex pl-12">
+          {/* CTA Buttons in Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-3 pl-8">
+            <Link
+              href="/dashboard"
+              className="text-xs font-mono tracking-tight px-3 py-1.5 rounded-full border border-black/10 text-brand-900 hover:bg-black/5 transition-colors flex items-center gap-1.5"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              CRM Portal
+            </Link>
             <Link
               href="/contact"
               className="text-sm font-medium px-4 py-2 rounded-full bg-brand-900 text-white hover:bg-black transition-colors"
@@ -255,6 +266,28 @@ export function Navigation() {
               </Link>
             </motion.div>
           ))}
+          <motion.div
+            initial={false}
+            animate={{
+              y: isOpen ? 0 : 20,
+              opacity: isOpen ? 1 : 0,
+            }}
+            transition={{
+              duration: 0.4,
+              delay: isOpen ? 0.45 : 0,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="pt-4"
+          >
+            <Link
+              href="/dashboard"
+              onClick={() => setIsOpen(false)}
+              className="text-lg font-mono text-emerald-600 flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-600/20 bg-emerald-50"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              CRM &amp; Client Portal &rarr;
+            </Link>
+          </motion.div>
         </nav>
       </motion.div>
     </>

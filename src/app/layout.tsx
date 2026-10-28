@@ -32,6 +32,7 @@ import { Footer } from "@/components/ui/Footer";
 import { Preloader } from "@/components/ui/Preloader";
 import { Chatbot } from "@/components/ui/Chatbot";
 import { PostHogProvider } from "./providers";
+import { AttributionCapture } from "@/components/AttributionCapture";
 import { AGENCY_NAP, SITE_URL, buildGlobalGraphJsonLd } from "@/lib/site";
 
 const geistSans = Geist({
@@ -107,6 +108,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalJsonLd) }}
         />
         <PostHogProvider>
+        <AttributionCapture />
         {/* Accessible Skip to Content Link (WCAG 2.1 AA Compliance) */}
         <a
           href="#main-content"

@@ -7,12 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "tunnel": "npx localtunnel --port 3000"
+    "tunnel": "npx localtunnel --port 3000",
+    "verify:sales-db": "node scripts/verify-sales-db.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.117.2",
+    "inngest": "4.24.0",
     "motion": "^13.4.0",
     "next": "16.3.5",
     "posthog-js": "^1.438.3",
@@ -25,6 +27,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.10",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

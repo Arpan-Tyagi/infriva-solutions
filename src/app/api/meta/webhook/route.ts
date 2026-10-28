@@ -247,7 +247,7 @@ export async function POST(request: Request) {
 
           if (msg.isLead) {
             try {
-              const { error } = await supabaseAdmin.from('leads').insert({ platform: msg.platform, sender_id: msg.senderId, message: msg.messageText, created_at: new Date().toISOString() });
+              const { error } = await supabaseAdmin.from('leads_legacy').insert({ platform: msg.platform, sender_id: msg.senderId, message: msg.messageText, created_at: new Date().toISOString() });
               if (error) console.error('Lead insertion error:', error);
             } catch (err) {
               console.error('Lead insertion exception:', err);

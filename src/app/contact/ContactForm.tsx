@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight, CaretDown } from "@phosphor-icons/react/dist/ssr";
+import { getStoredClientAttribution } from "@/lib/attribution";
 
 interface CustomSelectProps {
   id: string;
@@ -149,6 +150,7 @@ export function ContactForm() {
       budget: budget || formData.get("Budget Range"),
       details: formData.get("details"),
       _hp_website: formData.get("_hp_website"),
+      attributionTouch: getStoredClientAttribution(),
     };
 
     try {

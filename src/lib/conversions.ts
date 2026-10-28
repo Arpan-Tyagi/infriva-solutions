@@ -19,8 +19,8 @@ function hashSha256(val: string): string {
 export interface ConversionPayload {
   eventName: 'Lead' | 'QualifiedLead' | 'Purchase';
   leadId: string;
-  email: string;
-  phone_e164: string;
+  email?: string | null;
+  phone_e164?: string | null;
   valueInr?: number;
   leadgen_id?: string;
   gclid?: string;
@@ -33,19 +33,19 @@ export interface ConversionPayload {
 export async function sendMetaConversionEvent(payload: ConversionPayload) {
   if (!META_PIXEL_ID || !META_ACCESS_TOKEN) {
     return {
-      success: true,
-      mock: true,
-      message: 'Meta Pixel ID or Access Token not configured; conversion simulated.',
+      success: false,
+      skipped: true,
+      message: 'META_PIXEL_ID or META_ACCESS_TOKEN not configured; conversion not sent.',
     };
   }
 
   const currentTimestamp = Math.floor(Date.now() / 1000);
-  const eventId = `capi_${payload.leadId}_${payload.eventName.toLowerCase()}_${currentTimestamp}`;
+  // Deterministic id: a retried job is deduplicated by Meta instead of double-counted.
+  const eventId = `capi_${payload.leadId}_${payload.eventName.toLowerCase()}`;
 
-  const userData: Record<string, any> = {
-    em: [hashSha256(payload.email)],
-    ph: [hashSha256(payload.phone_e164)],
-  };
+  const userData: Record<string, any> = {};
+  if (payload.email) userData.em = [hashSha256(payload.email)];
+  if (payload.phone_e164) userData.ph = [hashSha256(payload.phone_e164)];
 
   if (payload.leadgen_id) {
     userData.lead_id = payload.leadgen_id;
@@ -103,9 +103,11 @@ export async function dispatchClosedLoopConversion(payload: ConversionPayload) {
 
   return {
     meta: metaResult,
+    // Google Ads offline conversion upload (ConversionUploadService) is not wired yet.
     googleOffline: {
-      success: true,
-      message: 'Google Offline conversion queued for daily click ID reconciliation.',
+      success: false,
+      skipped: true,
+      message: 'Google Ads offline conversion upload is not implemented yet.',
       gclid: payload.gclid,
     },
   };

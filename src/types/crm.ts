@@ -27,7 +27,8 @@ export type LeadSourceChannel =
   | 'GOOGLE_ADS_FORM'
   | 'FULLENRICH'
   | 'APOLLO'
-  | 'DIRECT_REFERRAL';
+  | 'DIRECT_REFERRAL'
+  | 'MANUAL_ENTRY';
 
 export type LeadStage =
   | 'NEW'
@@ -39,6 +40,9 @@ export type LeadStage =
 
 export type QuotationStatus =
   | 'DRAFT'
+  | 'PENDING_APPROVAL'
+  | 'APPROVED'
+  | 'CHANGES_REQUESTED'
   | 'SENT'
   | 'ACCEPTED'
   | 'REJECTED'

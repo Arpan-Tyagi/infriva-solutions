@@ -31,7 +31,7 @@
 import { NextResponse } from 'next/server';
 import { PostHog } from 'posthog-node';
 import { Resend } from 'resend';
-import { supabase } from '@/lib/supabase';
+import { ingestLead } from '@/lib/lead-intake';
 import { sendWhatsAppTemplate } from '@/lib/meta';
 
 // Initialize the Resend transactional email SDK
@@ -140,27 +140,25 @@ export async function POST(request: Request) {
       );
     }
 
-    // 5. Store clean raw data into Supabase 'leads' table
-    const { error: dbError } = await supabase
-      .from('leads')
-      .insert([
-        {
-          name,
-          company,
-          email,
-          phone,
-          service,
-          budget,
-          details
-        }
-      ]);
+    // 5. Record the lead in the CRM (dedupe, round-robin rep, 5-minute SLA, rep alert)
+    const intake = await ingestLead({
+      channel: 'WEBSITE_FORM',
+      fullName: name,
+      email,
+      phone,
+      company,
+      service,
+      budget,
+      details,
+      attribution:
+        data.attributionTouch && typeof data.attributionTouch === 'object' ? data.attributionTouch : null,
+    });
 
-    // Handle database connection or insertion errors
-    if (dbError) {
-      console.error('Supabase Error:', dbError);
+    if (!intake.ok) {
+      console.error('CRM lead intake error:', intake.error);
       return NextResponse.json(
         { error: 'Failed to record your inquiry. Please try again.' },
-        { status: 500 }
+        { status: intake.status === 400 ? 400 : 500 }
       );
     }
 

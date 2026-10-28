@@ -15,9 +15,9 @@ const CRM_WEBHOOK_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.in
 export interface LeadForEnrichment {
   id: string;
   full_name: string;
-  email: string;
-  company_name?: string;
-  linkedin_url?: string;
+  email?: string | null;
+  company_name?: string | null;
+  linkedin_url?: string | null;
 }
 
 /**
@@ -43,14 +43,14 @@ export async function triggerFullEnrichBatch(leads: LeadForEnrichment[]) {
       const parts = (lead.full_name || '').split(' ');
       const first_name = parts[0] || '';
       const last_name = parts.slice(1).join(' ') || '';
-      const domain = lead.email.includes('@') ? lead.email.split('@')[1] : undefined;
+      const domain = lead.email?.includes('@') ? lead.email.split('@')[1] : undefined;
 
       return {
         first_name,
         last_name,
         domain,
-        company_name: lead.company_name,
-        linkedin_url: lead.linkedin_url,
+        company_name: lead.company_name || undefined,
+        linkedin_url: lead.linkedin_url || undefined,
         // String-cast internal metadata ID:
         custom: {
           crm_lead_id: String(lead.id),
@@ -67,7 +67,8 @@ export async function triggerFullEnrichBatch(leads: LeadForEnrichment[]) {
         },
         body: JSON.stringify({
           name: `Infriva Batch ${Date.now()}`,
-          webhook_url: `${CRM_WEBHOOK_BASE_URL}/api/webhooks/fullenrich-callback`,
+          // The callback is authenticated by this shared secret (FullEnrich does not sign webhooks).
+          webhook_url: `${CRM_WEBHOOK_BASE_URL}/api/webhooks/fullenrich-callback?token=${encodeURIComponent(process.env.FULLENRICH_CALLBACK_SECRET || '')}`,
           webhook_events: ['contact_finished', 'enrichment_finished'],
           enrich_fields: ['contact.work_emails', 'contact.phones'],
           data,
@@ -100,8 +101,7 @@ export async function enrichLeadWithApollo(lead: LeadForEnrichment) {
   try {
     const parts = (lead.full_name || '').split(' ');
     const params = new URLSearchParams({
-      api_key: APOLLO_API_KEY,
-      email: lead.email,
+      email: lead.email || '',
       first_name: parts[0] || '',
       last_name: parts.slice(1).join(' ') || '',
       organization_name: lead.company_name || '',
@@ -112,6 +112,8 @@ export async function enrichLeadWithApollo(lead: LeadForEnrichment) {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
+        // Apollo no longer accepts the key as a query parameter.
+        'X-Api-Key': APOLLO_API_KEY,
       },
     });
 

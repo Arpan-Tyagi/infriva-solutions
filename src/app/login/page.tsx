@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createBrowserSupabaseClient } from "@/lib/supabase-browser";
 import { UserRole } from "@/types/crm";
+import { ROLE_HOME, TEST_PERSONAS_ENABLED, isUserRole } from "@/lib/crm-roles";
+
+const TEST_PASSWORD = "Infriva2026!";
 
 interface PersonaConfig {
   id: string;
@@ -109,8 +112,8 @@ const TEST_PERSONAS: PersonaConfig[] = [
 export default function LoginPage() {
   const router = useRouter();
   const [selectedPersona, setSelectedPersona] = useState<PersonaConfig>(TEST_PERSONAS[0]);
-  const [email, setEmail] = useState<string>(TEST_PERSONAS[0].email);
-  const [password, setPassword] = useState<string>("Infriva2026!");
+  const [email, setEmail] = useState<string>(TEST_PERSONAS_ENABLED ? TEST_PERSONAS[0].email : "");
+  const [password, setPassword] = useState<string>(TEST_PERSONAS_ENABLED ? TEST_PASSWORD : "");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [authModeNotice, setAuthModeNotice] = useState<string | null>(null);
@@ -118,17 +121,12 @@ export default function LoginPage() {
   const handleSelectPersona = (persona: PersonaConfig) => {
     setSelectedPersona(persona);
     setEmail(persona.email);
-    setPassword("Infriva2026!");
+    setPassword(TEST_PASSWORD);
     setErrorMessage(null);
     setAuthModeNotice(null);
   };
 
-  const handleDirectLaunch = (targetRoute: string) => {
-    router.push(targetRoute);
-  };
-
-  const handleSupabaseSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const signIn = async (signInEmail: string, signInPassword: string) => {
     setIsLoading(true);
     setErrorMessage(null);
     setAuthModeNotice(null);
@@ -136,26 +134,36 @@ export default function LoginPage() {
     try {
       const supabase = createBrowserSupabaseClient();
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: signInEmail,
+        password: signInPassword,
       });
 
       if (error) {
-        // If Supabase URL is placeholder or network error occurs, guide the user cleanly
-        console.warn("Supabase Auth notice:", error.message);
-        setErrorMessage(`Supabase Auth: ${error.message}`);
-        setAuthModeNotice("Note: You can use the 'Instant Launch' button below to explore the cockpit in simulated mode.");
-      } else if (data?.user) {
-        // Successful login
-        router.push(selectedPersona.targetRoute);
+        setErrorMessage(error.message);
+        if (TEST_PERSONAS_ENABLED) {
+          setAuthModeNotice("Test personas need supabase/seed_test_logins.sql to have been run on this Supabase project.");
+        }
+        return;
       }
+
+      const role = data.user?.app_metadata?.user_role;
+      router.push(isUserRole(role) ? ROLE_HOME[role] : "/dashboard");
+      router.refresh();
     } catch (err: unknown) {
-      const error = err as Error;
-      setErrorMessage(error?.message || "Failed to establish Supabase session.");
-      setAuthModeNotice("You can launch the dashboard directly using the 'Instant Launch' button.");
+      setErrorMessage((err as Error)?.message || "Could not reach Supabase Auth.");
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleDirectLaunch = (persona: PersonaConfig) => {
+    handleSelectPersona(persona);
+    void signIn(persona.email, TEST_PASSWORD);
+  };
+
+  const handleSupabaseSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+    void signIn(email, password);
   };
 
   return (
@@ -191,7 +199,8 @@ export default function LoginPage() {
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-6 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-auto">
-        {/* Left Column: 1-Click Role Switcher Matrix */}
+        {/* Left Column: 1-Click Role Switcher Matrix (test personas, never in production) */}
+        {TEST_PERSONAS_ENABLED && (
         <div className="lg:col-span-7 flex flex-col gap-4">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div>
@@ -246,7 +255,7 @@ export default function LoginPage() {
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleDirectLaunch(persona.targetRoute);
+                        handleDirectLaunch(persona);
                       }}
                       className="text-xs text-[#FBF8F3] hover:text-white bg-white/10 hover:bg-white/20 px-2 py-0.5 rounded border border-white/10 flex items-center gap-1 transition-colors shrink-0"
                       title={`Launch ${persona.title} Cockpit`}
@@ -259,6 +268,8 @@ export default function LoginPage() {
             })}
           </div>
         </div>
+
+        )}
 
         {/* Right Column: Authentication Console */}
         <div className="lg:col-span-5 bg-[#121214] border border-white/15 rounded-lg p-6 md:p-8 flex flex-col gap-6 shadow-2xl relative">
@@ -332,14 +343,6 @@ export default function LoginPage() {
                 )}
               </button>
 
-              <button
-                type="button"
-                onClick={() => handleDirectLaunch(selectedPersona.targetRoute)}
-                className="w-full py-2.5 px-4 rounded bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Instant Launch Cockpit (Simulated Session)</span>
-                <span className="text-[#FBF8F3] font-bold">&rarr;</span>
-              </button>
             </div>
           </form>
 

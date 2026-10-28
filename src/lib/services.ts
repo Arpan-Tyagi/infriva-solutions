@@ -205,6 +205,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+40% increase in qualified leads & 1.1s LCP",
     },
     relatedBlogSlugs: [
+      "how-we-engineered-sub-50ms-global-ttfb-nextjs-cloudflare-workers",
       "why-customers-trust-some-websites-instantly",
       "why-branding-and-ui-ux-matter-more-than-ever-for-your-website",
       "why-your-website-is-not-getting-leads-and-how-to-fix-it",

@@ -44,6 +44,7 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [Next.js on Cloudflare Workers: How We Built a Sub-50ms Luxury Booking Engine](https://www.infrivasolutions.com/blog/how-we-engineered-sub-50ms-global-ttfb-nextjs-cloudflare-workers)
 - [Meta Conversions API (CAPI) in Next.js & PostgreSQL: Recover 34% of Lost B2B Ad Conversions](https://www.infrivasolutions.com/blog/meta-conversions-api-nextjs-postgresql-server-side-tracking)
 - [How to Build a Direct Hotel Booking Engine: Next.js, PostgreSQL & WhatsApp Concierge](https://www.infrivasolutions.com/blog/how-to-build-a-direct-hotel-booking-engine-nextjs-postgresql-whatsapp-concierge)
 - [The 5-Minute Lead Decay Curve: Why 71% of Inbound B2B Leads Go Cold [And How to Automate 15-Second Lead Routing]](https://www.infrivasolutions.com/blog/the-5-minute-lead-decay-curve-and-15-second-lead-routing-automation)

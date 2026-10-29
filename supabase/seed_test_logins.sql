@@ -20,7 +20,10 @@ CREATE OR REPLACE FUNCTION seed_crm_user(
     p_full_name TEXT,
     p_role user_role,
     p_org_id UUID
-) RETURNS VOID AS $$
+) RETURNS VOID
+-- Supabase installs pgcrypto (crypt, gen_salt) in the `extensions` schema.
+SET search_path = public, extensions
+AS $$
 DECLARE
     v_encrypted_pw TEXT;
 BEGIN

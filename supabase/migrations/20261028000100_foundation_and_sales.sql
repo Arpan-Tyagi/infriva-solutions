@@ -928,6 +928,9 @@ ALTER TABLE leads_legacy
 
 ALTER TABLE leads_legacy ENABLE ROW LEVEL SECURITY;
 
+-- The old site inserted with the anon key; every writer now uses server code.
+DROP POLICY IF EXISTS "Allow public insert to leads" ON leads_legacy;
+
 DROP POLICY IF EXISTS "MD_CEO and Sales can read legacy leads" ON leads_legacy;
 CREATE POLICY "MD_CEO and Sales can read legacy leads"
 ON leads_legacy FOR SELECT

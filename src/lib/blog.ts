@@ -331,13 +331,13 @@ ON recovery_sessions (current_stage, is_converted, last_message_sent_at);</code>
     id: "how-we-engineered-sub-50ms-global-ttfb-nextjs-cloudflare-workers",
     image: "/images/kesari-estate-heritage.jpg",
     imageAlt: "The Kesari Bagh French-colonial luxury estate web architecture on Next.js and Cloudflare Workers edge runtime engineered by Infriva Solutions",
-    title: "Next.js on Cloudflare Workers: How We Built a Sub-50ms Luxury Booking Engine [The Kesari Bagh Blueprint]",
+    title: "Next.js on Cloudflare Workers: How We Built a Sub-50ms Luxury Booking Engine Prototype [The Kesari Bagh Blueprint]",
     category: "Web Development",
     date: "Oct 28, 2026",
     isoDate: "2026-10-28",
     lastModified: "2026-10-28",
     readTime: "11 min read",
-    desc: "How we deployed Next.js 16 to Cloudflare Workers edge runtime for The Kesari Bagh prototype, achieving sub-50ms global TTFB, 1.1s mobile LCP, and 100% direct bookings.",
+    desc: "How we deployed Next.js 16 to Cloudflare Workers edge runtime for The Kesari Bagh prototype, achieving sub-50ms global TTFB and 1.1s mobile LCP.",
     author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["web-development", "retention-marketing", "crm-systems"],
     relatedProjectSlug: "the-kesari-bagh",
@@ -345,14 +345,14 @@ ON recovery_sessions (current_stage, is_converted, last_message_sent_at);</code>
       <p>In ultra-luxury hospitality, web performance is brand perception. When high-net-worth travelers evaluate a luxury private estate, sluggish 3-second page loads communicate operational friction before they ever step onto the property.</p>
 
       <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-4 bg-brand-50/50">
-        When our engineering team at <a href="/" class="underline underline-offset-4 font-medium hover:text-black">Infriva Solutions</a> architected the digital platform prototype for <strong>The Kesari Bagh</strong> (<a href="/projects/the-kesari-bagh" class="underline underline-offset-4 font-medium hover:text-black">read the case study</a>), we rejected standard serverless hosting.
+        When our engineering team at <a href="/" class="underline underline-offset-4 font-medium hover:text-black">Infriva Solutions</a> engineered the direct-booking prototype for <strong>The Kesari Bagh</strong> (<a href="/projects/the-kesari-bagh" class="underline underline-offset-4 font-medium hover:text-black">read the case study</a>), we rejected standard serverless hosting.
       </p>
 
       <p>The Kesari Bagh is an exclusive 4-key French-colonial countryside estate in the Aravalli foothills of Manesar, Gurugram. Its guests reserve private weekend retreats and full-estate buyouts from London, Dubai, Singapore, and New Delhi.</p>
 
       <p>Routing those global reservation inquiries to a single origin server in Mumbai introduced 450ms of network latency. We deployed Next.js 16 App Router directly to Cloudflare Workers edge runtime across 300+ cities worldwide.</p>
 
-      <p>The result: <strong>sub-50ms Time to First Byte (TTFB)</strong> globally, a <strong>1.1s Mobile Largest Contentful Paint (LCP)</strong>, and a 100% direct booking capture rate that saved the estate 20% in OTA commissions.</p>
+      <p>The result: <strong>sub-50ms Time to First Byte (TTFB)</strong> globally, a <strong>1.1s Mobile Largest Contentful Paint (LCP)</strong>, and a 100% direct booking capture prototype that bypasses 20% in OTA commissions.</p>
 
       <p>Here is the full technical breakdown, edge caching architecture, and WhatsApp concierge integration that powered this deployment.</p>
 

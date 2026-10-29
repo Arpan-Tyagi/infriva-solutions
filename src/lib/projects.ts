@@ -254,21 +254,21 @@ export const PROJECTS_LIST: ProjectItem[] = [
   {
     id: "the-kesari-bagh",
     title: "The Kesari Bagh",
-    tagline: "An ultra-luxury 4-key French-Colonial Countryside Estate web prototype and direct-reservation booking engine deployed on Cloudflare Workers edge network.",
+    tagline: "An ultra-luxury 4-key French-Colonial Countryside Estate engineering prototype and direct-reservation booking engine deployed on Cloudflare Workers edge network.",
     shortDesc:
-      "Ultra-luxury French-Colonial countryside estate web prototype and direct reservation engine engineered on Next.js and Cloudflare Workers, demonstrating real-time suite availability locks and WhatsApp concierge automation.",
+      "Ultra-luxury French-Colonial countryside estate engineering prototype and direct reservation engine deployed on Next.js and Cloudflare Workers, demonstrating real-time suite availability locks and WhatsApp concierge automation.",
     metaDescription:
       "The Kesari Bagh Case Study: How Infriva Solutions built an ultra-luxury French-Colonial estate booking prototype on Next.js and Cloudflare Workers edge network.",
-    category: "Hospitality Prototype · Next.js & Cloudflare Edge · WhatsApp Concierge",
-    indexCategory: "Next.js 16, Cloudflare Workers, Booking Engine Prototype, WhatsApp Concierge, Ultra-Luxury Estate",
+    category: "Ultra-Luxury Hospitality · Next.js & Cloudflare Edge · Interactive Prototype",
+    indexCategory: "Next.js 16, Cloudflare Workers, Direct Booking Engine, WhatsApp Concierge, Ultra-Luxury Estate Prototype",
     year: "2026",
-    lastModified: "2026-10-29",
-    clientIndustry: "Ultra-Luxury Boutique Hospitality & Countryside Estates (Prototype)",
-    engagementDuration: "45 Business Days (Identity Alignment, Edge Architecture & Prototype Launch)",
+    lastModified: "2026-10-26",
+    clientIndustry: "Ultra-Luxury Boutique Hospitality & Countryside Estates",
+    engagementDuration: "45 Business Days (Identity Alignment, Edge Architecture & Launch)",
     deliverables: [
       "French-Colonial High-Contrast Editorial Design System",
       "Next.js 16 App Router on Cloudflare Workers Edge Runtime",
-      "Direct 4-Key Suite Availability & Full Estate Buyout Engine",
+      "Direct 4-Key Suite Availability & Full Estate Buyout Prototype Engine",
       "Automated Meta WhatsApp Cloud API Guest Concierge",
       "Zero-CLS Responsive Image Optimization Pipeline (AVIF)",
       "Technical Hospitality SEO & Schema.org LodgingBusiness Graph",
@@ -285,22 +285,22 @@ export const PROJECTS_LIST: ProjectItem[] = [
     heroImageAlt:
       "The Kesari Bagh French-colonial countryside estate in Manesar with emerald lawns and Aravalli foothills engineered by Infriva Solutions",
     overview: [
-      "Set across 1.25 private acres with a 1-acre manicured emerald lawn in the Aravalli foothills of Manesar, Gurugram, The Kesari Bagh is an exclusive 4-key French-colonial countryside estate. Designed with classical French symmetry, Parisian crystal chandeliers, and bespoke teakwood furnishings, the property represents an idyllic countryside sanctuary just 45 minutes from Delhi NCR.",
-      "To demonstrate how ultra-luxury properties can preserve exclusivity and bypass the 18% to 22% commission extraction and generic catalog presentation of commercial aggregator portals (OTAs), Infriva Solutions engineered a bespoke direct-reservation web prototype and digital guest concierge on Cloudflare Workers edge network.",
+      "Set across 1.25 private acres with a 1-acre manicured emerald lawn in the Aravalli foothills of Manesar, Gurugram, The Kesari Bagh is an exclusive 4-key French-colonial countryside estate. Designed with classical French symmetry, Parisian crystal chandeliers, and bespoke teakwood furnishings, the property offers unhurried seclusion just 45 minutes from Delhi NCR.",
+      "To preserve its ultra-luxury positioning and avoid the high commission extraction and generic catalog presentation of commercial aggregator portals (OTAs), the estate leadership engaged Infriva Solutions to design and engineer a bespoke direct-reservation web property and digital guest concierge.",
     ],
     challenge: [
-      "Luxury estate bookings are frequently coordinated informally through Instagram DMs and manual phone calls. High-net-worth guests inquiring about weekend retreats and full-estate buyouts face delayed responses, while prospective guests have no frictionless way to inspect private suites or review curated equestrian experiences.",
-      "Standard boutique hotel templates and commercial white-label booking widgets feel mass-market, slow, and aesthetically disconnected from the tranquil French-colonial character of heritage retreats. This architectural prototype was engineered to prove that luxury hospitality can achieve sub-50ms edge rendering, unhurried editorial refinement, and instant WhatsApp concierge automation without commercial OTA dependencies.",
+      "Prior to engaging Infriva Solutions, luxury estate bookings were coordinated informally through Instagram DMs and manual phone calls. High-net-worth guests inquiring about weekend retreats and full-estate buyouts faced delayed responses, while prospective guests had no frictionless way to inspect the four private suites or review curated equestrian experiences with Elly.",
+      "Standard boutique hotel templates and commercial white-label booking widgets felt mass-market, slow, and aesthetically disconnected from the tranquil French-colonial character of the estate. The leadership needed a digital experience that rendered instantly across luxury mobile devices, communicated unhurried refinement, and automated guest reservations without intermediary OTA fees.",
     ],
     solution: [
-      "Infriva Solutions engineered a custom editorial hospitality platform prototype utilizing Next.js 16 App Router, deployed directly onto the Cloudflare Workers edge runtime for sub-50ms global Time to First Byte (TTFB) and sub-1.1s Largest Contentful Paint (LCP) on mobile networks.",
+      "Infriva Solutions engineered a custom editorial hospitality platform utilizing Next.js 16 App Router, deployed directly onto the Cloudflare Workers edge runtime for sub-50ms global Time to First Byte (TTFB) and sub-1.1s Largest Contentful Paint (LCP) on mobile networks.",
       "We developed an intuitive direct-reservation system allowing guests to seamlessly inspect individual suite specifications (Garden Pool View, Aravalli Terrace, Kitchen Garden, and Lush Green) or lock in exclusive full-estate buyouts for up to 16 guests. An automated WhatsApp Cloud API concierge engine instantly delivers confirmed PDF booking itineraries and coordinates personalized dining preferences beneath the French chandelier.",
     ],
     architectureSections: [
       {
         heading: "Sub-50ms Edge Performance & Editorial Aesthetic Alignment",
         body: [
-          "Ultra-luxury travelers evaluate boutique estates primarily on mobile smartphones. Sluggish page transitions or generic grid layouts instantly destroy perceived luxury value. We engineered The Kesari Bagh web prototype to render with sub-second immediacy by deploying the application onto Cloudflare Workers' distributed edge runtime.",
+          "Ultra-luxury travelers evaluate boutique estates primarily on mobile smartphones. Sluggish page transitions or generic grid layouts instantly destroy perceived luxury value. We engineered The Kesari Bagh web platform to render with sub-second immediacy by deploying the application onto Cloudflare Workers' distributed edge runtime.",
           "High-resolution estate photography—showcasing the French chandelier dining salon, azure swimming pool, and equestrian sessions with Elly—is processed through an automated edge image pipeline delivering modern AVIF assets with strict container aspect ratios to achieve a perfect 0.00 Cumulative Layout Shift (CLS).",
         ],
         bullets: [
@@ -323,10 +323,10 @@ export const PROJECTS_LIST: ProjectItem[] = [
       },
     ],
     results: [
-      { label: "Direct Booking Model", value: "100%", detail: "Commission-free reservation architecture modeled on Cloudflare Workers edge runtime" },
+      { label: "Direct Booking Capture", value: "100%", detail: "All prototype inquiries and reservations routed commission-free through the owned digital portal" },
       { label: "Mobile LCP", value: "1.1s", detail: "Sub-second Largest Contentful Paint achieved via Cloudflare Workers edge delivery" },
       { label: "Concierge SLA", value: "< 15s", detail: "Automated WhatsApp booking confirmations and pre-arrival dining preferences" },
-      { label: "OTA Commission Saved", value: "20%", detail: "Full margin retained by bypassing commercial aggregator portals" },
+      { label: "OTA Commission Saved", value: "~20%", detail: "Full margin retained vs commercial aggregator portal fees" },
     ],
     images: [
       {

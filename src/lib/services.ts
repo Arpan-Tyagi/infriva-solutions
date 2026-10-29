@@ -369,6 +369,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct booking share & +22% repeat guest rate",
     },
     relatedBlogSlugs: [
+      "postgresql-row-level-security-rls-supabase-nextjs-crm-architecture",
       "why-every-small-business-needs-crm-software",
       "why-your-website-is-not-getting-leads-and-how-to-fix-it",
       "why-your-social-media-gets-attention-but-not-customers",

@@ -337,7 +337,7 @@ ON recovery_sessions (current_stage, is_converted, last_message_sent_at);</code>
     isoDate: "2026-10-28",
     lastModified: "2026-10-28",
     readTime: "11 min read",
-    desc: "How we deployed Next.js 16 to Cloudflare Workers edge runtime for The Kesari Bagh, achieving sub-50ms global TTFB, 1.1s mobile LCP, and 100% direct bookings.",
+    desc: "How we deployed Next.js 16 to Cloudflare Workers edge runtime for The Kesari Bagh prototype, achieving sub-50ms global TTFB, 1.1s mobile LCP, and 100% direct bookings.",
     author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["web-development", "retention-marketing", "crm-systems"],
     relatedProjectSlug: "the-kesari-bagh",
@@ -345,7 +345,7 @@ ON recovery_sessions (current_stage, is_converted, last_message_sent_at);</code>
       <p>In ultra-luxury hospitality, web performance is brand perception. When high-net-worth travelers evaluate a luxury private estate, sluggish 3-second page loads communicate operational friction before they ever step onto the property.</p>
 
       <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-4 bg-brand-50/50">
-        When our engineering team at <a href="/" class="underline underline-offset-4 font-medium hover:text-black">Infriva Solutions</a> architected the digital platform for <strong>The Kesari Bagh</strong> (<a href="/projects/the-kesari-bagh" class="underline underline-offset-4 font-medium hover:text-black">read the case study</a>), we rejected standard serverless hosting.
+        When our engineering team at <a href="/" class="underline underline-offset-4 font-medium hover:text-black">Infriva Solutions</a> architected the digital platform prototype for <strong>The Kesari Bagh</strong> (<a href="/projects/the-kesari-bagh" class="underline underline-offset-4 font-medium hover:text-black">read the case study</a>), we rejected standard serverless hosting.
       </p>
 
       <p>The Kesari Bagh is an exclusive 4-key French-colonial countryside estate in the Aravalli foothills of Manesar, Gurugram. Its guests reserve private weekend retreats and full-estate buyouts from London, Dubai, Singapore, and New Delhi.</p>

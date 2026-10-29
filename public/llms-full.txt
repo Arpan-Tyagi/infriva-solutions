@@ -129,12 +129,12 @@ Infriva Solutions is a full-stack digital engineering and revenue architecture a
   - +0.4★ Review Score Improvement
   - +22% Repeat Guest Rate
 
-### 3.3 The Kesari Bagh (`/projects/the-kesari-bagh`)
-- **Sector:** Ultra-Luxury Countryside Estate & Boutique Hospitality (Manesar, Gurugram)
-- **Problem:** Ultra-luxury 4-key French-colonial countryside estate relying on manual Instagram DM and phone coordination; generic hotel booking frames destroyed estate exclusivity and luxury brand perception.
-- **Engineering Solution:** Designed and engineered a bespoke high-contrast French-colonial editorial web property using Next.js 16 App Router, deployed to Cloudflare Workers edge runtime with sub-50ms TTFB, direct 4-key suite and full-estate buyout availability locks, and automated Meta WhatsApp Cloud API concierge flows.
+### 3.3 The Kesari Bagh Prototype (`/projects/the-kesari-bagh`)
+- **Sector:** Ultra-Luxury Countryside Estate & Hospitality Prototype (Manesar, Gurugram)
+- **Problem:** Luxury estate bookings are often coordinated through manual Instagram DMs and calls; generic booking widgets destroy estate exclusivity and brand perception.
+- **Engineering Solution:** Designed and engineered a bespoke high-contrast French-colonial editorial web prototype using Next.js 16 App Router, deployed to Cloudflare Workers edge runtime with sub-50ms TTFB, direct 4-key suite and full-estate buyout availability locks, and automated Meta WhatsApp Cloud API concierge flows.
 - **Measured Results:**
-  - 100% Direct Booking Capture (Commission-free reservations)
+  - 100% Direct Booking Model (Commission-free reservations)
   - 1.1s Mobile LCP across global cellular networks
   - < 15s Automated WhatsApp Concierge Response SLA
   - ~20% OTA Commission Saved by bypassing commercial aggregators

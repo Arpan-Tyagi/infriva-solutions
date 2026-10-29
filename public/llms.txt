@@ -29,7 +29,7 @@
 
 - [FlyingLyte — Travel & Flight Booking Engine](https://www.infrivasolutions.com/projects/flyinglyte): Rebuilt a legacy travel portal on Next.js with a custom multi-step booking engine, PostgreSQL CRM, and 12 automated WhatsApp API flows. Outcomes: +40% increase in qualified leads, −55% funnel drop-off reduction, 1.1s LCP.
 - [StarX Hotel — Direct Hospitality Booking & Guest CRM](https://www.infrivasolutions.com/projects/starx): Engineered a commission-free direct reservation platform, live inventory CRM, and automated WhatsApp guest concierge for a boutique hotel brand. Outcomes: +35% direct booking share, ~18% OTA commission saved, +22% repeat guest rate.
-- [The Kesari Bagh — French-Colonial Countryside Estate](https://www.infrivasolutions.com/projects/the-kesari-bagh): Engineered an editorial French-colonial countryside estate web platform and direct reservation engine on Next.js and Cloudflare Workers edge runtime with 4-key suite availability locks and automated WhatsApp concierge. Outcomes: 100% direct booking capture, 1.1s mobile LCP, < 15s concierge SLA, ~20% OTA commission saved.
+- [The Kesari Bagh — French-Colonial Luxury Estate Prototype](https://www.infrivasolutions.com/projects/the-kesari-bagh): Engineered an editorial French-colonial countryside estate web prototype and direct reservation engine on Next.js and Cloudflare Workers edge runtime with 4-key suite availability locks and automated WhatsApp concierge. Outcomes: 100% direct booking model, 1.1s mobile LCP, < 15s concierge SLA, ~20% OTA commission saved.
 
 ## Core Navigation & Documentation
 

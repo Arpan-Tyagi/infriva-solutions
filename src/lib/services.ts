@@ -859,6 +859,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+22% repeat guest rate & +0.4★ review score lift",
     },
     relatedBlogSlugs: [
+      "how-to-build-a-whatsapp-cloud-api-recovery-engine-nextjs-postgresql",
       "why-every-small-business-needs-crm-software",
       "why-your-social-media-gets-attention-but-not-customers",
       "why-customers-trust-some-websites-instantly",

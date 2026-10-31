@@ -21,7 +21,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/'],
+        disallow: ['/api/', '/dashboard/', '/login', '/portal/'],
       },
       {
         userAgent: [
@@ -34,7 +34,7 @@ export default function robots(): MetadataRoute.Robots {
           'Applebot-Extended',
         ],
         allow: ['/', '/llms.txt', '/llms-full.txt'],
-        disallow: ['/api/'],
+        disallow: ['/api/', '/dashboard/', '/login', '/portal/'],
       },
     ],
     host: SITE_URL,

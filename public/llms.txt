@@ -44,6 +44,7 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [React Server Components in Next.js 16: Cut 85% of Client JS & Achieve 1.1s Mobile LCP](https://www.infrivasolutions.com/blog/nextjs-react-server-components-rsc-mobile-lcp-optimization)
 - [PostgreSQL Row-Level Security (RLS) in Next.js & Supabase: Multi-Tenant CRM Security](https://www.infrivasolutions.com/blog/postgresql-row-level-security-rls-supabase-nextjs-crm-architecture)
 - [How to Build a WhatsApp Cloud API Recovery Engine: Next.js, Webhooks & PostgreSQL](https://www.infrivasolutions.com/blog/how-to-build-a-whatsapp-cloud-api-recovery-engine-nextjs-postgresql)
 - [Next.js on Cloudflare Workers: How We Built a Sub-50ms Luxury Booking Engine Prototype](https://www.infrivasolutions.com/blog/how-we-engineered-sub-50ms-global-ttfb-nextjs-cloudflare-workers)

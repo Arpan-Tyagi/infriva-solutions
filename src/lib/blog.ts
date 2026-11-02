@@ -1407,14 +1407,14 @@ export async function dispatchEstateConcierge(booking: {
 }</code></pre>
       </div>
 
-      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">7. Measured Production Results</h2>
-      <p>Within 30 days of deploying The Kesari Bagh on Next.js and Cloudflare Workers, the operational metrics validated the edge-first thesis:</p>
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">7. Measured Prototype &amp; Telemetry Benchmarks</h2>
+      <p>During 30 days of comprehensive load and edge latency benchmarking, The Kesari Bagh prototype validated our edge-first thesis:</p>
 
       <ul class="list-disc pl-5 space-y-2 text-sm text-black/80 my-4">
-        <li><strong>100% Direct Booking Capture:</strong> The estate bypassed OTA commission fees, retaining 100% of room revenue across all four private suites.</li>
-        <li><strong>Sub-50ms Global TTFB:</strong> Edge SSR delivery verified across tests in London, Dubai, New York, and New Delhi.</li>
-        <li><strong>1.1s Mobile LCP:</strong> Sub-second visual load speeds verified across 4G and 5G cellular network connections.</li>
-        <li><strong>Sub-15s Concierge Response:</strong> Automated WhatsApp itineraries dispatched within seconds of booking inquiry submission.</li>
+        <li><strong>100% Direct Booking Capture Prototype:</strong> The platform architecture demonstrates how a boutique 4-key estate eliminates OTA intermediary dependencies, modeling zero commission leakage on direct inquiries.</li>
+        <li><strong>Sub-50ms Global TTFB:</strong> Edge SSR delivery verified across synthetic latency tests from nodes in London, Dubai, New York, and New Delhi.</li>
+        <li><strong>1.1s Mobile LCP:</strong> Sub-second visual load speeds verified across 4G and 5G cellular network simulations on real mobile viewports.</li>
+        <li><strong>Sub-15s Concierge Response:</strong> Automated WhatsApp itineraries dispatched within seconds of test booking inquiry submission.</li>
       </ul>
 
       <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">8. Frequently Asked Questions</h2>

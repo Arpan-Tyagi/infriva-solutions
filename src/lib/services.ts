@@ -407,7 +407,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       "Full-Stack SEO, AEO, and Generative Engine Optimization (GEO) by Infriva Solutions. Rank on Google Search, AI Overviews, ChatGPT, Perplexity, and Claude.",
     image: "/images/seo-aeo-geo.jpg",
     imageAlt: "Full-Stack SEO, AEO, and Generative Engine Optimization architecture by Infriva Solutions",
-    lastModified: "2026-10-12",
+    lastModified: "2026-11-02",
     pricing: "₹65,000 / month",
     priceAmount: 65000,
     priceCurrency: "INR",
@@ -534,6 +534,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+40% lead growth & 1.1s LCP",
     },
     relatedBlogSlugs: [
+      "schema-org-entity-graph-architecture-nextjs-geo",
       "seo-aeo-geo-three-strategies",
       "seo-vs-google-ads-which-is-better-for-your-business",
       "why-your-website-is-not-getting-leads-and-how-to-fix-it",

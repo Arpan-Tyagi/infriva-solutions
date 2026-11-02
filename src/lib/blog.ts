@@ -64,7 +64,7 @@ export const BLOG_POSTS_LIST: BlogPostItem[] = [
     lastModified: "2026-11-02",
     readTime: "11 min read",
     desc: "How to architect connected Schema.org Knowledge Graphs in Next.js 16 with @id URI anchors. Earn 3x more citations in Google AI Overviews and Perplexity.",
-    author: AUTHOR_DISHA_RAJPUT,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["seo-and-geo", "web-development", "crm-systems"],
     relatedProjectSlug: "starx",
     content: `

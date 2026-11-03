@@ -78,7 +78,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       "Custom Next.js web development and luxury B2B UI/UX engineering by Infriva Solutions. Sub-second LCP, technical SEO architecture, and direct CRM integration.",
     image: "/images/glass-panels.jpg",
     imageAlt: "Architectural glass panels representing Infriva Solutions modular Next.js web engineering",
-    lastModified: "2026-10-12",
+    lastModified: "2026-11-03",
     pricing: "₹80,000+ (One-time)",
     priceAmount: 80000,
     priceCurrency: "INR",
@@ -205,6 +205,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+40% increase in qualified leads & 1.1s LCP",
     },
     relatedBlogSlugs: [
+      "progressive-b2b-lead-funnels-nextjs-form-conversion",
       "nextjs-react-server-components-rsc-mobile-lcp-optimization",
       "how-we-engineered-sub-50ms-global-ttfb-nextjs-cloudflare-workers",
       "why-customers-trust-some-websites-instantly",

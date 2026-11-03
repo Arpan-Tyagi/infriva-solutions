@@ -3,7 +3,7 @@
  * @description Dynamic XML Sitemap Generator (Next.js Metadata Route)
  *
  * Next.js automatically executes this function at build time to generate `/sitemap.xml`.
- * It indexes all 42 public content URLs across marketing, services, case studies, blog articles, and legal documents.
+ * It indexes all 43 public content URLs across marketing, services, case studies, blog articles, and legal documents.
  *
  * Search Engine Optimization (SEO) Architecture:
  * 1. Base URL Resolution:
@@ -24,11 +24,11 @@ import { PROJECTS_LIST } from '@/lib/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
-    { path: '', lastModified: '2026-11-02T00:00:00.000Z', changeFrequency: 'weekly', priority: 1.0 },
-    { path: '/services', lastModified: '2026-11-02T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.9 },
+    { path: '', lastModified: '2026-11-03T00:00:00.000Z', changeFrequency: 'weekly', priority: 1.0 },
+    { path: '/services', lastModified: '2026-11-03T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.9 },
     { path: '/projects', lastModified: '2026-10-26T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/about', lastModified: '2026-10-12T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.8 },
-    { path: '/blog', lastModified: '2026-11-02T00:00:00.000Z', changeFrequency: 'weekly', priority: 0.8 },
+    { path: '/blog', lastModified: '2026-11-03T00:00:00.000Z', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/contact', lastModified: '2026-10-12T00:00:00.000Z', changeFrequency: 'monthly', priority: 0.9 },
     { path: '/terms', lastModified: '2026-10-01T00:00:00.000Z', changeFrequency: 'yearly', priority: 0.4 },
     { path: '/privacy-policy', lastModified: '2026-10-01T00:00:00.000Z', changeFrequency: 'yearly', priority: 0.4 },

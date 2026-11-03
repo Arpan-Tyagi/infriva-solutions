@@ -2,7 +2,7 @@
  * @file src/lib/blog.ts
  * @description Unified Editorial Blog Registry, E-E-A-T Author Metadata & Schema.org BlogPosting Builders
  *
- * Single source of truth for all 24 Infriva Solutions thought-leadership articles.
+ * Single source of truth for all 25 Infriva Solutions thought-leadership articles.
  * Resolves metadata truncation, date/category/image drift between `/blog` and `/blog/[slug]`,
  * skipped H2 hierarchy, author E-E-A-T attribution, and contextual internal linking.
  */
@@ -53,6 +53,154 @@ export const AUTHOR_ARPAN_TYAGI: BlogAuthor = {
 export const DEFAULT_AUTHOR: BlogAuthor = AUTHOR_DISHA_RAJPUT;
 
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
+  {
+    id: "progressive-b2b-lead-funnels-nextjs-form-conversion",
+    image: "/images/digital-system.jpg",
+    imageAlt: "Progressive B2B lead funnel architecture in Next.js 16 and PostgreSQL partial lead ingestion engineered by Infriva Solutions",
+    title: "Progressive B2B Lead Funnels in Next.js 16: Why 14-Field Forms Drop 74% of Inbound Buyers [The 3-Step Architecture That Converted +40% at FlyingLyte]",
+    category: "Web Development",
+    date: "Nov 3, 2026",
+    isoDate: "2026-11-03",
+    lastModified: "2026-11-03",
+    readTime: "10 min read",
+    desc: "Why static 14-field forms drop 74% of buyers. How we built a progressive 3-step Next.js 16 funnel with Server Actions and PostgreSQL that converted +40% at FlyingLyte.",
+    author: AUTHOR_ARPAN_TYAGI,
+    relatedServiceSlugs: ["web-development", "crm-systems", "retention-marketing"],
+    relatedProjectSlug: "flyinglyte",
+    content: `
+      <p>B2B customer acquisition funnels are leaking revenue at the final boundary. Marketing teams allocate tens of thousands of dollars to Meta Ads and Google Search, yet abandon 74% of prospective buyers at the intake form.</p>
+
+      <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-4 bg-brand-50/50">
+        When our full-stack engineering team at <a href="/" class="underline underline-offset-4 font-medium hover:text-black">Infriva Solutions</a> audited FlyingLyte (<a href="/projects/flyinglyte" class="underline underline-offset-4 font-medium hover:text-black">read the case study</a>), their legacy 14-field form suffered a 74% drop-off rate on mobile viewports.
+      </p>
+
+      <p>Traditional web agencies build forms as static HTML blocks. They ask for full names, work emails, phone numbers, budgets, and project timelines all at once before offering any tangible value in return.</p>
+
+      <p>On mobile cellular connections, this wall of input fields creates severe cognitive fatigue. Visitors abandon the session, leaving your analytics with empty form submissions and inflated customer acquisition costs.</p>
+
+      <p>Here is our production Next.js 16 App Router implementation, Server Action state machine, and progressive disclosure architecture that cut booking abandonment from 74% to 33% and drove a +40% surge in qualified leads.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. The Psychological Tax of the 14-Field Form</h2>
+      <p>Usability benchmarks by the Baymard Institute reveal that the average web checkout contains 11.3 form fields. More critically, 21% of users abandon transactions specifically due to form length and complexity.</p>
+
+      <p>When a prospective buyer lands on a corporate website, their trust threshold is low. Confronting them with 14 empty boxes signals administrative friction rather than operational competence.</p>
+
+      <p>Every additional field introduces an exit opportunity. If a user cannot answer a question instantly—such as exact project start dates or corporate registration numbers—the conversion session ends permanently.</p>
+
+      <div class="overflow-x-auto my-6">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-brand-100/60 border-b border-black/10">
+            <tr>
+              <th class="p-3 font-semibold text-black">Intake Architecture</th>
+              <th class="p-3 font-semibold text-black">Initial Cognitive Load</th>
+              <th class="p-3 font-semibold text-black">Mobile Abandonment Rate</th>
+              <th class="p-3 font-semibold text-brand-900">Partial Lead Recovery</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-black">Legacy 14-Field Static Form</td>
+              <td class="p-3 border-b border-black/5 text-red-600 font-medium">Extreme (All inputs required upfront)</td>
+              <td class="p-3 border-b border-black/5 text-red-600 font-medium">74% (High drop-off)</td>
+              <td class="p-3 border-b border-black/5 text-black/70">0% (Data lost if abandoned)</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-black/5 font-medium text-brand-900">3-Step Next.js Progressive Funnel</td>
+              <td class="p-3 border-b border-black/5 text-emerald-700 font-medium">Minimal (2 low-friction taps)</td>
+              <td class="p-3 border-b border-black/5 text-emerald-700 font-medium">33% (55% reduction)</td>
+              <td class="p-3 border-b border-black/5 font-semibold text-brand-900">24% Recovered via WhatsApp API</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. The 3-Step Progressive Disclosure Model</h2>
+      <p>To eliminate user hesitation, our engineering team replaces monolithic forms with progressive disclosure: revealing input complexity gradually across three isolated, low-friction steps.</p>
+
+      <p>In Step 1 (Intent), the visitor indicates their objective without providing personal identity data. For FlyingLyte, this meant selecting travel destinations, departure dates, and passenger counts.</p>
+
+      <p>Because Step 1 carries zero privacy risk, visitors complete it in under 10 seconds. Once they have made those selections, psychological commitment bias encourages them to proceed to Step 2.</p>
+
+      <p>In Step 2 (Identity), the funnel asks for contact details—their mobile number and name—to calculate the verified quotation. The moment this step is completed, our system records a partial lead in PostgreSQL.</p>
+
+      <p>In Step 3 (Confirmation), the user reviews their verified itinerary or service scope. If they confirm, the record transitions to active status and triggers an instant WhatsApp concierge handoff.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. Server Action &amp; PostgreSQL Partial Lead Ingestion</h2>
+      <p>Traditional static forms submit data only when the user clicks the final submit button. If a buyer fills out 80% of your form but closes their browser before the final click, zero data reaches your database.</p>
+
+      <p>Our Next.js 16 architecture solves this by persisting form state atomically at Step 2 using React Server Actions and PostgreSQL row-level locks:</p>
+
+      <div class="overflow-x-auto my-6">
+        <pre class="bg-brand-900 text-white p-5 rounded-xl text-xs font-mono leading-relaxed overflow-x-auto"><code>// src/app/actions/funnel.ts
+'use server';
+
+import { z } from 'zod';
+import { db } from '@/lib/db';
+
+const StepTwoSchema = z.object({
+  funnelSessionId: z.string().uuid(),
+  phone: z.string().min(10).max(15),
+  fullName: z.string().min(2),
+  intentData: z.record(z.any()),
+});
+
+export async function capturePartialLead(payload: unknown) {
+  const parsed = StepTwoSchema.safeParse(payload);
+  if (!parsed.success) return { success: false, errors: parsed.error.flatten() };
+
+  const { funnelSessionId, phone, fullName, intentData } = parsed.data;
+
+  // Upsert partial lead in PostgreSQL
+  await db.query(\`
+    INSERT INTO funnel_leads (session_id, phone, full_name, intent_payload, status, updated_at)
+    VALUES ($1, $2, $3, $4, 'intent_captured', NOW())
+    ON CONFLICT (session_id) 
+    DO UPDATE SET 
+      phone = EXCLUDED.phone,
+      full_name = EXCLUDED.full_name,
+      intent_payload = EXCLUDED.intent_payload,
+      updated_at = NOW();
+  \`, [funnelSessionId, phone, fullName, JSON.stringify(intentData)]);
+
+  return { success: true };
+}</code></pre>
+      </div>
+
+      <p>If the prospect closes the browser during Step 3, their contact information is already securely stored in your CRM. Your marketing team never loses visibility into high-intent inbound prospects.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. Automated WhatsApp Abandonment Recovery</h2>
+      <p>Once a partial lead is recorded in PostgreSQL, an asynchronous background worker monitors session state. If the booking is not completed within 20 minutes, an automated recovery sequence fires.</p>
+
+      <p>Rather than sending an ignored email, the engine dispatches a personalized WhatsApp notification via the official Meta WhatsApp Cloud API with a direct link to resume their exact checkout session.</p>
+
+      <p>This automated loop recovers 24% of prospective buyers who abandoned their cart due to momentary network dropouts, distraction, or mobile payment authentication pauses.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">5. Measured Production Results at FlyingLyte</h2>
+      <p>Across the first 60 days following the deployment of our 3-step progressive funnel architecture, FlyingLyte's operational metrics validated the engineering thesis:</p>
+
+      <ul class="list-disc pl-5 space-y-2 text-sm text-black/80 my-4">
+        <li><strong>Funnel Abandonment Dropped from 74% to 33%:</strong> More than half of previously lost booking traffic completed the progressive intake sequence.</li>
+        <li><strong>+40% Lift in Qualified Inbound Inquiries:</strong> Net commercial travel bookings expanded significantly without increasing top-of-funnel ad spend.</li>
+        <li><strong>1.1s Mobile Largest Contentful Paint (LCP):</strong> Zero-CLS rendering and lightweight component code ensured frictionless performance on 4G connections.</li>
+      </ul>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">6. Frequently Asked Questions</h2>
+      <div class="space-y-4 my-6">
+        <div class="p-4 bg-brand-50/60 rounded-xl border border-black/5">
+          <p class="font-semibold text-black mb-1">Does splitting a form into 3 steps increase friction?</p>
+          <p class="text-black/70 text-xs">No. Usability testing consistently proves that total field count impacts abandonment far more than step count. Breaking 10 inputs into 3 logical steps reduces perceived cognitive effort.</p>
+        </div>
+        <div class="p-4 bg-brand-50/60 rounded-xl border border-black/5">
+          <p class="font-semibold text-black mb-1">How does partial lead capture comply with data privacy regulations?</p>
+          <p class="text-black/70 text-xs">Users explicitly submit their phone number on Step 2 with visible micro-copy stating that their contact details will be used to generate their live quote and itinerary summary.</p>
+        </div>
+        <div class="p-4 bg-brand-50/60 rounded-xl border border-black/5">
+          <p class="font-semibold text-black mb-1">Can this architecture connect to third-party CRMs like Salesforce or HubSpot?</p>
+          <p class="text-black/70 text-xs">Yes. Our Next.js Server Actions write records to PostgreSQL first for low latency, then synchronize payloads asynchronously with external CRM webhooks.</p>
+        </div>
+      </div>
+    `,
+  },
   {
     id: "schema-org-entity-graph-architecture-nextjs-geo",
     image: "/images/glass-panels.jpg",

@@ -1,5 +1,11 @@
 import type { NextConfig } from "next";
 
+if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+  console.warn(
+    "[PostHog] NEXT_PUBLIC_POSTHOG_KEY is not set. This build sends no browser analytics, pageviews or session recordings."
+  );
+}
+
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],

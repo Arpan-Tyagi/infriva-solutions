@@ -67,17 +67,23 @@
   3. **Option C:** *Zero-Friction: High-Velocity Web & Retention Architecture* (Conversion and business growth angle).
 - **Target Cadence:** Bi-weekly (Every 2nd and 4th Thursday at 11:30 AM IST).
 
-### Ticket 2: Editorial Repurposing Pipeline (The 26-Article Asset)
+### Ticket 2: Editorial Architecture & 7-Service Showcase Pipeline
 - **Type:** `wayfinder:research` (AFK)
 - **Status:** **UNBLOCKED**
-- **Question:** How do we convert our 26 published blog articles into 6 months of bi-weekly LinkedIn newsletter editions without writing from scratch?
-- **Resolution:**
-  - *Edition 1:* Why 14-Field Forms Drop 74% of Inbound Buyers (The 3-Step Next.js Funnel).
-  - *Edition 2:* Why Your Next.js App Crashes PostgreSQL at 500 Users (Connection Pooling & Supavisor).
-  - *Edition 3:* Schema.org Entity Graph Architecture: Winning Google AI Overviews & ChatGPT Search.
-  - *Edition 4:* The 5-Minute Lead Decay Curve: Automating 15-Second Lead Routing over WhatsApp.
-  - *Edition 5:* React Server Components in Next.js 16: Cutting 85% of Client JS on Mobile.
-  - *Edition 6:* Sub-50ms Global TTFB: Next.js on Cloudflare Workers Edge Runtime.
+- **Question:** How do we structure the newsletter so it actively showcases and converts clients for all 7 of Infriva's core services?
+- **Resolution (Two-Tier Showcase Engine):**
+  1. **Tier 1 (The Inaugural Launch Manifesto - Edition #1):**
+     - *Title:* *The 7 Pillars of a Modern B2B Digital Engine: How to Scale Without Leaking Revenue [2026 Studio Blueprint]*
+     - Directly breaks down the complete full-funnel digital ecosystem, mapping every stage to Infriva's 7 capabilities:
+       - Pillar 1: High-Performance Web & UI/UX Design (React 19 / Next.js 16, sub-second LCP)
+       - Pillar 2: Custom CRM Systems (PostgreSQL / Supabase, RLS, zero per-seat SaaS tax)
+       - Pillar 3: Technical SEO & GEO (Schema.org entity graphs, AI search visibility)
+       - Pillar 4: Paid Advertising Management (Algorithmic Meta & Google Search, server-side CAPI)
+       - Pillar 5: Retention Marketing (Meta WhatsApp Cloud API lifecycle automation, 15s lead routing)
+       - Pillar 6: Premium Content Creation (B2B thought leadership & technical publication syndication)
+       - Pillar 7: Social Media Management (Omnichannel video reels, daily statics, brand positioning)
+  2. **Tier 2 (The Permanent In-Edition Capabilities Directory):**
+     - Every subsequent edition ends with a standardized, beautifully formatted **"Infriva Studio Capabilities Directory"** highlighting all 7 services with transparent pricing, SLAs, and direct consultation booking links.
 
 ### Ticket 3: Visual Header & Branding System
 - **Type:** `wayfinder:prototype` (HITL)
@@ -88,14 +94,16 @@
   - **Newsletter Master Cover:** `1280 x 720 px` (16:9). Minimalist editorial aesthetic, bone white background, blueprint typography.
   - **In-Edition Article Cover:** `1280 x 720 px`. High-resolution technical architecture diagram matching the edition topic.
 
-### Ticket 4: In-Edition Lead Conversion Architecture
+### Ticket 4: In-Edition Lead Conversion & Capabilities Directory
 - **Type:** `wayfinder:task` (AFK)
-- **Status:** **BLOCKED by Ticket 1**
-- **Question:** How do we convert free LinkedIn subscribers into paying engineering clients without sounding like a desperate pitch?
-- **Resolution:**
-  1. *Contextual Engineering Footnotes:* Link back to full canonical code implementations on `https://www.infrivasolutions.com/blog/...` (generating high-authority external referral traffic and search signals).
-  2. *Verified Case Study Proof:* Anchor metrics to FlyingLyte (+40% bookings), StarX Hotel (+35% direct bookings), or The Kesari Bagh prototype.
-  3. *The Executive Close:* A clean 2-sentence closing box offering a direct 30-minute architectural consultation for organizations scaling beyond 50,000 monthly visits.
+- **Status:** **UNBLOCKED**
+- **Question:** How do we present all 7 services in every edition without overwhelming readers?
+- **Resolution (The Permanent Footer Matrix):**
+  Every edition features a dedicated closing section:
+  - *Engineering & Systems:* Web Dev (₹80k+), Custom CRM (₹90k+)
+  - *Growth & Acquisition:* Paid Ads (₹50k+), SEO & GEO (₹65k/mo)
+  - *Retention & Brand:* WhatsApp Automation (₹25k/mo), Content (₹60k/mo), Social Media (₹20k/mo)
+  - Direct 1-tap consultation link: `https://www.infrivasolutions.com/contact`
 
 ### Ticket 5: Issue #1 Launch & Network Notification Wave
 - **Type:** `wayfinder:task` (HITL)
@@ -122,3 +130,41 @@
 
 - **Daily Newsletter Cadence:** Daily long-form technical publishing leads to reader exhaustion and lower engagement; strict bi-weekly rhythm preserves high-signal reputation.
 - **Generic Motivational / Lifestyle Copy:** Zero superficial "hustle culture" content; every edition must contain code, architecture diagrams, or empirical business benchmarks.
+
+---
+
+## 6. The Permanent "Infriva Capabilities Directory" (In-Edition Footer Template)
+
+The following structured block is embedded at the conclusion of every LinkedIn Newsletter edition to showcase all 7 services with transparent pricing, delivery timelines, and direct booking links:
+
+```markdown
+---
+### 🛠️ The Infriva Solutions Capabilities Directory
+
+Infriva Solutions is a New Delhi-based digital architecture, systems engineering, and full-funnel growth studio. We engineer scalable platforms that convert high-intent traffic into owned revenue:
+
+1. **[Web Dev & UI/UX Design](https://www.infrivasolutions.com/services/web-development):** High-performance B2B digital properties engineered on React 19, Next.js 16 App Router, TypeScript, and PostgreSQL. Sub-second LCP speed SLA.  
+   *Investment:* ₹80,000+ (One-time) · 45 Business Days · 90-day Zero-Defect Warranty.
+
+2. **[Custom CRM Systems](https://www.infrivasolutions.com/services/crm-systems):** Bespoke sales pipelines, automated Meta/WhatsApp lead routing, and PostgreSQL/Supabase databases with Row-Level Security (RLS). Zero per-seat SaaS tax.  
+   *Investment:* ₹90,000+ (One-time) · 60 Business Days · 90-day Zero-Defect Warranty.
+
+3. **[Full-Stack SEO & GEO](https://www.infrivasolutions.com/services/seo-and-geo):** Technical search engineering, Schema.org entity graphs, /llms.txt AI manifests, and Generative Engine Optimization for Google AI Overviews, ChatGPT Search, and Perplexity.  
+   *Investment:* ₹65,000 / month · 6-Month Compounding Roadmap.
+
+4. **[Paid Advertising Management](https://www.infrivasolutions.com/services/paid-advertising):** Algorithmic Meta Advantage+ and Google Search/PMax campaigns wired to server-side Conversions API (CAPI) and offline CRM attribution.  
+   *Investment:* ₹50,000 / month + 10% Ad Spend · Bi-Weekly Attribution Reporting.
+
+5. **[Retention Marketing (WhatsApp API)](https://www.infrivasolutions.com/services/retention-marketing):** Official Meta WhatsApp Cloud API lifecycle automation, 12 automated sequences, abandoned funnel recovery, and 15-second lead dispatch.  
+   *Investment:* ₹25,000 / month · Sub-15s SLA.
+
+6. **[Premium Content Creation](https://www.infrivasolutions.com/services/premium-content):** Executive B2B thought leadership, research-backed long-form technical publications, and multi-platform syndication.  
+   *Investment:* ₹60,000 / month · 4 Long-Form Technical Articles / Month.
+
+7. **[Social Media Management](https://www.infrivasolutions.com/services/social-media-management):** Omnichannel short-form video reels, daily editorial statics, caption copywriting, and brand authority across LinkedIn, Instagram, and YouTube.  
+   *Investment:* ₹20,000 / month · 3 Custom Reels / Week (12/mo) + 1 Long-Form Video / Month.
+
+👉 **Book a 30-Minute Architecture Consultation:** [https://www.infrivasolutions.com/contact](https://www.infrivasolutions.com/contact)  
+📞 **Direct Engineering Lines:** +91 85058 85515 / +91 87968 62021 · New Delhi, India
+---
+```

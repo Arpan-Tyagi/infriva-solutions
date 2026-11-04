@@ -44,6 +44,7 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [PostgreSQL Connection Pooling in Next.js Serverless: How to Handle 10,000+ Concurrent Requests Without Crashing](https://www.infrivasolutions.com/blog/postgresql-connection-pooling-nextjs-serverless-pgbouncer)
 - [Progressive B2B Lead Funnels in Next.js 16: Why 14-Field Forms Drop 74% of Inbound Buyers](https://www.infrivasolutions.com/blog/progressive-b2b-lead-funnels-nextjs-form-conversion)
 - [Schema.org Entity Graph Architecture in Next.js: How to Build Connected Knowledge Graphs for AI Search](https://www.infrivasolutions.com/blog/schema-org-entity-graph-architecture-nextjs-geo)
 - [React Server Components in Next.js 16: Cut 85% of Client JS & Achieve 1.1s Mobile LCP](https://www.infrivasolutions.com/blog/nextjs-react-server-components-rsc-mobile-lcp-optimization)

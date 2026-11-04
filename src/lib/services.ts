@@ -244,7 +244,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       "Custom CRM software development by Infriva Solutions. Centralize lead capture, automate WhatsApp & Meta Lead Ads routing, and track revenue pipelines in real time.",
     image: "/images/digital-system.jpg",
     imageAlt: "Custom CRM system architecture and real-time pipeline telemetry built by Infriva Solutions",
-    lastModified: "2026-10-12",
+    lastModified: "2026-11-04",
     pricing: "₹90,000+ (One-time)",
     priceAmount: 90000,
     priceCurrency: "INR",
@@ -371,6 +371,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct booking share & +22% repeat guest rate",
     },
     relatedBlogSlugs: [
+      "postgresql-connection-pooling-nextjs-serverless-pgbouncer",
       "postgresql-row-level-security-rls-supabase-nextjs-crm-architecture",
       "why-every-small-business-needs-crm-software",
       "why-your-website-is-not-getting-leads-and-how-to-fix-it",

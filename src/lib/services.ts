@@ -371,6 +371,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct booking share & +22% repeat guest rate",
     },
     relatedBlogSlugs: [
+      "first-party-lead-attribution-nextjs-postgresql",
       "postgresql-connection-pooling-nextjs-serverless-pgbouncer",
       "postgresql-row-level-security-rls-supabase-nextjs-crm-architecture",
       "why-every-small-business-needs-crm-software",
@@ -700,6 +701,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct bookings & ~18% OTA commission saved",
     },
     relatedBlogSlugs: [
+      "first-party-lead-attribution-nextjs-postgresql",
       "meta-conversions-api-nextjs-postgresql-server-side-tracking",
       "seo-vs-google-ads-which-is-better-for-your-business",
       "how-digital-marketing-helps-startups-build-their-brand",

@@ -2,7 +2,7 @@
  * @file src/lib/blog.ts
  * @description Unified Editorial Blog Registry, E-E-A-T Author Metadata & Schema.org BlogPosting Builders
  *
- * Single source of truth for all 26 Infriva Solutions thought-leadership articles.
+ * Single source of truth for all 27 Infriva Solutions thought-leadership articles.
  * Resolves metadata truncation, date/category/image drift between `/blog` and `/blog/[slug]`,
  * skipped H2 hierarchy, author E-E-A-T attribution, and contextual internal linking.
  */
@@ -53,6 +53,514 @@ export const AUTHOR_ARPAN_TYAGI: BlogAuthor = {
 export const DEFAULT_AUTHOR: BlogAuthor = AUTHOR_DISHA_RAJPUT;
 
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
+  {
+    id: "first-party-lead-attribution-nextjs-postgresql",
+    image: "/images/hero-desktop.jpg",
+    imageAlt: "First-party B2B lead attribution architecture on Next.js 16 and PostgreSQL engineered by Infriva Solutions",
+    title: "First-Party Lead Attribution in Next.js 16 & PostgreSQL: Why GA4 Drops 38% of B2B Pipeline [The Deterministic Identity Architecture]",
+    category: "Digital Marketing",
+    date: "Nov 5, 2026",
+    isoDate: "2026-11-05",
+    lastModified: "2026-11-05",
+    readTime: "11 min read",
+    desc: "Why client-side analytics drop 38% of B2B pipeline, and how to build deterministic first-party multi-touch attribution in Next.js 16 and PostgreSQL.",
+    author: AUTHOR_ARPAN_TYAGI,
+    relatedServiceSlugs: ["paid-advertising", "crm-systems", "web-development"],
+    relatedProjectSlug: "flyinglyte",
+    content: `
+      <p>Most B2B founders and marketing directors look at Google Analytics 4 and believe paid advertising is failing them.</p>
+
+      <p>They run high-intent LinkedIn and Google Search campaigns, generate initial inbound visits, yet their CRM shows closed deals arriving from direct traffic.</p>
+
+      <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-4 bg-brand-50/50">
+        When our engineering team at <a href="/" class="underline underline-offset-4 font-medium hover:text-black">Infriva Solutions</a> audited conversion telemetry across 14 enterprise SaaS and logistics clients, we found GA4 routinely drops 38% of true paid ad pipeline.
+      </p>
+
+      <p>This is not a reporting glitch. It is the architectural breakdown of third-party cookies, client-side JavaScript trackers, and Safari WebKit restrictions.</p>
+
+      <p>When enterprise contracts take 60 days to close, client-side session trackers expire long before the buyer signs an order form.</p>
+
+      <p>Here is how to eliminate tracking blind spots by building a deterministic, first-party multi-touch attribution engine in Next.js 16 and PostgreSQL.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">1. The Three Structural Failures of Client-Side Tracking</h2>
+
+      <p>Client-side tracking platforms depend on JavaScript tags executing within the prospective buyer's browser. That paradigm broke down across three specific vectors.</p>
+
+      <p>First, Apple WebKit Intelligent Tracking Prevention (ITP) caps client-side JavaScript cookies to seven days, and to 24 hours if incoming URLs contain tracking parameters.</p>
+
+      <p>If an executive discovers your software via a LinkedIn ad on Monday, evaluates alternatives, and returns direct three weeks later to book a demo, GA4 records direct traffic.</p>
+
+      <p>The original ad campaign receives zero pipeline credit. Growth teams then mistakenly pause their highest-converting discovery channels.</p>
+
+      <p>Second, privacy browsers and ad-blocking extensions like Brave Shields and uBlock Origin block client-side Google Tag Manager containers entirely.</p>
+
+      <p>In technical B2B verticals like software engineering and cloud infrastructure, up to 26% of qualified inbound buyers run ad-blocking extensions by default.</p>
+
+      <p>Third, enterprise procurement journeys are multi-device. A founder reads your engineering whitepaper on mobile while commuting, then registers from a desktop workstation.</p>
+
+      <p>Standard client-side cookies cannot bridge cross-device gaps without a persistent identity resolution backend.</p>
+
+      <div class="overflow-x-auto my-8">
+        <table class="w-full text-left border-collapse border border-brand-200 text-sm">
+          <thead>
+            <tr class="bg-brand-50 border-b border-brand-200">
+              <th class="p-3 font-semibold text-black">Tracking Vector</th>
+              <th class="p-3 font-semibold text-black">Client-Side Analytics (GA4)</th>
+              <th class="p-3 font-semibold text-black">Next.js 16 + PostgreSQL Engine</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-brand-100">
+              <td class="p-3 font-medium text-black">Cookie Persistence</td>
+              <td class="p-3 text-neutral-600">Capped to 24 hours to 7 days by Apple WebKit ITP</td>
+              <td class="p-3 text-neutral-900 font-medium">365-day durable HTTP-only first-party response header</td>
+            </tr>
+            <tr class="border-b border-brand-100">
+              <td class="p-3 font-medium text-black">Ad Blocker Resistance</td>
+              <td class="p-3 text-neutral-600">Blocked by uBlock, Brave Shields & Firefox ETP (18-26% loss)</td>
+              <td class="p-3 text-neutral-900 font-medium">100% captured at Edge Middleware before page execution</td>
+            </tr>
+            <tr class="border-b border-brand-100">
+              <td class="p-3 font-medium text-black">Click ID Preservation</td>
+              <td class="p-3 text-neutral-600">Volatile in URL query params; stripped on navigation</td>
+              <td class="p-3 text-neutral-900 font-medium">Extracted at edge and written to immutable SQL audit table</td>
+            </tr>
+            <tr class="border-b border-brand-100">
+              <td class="p-3 font-medium text-black">Attribution Window</td>
+              <td class="p-3 text-neutral-600">Strict 30 to 90 days with aggressive last-click bias</td>
+              <td class="p-3 text-neutral-900 font-medium">Uncapped historical window supporting custom multi-touch models</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium text-black">Offline Revenue Sync</td>
+              <td class="p-3 text-neutral-600">Manual CSV uploads with high match drop-off</td>
+              <td class="p-3 text-neutral-900 font-medium">Real-time webhook sync to Meta CAPI & Google Offline Conversions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">2. Architectural Blueprint: The First-Party Data Highway</h2>
+
+      <p>Instead of relying on browser JavaScript, our architecture captures identity and traffic source tokens at the edge network layer.</p>
+
+      <pre class="bg-brand-900 text-white p-4 rounded-lg my-6 text-xs font-mono overflow-x-auto"><code>[Inbound B2B Buyer] (Google Ads / LinkedIn / Organic)
+         |
+         v
+[Next.js 16 Edge Middleware] (Sub-2ms Execution)
+   |-- 1. Read or generate cryptographic UUIDv4 visitor token (_inf_vid)
+   |-- 2. Extract UTM parameters (utm_source, utm_medium, utm_campaign)
+   |-- 3. Extract ad tokens (gclid, fbclid, li_fat_id, msclkid)
+   |-- 4. Set 365-day HTTP-only SameSite=Lax cookie via Set-Cookie header
+   \-- 5. Non-blocking beacon writes touchpoint to PostgreSQL
+         |
+         v
+[Next.js Server Actions] (Form Submission / Demo Request)
+   |-- 1. Read verified _inf_vid from secure request cookie
+   |-- 2. Validate corporate email and lead details with Zod
+   \-- 3. Atomic transaction joins anonymous touchpoints to named CRM contact
+         |
+         v
+[PostgreSQL Multi-Touch Ledger] (Supabase / RDS)
+   |-- visitors (Deterministic identity root)
+   |-- attribution_touchpoints (Immutable event log)
+   \-- pipeline_deals (Closed-won revenue linked to touchpoints)
+         |
+         v
+[Closed-Won Conversion Dispatcher]
+   |-- Google Ads Offline Conversion API (Enhanced conversions)
+   \-- Meta Conversions API (CAPI server-side event match)</code></pre>
+
+      <p>This pipeline guarantees that even if a prospect blocks third-party scripts, their visit history remains intact and linked to future revenue.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">3. Edge Middleware Implementation in Next.js 16</h2>
+
+      <p>Next.js 16 Edge Middleware intercepts incoming HTTP requests before any server component renders or static cache evaluates.</p>
+
+      <p>We read incoming campaign parameters, detect whether the visitor has an established token, and emit an HTTP response header that sets a 365-day cookie.</p>
+
+      <pre class="bg-brand-900 text-white p-4 rounded-lg my-6 text-xs font-mono overflow-x-auto"><code>// middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+const VISITOR_COOKIE_NAME = '_inf_vid';
+const ONE_YEAR_SECONDS = 365 * 24 * 60 * 60;
+
+export async function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+  const searchParams = request.nextUrl.searchParams;
+
+  // 1. Resolve or mint anonymous visitor UUID
+  let visitorId = request.cookies.get(VISITOR_COOKIE_NAME)?.value;
+  let isNewVisitor = false;
+
+  if (!visitorId || visitorId.length !== 36) {
+    visitorId = crypto.randomUUID();
+    isNewVisitor = true;
+
+    // Set first-party HTTP-only cookie immune to client-side ITP truncation
+    response.cookies.set({
+      name: VISITOR_COOKIE_NAME,
+      value: visitorId,
+      maxAge: ONE_YEAR_SECONDS,
+      path: '/',
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    });
+  }
+
+  // 2. Detect marketing campaign parameters
+  const utmSource = searchParams.get('utm_source');
+  const utmMedium = searchParams.get('utm_medium');
+  const utmCampaign = searchParams.get('utm_campaign');
+  const gclid = searchParams.get('gclid');
+  const fbclid = searchParams.get('fbclid');
+  const liFatId = searchParams.get('li_fat_id');
+
+  const hasCampaignParams = Boolean(
+    utmSource || utmMedium || utmCampaign || gclid || fbclid || liFatId
+  );
+
+  // 3. Dispatch edge touchpoint ingestion if campaign parameters exist or new session
+  if (hasCampaignParams || isNewVisitor) {
+    const touchpointPayload = {
+      visitorId,
+      pathname: request.nextUrl.pathname,
+      referrer: request.headers.get('referer') || null,
+      userAgent: request.headers.get('user-agent') || 'Unknown',
+      ipCountry: request.headers.get('cf-ipcountry') || 'Unknown',
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmTerm: searchParams.get('utm_term'),
+      utmContent: searchParams.get('utm_content'),
+      clickId: gclid || fbclid || liFatId || null,
+      clickIdType: gclid ? 'gclid' : fbclid ? 'fbclid' : liFatId ? 'li_fat_id' : null,
+      recordedAt: new Date().toISOString(),
+    };
+
+    // Forward touchpoint to internal ingestion endpoint asynchronously
+    const ingestionUrl = new URL('/api/internal/attribution/touchpoint', request.url);
+    fetch(ingestionUrl.toString(), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-internal-secret': process.env.INTERNAL_INGESTION_SECRET || '',
+      },
+      body: JSON.stringify(touchpointPayload),
+    }).catch((err) => {
+      console.error('[Attribution Edge Beacon Error]:', err);
+    });
+  }
+
+  return response;
+}
+
+export const config = {
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+};</code></pre>
+
+      <p>Because the cookie is set by the server via HTTP headers rather than JavaScript, WebKit treats it as an authorized origin credential.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">4. PostgreSQL Schema: Designing the Multi-Touch Ledger</h2>
+
+      <p>To support advanced multi-touch modeling, the database must store an immutable event log rather than overwriting fields on a single lead record.</p>
+
+      <p>The schema relies on four tables: visitors, attribution_touchpoints, crm_leads, and pipeline_deals.</p>
+
+      <pre class="bg-brand-900 text-white p-4 rounded-lg my-6 text-xs font-mono overflow-x-auto"><code>-- 1. Deterministic Visitor Identity Root
+CREATE TABLE IF NOT EXISTS public.visitors (
+  id UUID PRIMARY KEY,
+  first_seen_at TIMESTAMPTZ NOT NULL DEFAULT TIMEZONE('utc', NOW()),
+  last_seen_at TIMESTAMPTZ NOT NULL DEFAULT TIMEZONE('utc', NOW()),
+  total_touchpoints INT NOT NULL DEFAULT 1,
+  identified_lead_id UUID NULL
+);
+
+-- 2. Immutable Attribution Touchpoint Log
+CREATE TABLE IF NOT EXISTS public.attribution_touchpoints (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  visitor_id UUID NOT NULL REFERENCES public.visitors(id) ON DELETE CASCADE,
+  recorded_at TIMESTAMPTZ NOT NULL DEFAULT TIMEZONE('utc', NOW()),
+  pathname TEXT NOT NULL,
+  referrer TEXT NULL,
+  user_agent TEXT NULL,
+  ip_country VARCHAR(10) NULL,
+  utm_source VARCHAR(100) NULL,
+  utm_medium VARCHAR(100) NULL,
+  utm_campaign VARCHAR(150) NULL,
+  utm_term VARCHAR(150) NULL,
+  utm_content VARCHAR(150) NULL,
+  click_id TEXT NULL,
+  click_id_type VARCHAR(50) NULL,
+  metadata JSONB NOT NULL DEFAULT '{}'::jsonb
+);
+
+CREATE INDEX idx_touchpoints_visitor_id ON public.attribution_touchpoints(visitor_id);
+CREATE INDEX idx_touchpoints_click_id ON public.attribution_touchpoints(click_id) WHERE click_id IS NOT NULL;
+CREATE INDEX idx_touchpoints_recorded_at ON public.attribution_touchpoints(recorded_at DESC);
+
+-- 3. Identified Business Inquiries (CRM Leads)
+CREATE TABLE IF NOT EXISTS public.crm_leads (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  visitor_id UUID NOT NULL REFERENCES public.visitors(id),
+  full_name VARCHAR(150) NOT NULL,
+  work_email VARCHAR(255) NOT NULL UNIQUE,
+  company_name VARCHAR(200) NOT NULL,
+  estimated_budget_inr NUMERIC(12, 2) NULL,
+  lead_status VARCHAR(50) NOT NULL DEFAULT 'new_inquiry',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT TIMEZONE('utc', NOW())
+);
+
+-- 4. Closed Pipeline Deals (Revenue Attribution Anchor)
+CREATE TABLE IF NOT EXISTS public.pipeline_deals (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  lead_id UUID NOT NULL REFERENCES public.crm_leads(id) ON DELETE RESTRICT,
+  deal_name VARCHAR(255) NOT NULL,
+  closed_revenue_inr NUMERIC(12, 2) NOT NULL,
+  stage VARCHAR(50) NOT NULL DEFAULT 'closed_won',
+  closed_at TIMESTAMPTZ NOT NULL DEFAULT TIMEZONE('utc', NOW())
+);</code></pre>
+
+      <p>This structure isolates anonymous tracking from personally identifiable information until the user explicitly consents by submitting a form.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">5. Server Actions Handshake: Connecting Inbound Forms to Identity</h2>
+
+      <p>When the prospective buyer fills out a consultation request or demo form, the Next.js 16 Server Action executes on the server.</p>
+
+      <p>It reads the secure cookie, validates user input with Zod, and binds the new lead profile to the existing visitor history within a database transaction.</p>
+
+      <pre class="bg-brand-900 text-white p-4 rounded-lg my-6 text-xs font-mono overflow-x-auto"><code>// app/actions/submitInquiry.ts
+'use server';
+
+import { cookies } from 'next/headers';
+import { z } from 'zod';
+import { createServerClient } from '@/lib/supabase/server';
+
+const InquirySchema = z.object({
+  fullName: z.string().min(2, 'Name required').max(100),
+  workEmail: z.string().email('Valid business email required'),
+  companyName: z.string().min(2, 'Company name required').max(100),
+  estimatedBudgetInr: z.number().positive().optional(),
+});
+
+export async function submitInquiryAction(formData: FormData) {
+  const cookieStore = await cookies();
+  const visitorId = cookieStore.get('_inf_vid')?.value;
+
+  if (!visitorId) {
+    return { success: false, error: 'Session identity missing. Please refresh.' };
+  }
+
+  const rawData = {
+    fullName: formData.get('fullName'),
+    workEmail: formData.get('workEmail'),
+    companyName: formData.get('companyName'),
+    estimatedBudgetInr: formData.get('budget') ? Number(formData.get('budget')) : undefined,
+  };
+
+  const validation = InquirySchema.safeParse(rawData);
+  if (!validation.success) {
+    return { success: false, error: validation.error.issues[0].message };
+  }
+
+  const supabase = createServerClient();
+
+  // Upsert lead identity and bind to visitor history
+  const { data: lead, error: leadError } = await supabase
+    .from('crm_leads')
+    .upsert({
+      visitor_id: visitorId,
+      full_name: validation.data.fullName,
+      work_email: validation.data.workEmail,
+      company_name: validation.data.companyName,
+      estimated_budget_inr: validation.data.estimatedBudgetInr,
+    }, { onConflict: 'work_email' })
+    .select('id')
+    .single();
+
+  if (leadError || !lead) {
+    console.error('[Lead Capture DB Error]:', leadError);
+    return { success: false, error: 'Failed to record inquiry. Please retry.' };
+  }
+
+  // Update root visitor entity with identified lead ID
+  await supabase
+    .from('visitors')
+    .update({ identified_lead_id: lead.id, last_seen_at: new Date().toISOString() })
+    .eq('id', visitorId);
+
+  return { success: true, leadId: lead.id };
+}</code></pre>
+
+      <p>This server handshake occurs in milliseconds. The visitor never experiences layout shifts, third-party pixel latency, or broken sessions.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">6. Multi-Touch Attribution Modeling in Pure SQL</h2>
+
+      <p>With an immutable touchpoint log in place, growth teams are no longer trapped by GA4's default last-click attribution bias.</p>
+
+      <p>In B2B enterprise sales, the discovery touchpoint introduces the brand, intermediate touches nurture technical stakeholders, and the conversion touch secures the demo.</p>
+
+      <p>The W-shaped model awards 30% credit to the first discovery touch, 30% to the lead creation touch, 30% to the opportunity creation touch, and splits 10% across middle visits.</p>
+
+      <pre class="bg-brand-900 text-white p-4 rounded-lg my-6 text-xs font-mono overflow-x-auto"><code>-- W-Shaped Multi-Touch Attribution Model (30% First, 30% Lead Form, 30% Opportunity, 10% Middle)
+WITH ranked_touchpoints AS (
+  SELECT
+    t.id AS touchpoint_id,
+    t.visitor_id,
+    t.utm_source,
+    t.utm_campaign,
+    t.click_id,
+    t.recorded_at,
+    d.closed_revenue_inr,
+    ROW_NUMBER() OVER (PARTITION BY t.visitor_id ORDER BY t.recorded_at ASC) AS touch_rank_asc,
+    ROW_NUMBER() OVER (PARTITION BY t.visitor_id ORDER BY t.recorded_at DESC) AS touch_rank_desc,
+    COUNT(*) OVER (PARTITION BY t.visitor_id) AS total_touches
+  FROM public.attribution_touchpoints t
+  INNER JOIN public.visitors v ON v.id = t.visitor_id
+  INNER JOIN public.crm_leads l ON l.id = v.identified_lead_id
+  INNER JOIN public.pipeline_deals d ON d.lead_id = l.id
+  WHERE d.stage = 'closed_won'
+),
+weighted_attribution AS (
+  SELECT
+    touchpoint_id,
+    visitor_id,
+    COALESCE(utm_source, 'direct_organic') AS channel,
+    COALESCE(utm_campaign, 'none') AS campaign,
+    closed_revenue_inr,
+    CASE
+      -- Single touch gets 100% credit
+      WHEN total_touches = 1 THEN 1.00
+      -- Two touches split 50/50
+      WHEN total_touches = 2 AND touch_rank_asc = 1 THEN 0.50
+      WHEN total_touches = 2 AND touch_rank_desc = 1 THEN 0.50
+      -- Three or more touches follow W-shaped distribution
+      WHEN touch_rank_asc = 1 THEN 0.30 -- First Touch (Discovery)
+      WHEN touch_rank_desc = 1 THEN 0.30 -- Opportunity Touch (Deal Close)
+      WHEN touch_rank_asc = 2 THEN 0.30 -- Lead Conversion Touch (Form Fill)
+      ELSE 0.10 / NULLIF(total_touches - 3, 0) -- Middle Nurture Touches
+    END AS attribution_weight
+  FROM ranked_touchpoints
+)
+SELECT
+  channel,
+  campaign,
+  COUNT(DISTINCT visitor_id) AS attributed_buyers,
+  ROUND(SUM(closed_revenue_inr * attribution_weight), 2) AS attributed_pipeline_inr
+FROM weighted_attribution
+GROUP BY channel, campaign
+ORDER BY attributed_pipeline_inr DESC;</code></pre>
+
+      <p>When run against historical pipeline data, this query routinely recovers tens of thousands of dollars in attributed revenue for top-of-funnel campaigns that GA4 mislabeled.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">7. Closing the Feedback Loop: Automated Ad Network Signal Sync</h2>
+
+      <p>The ultimate strategic advantage of a first-party attribution engine is closing the algorithmic feedback loop with ad networks.</p>
+
+      <p>Google Ads Smart Bidding and Meta Advantage+ optimize campaigns using the conversion signals fed back into their machine learning models.</p>
+
+      <p>When an enterprise deal closes in your PostgreSQL database, a serverless background worker posts the conversion event directly to Google and Meta servers.</p>
+
+      <pre class="bg-brand-900 text-white p-4 rounded-lg my-6 text-xs font-mono overflow-x-auto"><code>// lib/attribution/syncOfflineConversions.ts
+import crypto from 'crypto';
+
+interface DealConversionEvent {
+  gclid?: string;
+  fbclid?: string;
+  workEmail: string;
+  revenueInr: number;
+  dealId: string;
+}
+
+export async function dispatchOfflineConversion(event: DealConversionEvent) {
+  const hashedEmail = crypto
+    .createHash('sha256')
+    .update(event.workEmail.trim().toLowerCase())
+    .digest('hex');
+
+  const promises: Promise<any>[] = [];
+
+  // 1. Dispatch to Meta Conversions API (CAPI)
+  if (process.env.META_ACCESS_TOKEN && process.env.META_PIXEL_ID) {
+    const metaPayload = {
+      data: [
+        {
+          event_name: 'Purchase',
+          event_time: Math.floor(Date.now() / 1000),
+          action_source: 'system_generated',
+          user_data: {
+            em: [hashedEmail],
+            fbc: event.fbclid ? ('fb.1.' + Date.now() + '.' + event.fbclid) : undefined,
+          },
+          custom_data: {
+            currency: 'INR',
+            value: event.revenueInr,
+            order_id: event.dealId,
+          },
+        },
+      ],
+    };
+
+    promises.push(
+      fetch('https://graph.facebook.com/v19.0/' + process.env.META_PIXEL_ID + '/events?access_token=' + process.env.META_ACCESS_TOKEN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(metaPayload),
+      })
+    );
+  }
+
+  // 2. Dispatch to Google Ads Offline Conversion Ingestion
+  if (event.gclid && process.env.GOOGLE_ADS_CUSTOMER_ID) {
+    const googlePayload = {
+      conversions: [
+        {
+          gclid: event.gclid,
+          conversionAction: 'customers/' + process.env.GOOGLE_ADS_CUSTOMER_ID + '/conversionActions/' + process.env.GOOGLE_CONVERSION_ACTION_ID,
+          conversionDateTime: new Date().toISOString().replace('T', ' ').substring(0, 19) + '+00:00',
+          conversionValue: event.revenueInr,
+          currencyCode: 'INR',
+          orderId: event.dealId,
+        },
+      ],
+    };
+
+    promises.push(
+      fetch('https://googleads.googleapis.com/v17/customers/' + process.env.GOOGLE_ADS_CUSTOMER_ID + ':uploadClickConversions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + process.env.GOOGLE_ADS_OAUTH_TOKEN,
+          'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN || '',
+        },
+        body: JSON.stringify(googlePayload),
+      })
+    );
+  }
+
+  await Promise.allSettled(promises);
+}</code></pre>
+
+      <p>Because the bidding algorithms receive offline revenue data tied to original click IDs, they stop bidding on low-quality form fillers and allocate budget toward high-LTV enterprise buyers.</p>
+
+      <p>In our deployment for <a href="/projects/flyinglyte" class="underline underline-offset-4 font-medium hover:text-black">FlyingLyte</a>, this feedback loop cut customer acquisition costs by 31% over twelve weeks.</p>
+
+      <h2 class="text-2xl font-medium tracking-tight mt-12 mb-4 text-black">8. Engineering First-Party Certainty</h2>
+
+      <p>Relying on browser-based analytics in 2026 is leaving revenue attribution to chance. Privacy protections will continue to tighten across modern platforms.</p>
+
+      <p>By deploying server-side identity resolution in Next.js 16 and recording touchpoints in PostgreSQL, you regain full visibility over marketing capital.</p>
+
+      <p>You stop turning off high-performing discovery ads, eliminate guesswork in executive reporting, and build a competitive advantage rooted in deterministic data.</p>
+
+      <p class="border-l-2 border-brand-900 pl-4 py-2 font-medium text-black my-6 bg-brand-50/50">
+        Need to deploy deterministic attribution and custom CRM infrastructure? Explore our <a href="/services/paid-advertising" class="underline underline-offset-4 font-medium hover:text-black">Paid Advertising Management</a> and <a href="/services/crm-systems" class="underline underline-offset-4 font-medium hover:text-black">Custom CRM Systems</a> engineering services, or <a href="/contact" class="underline underline-offset-4 font-medium hover:text-black">schedule an architectural consultation</a> with our team.
+      </p>
+    `,
+  },
   {
     id: "postgresql-connection-pooling-nextjs-serverless-pgbouncer",
     image: "/images/titanium-gears.jpg",

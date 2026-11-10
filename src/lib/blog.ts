@@ -50,7 +50,7 @@ export const AUTHOR_ARPAN_TYAGI: BlogAuthor = {
   linkedin: "https://linkedin.com/company/infriva",
 };
 
-export const DEFAULT_AUTHOR: BlogAuthor = AUTHOR_DISHA_RAJPUT;
+export const DEFAULT_AUTHOR: BlogAuthor = AUTHOR_ARPAN_TYAGI;
 
 export const BLOG_POSTS_LIST: BlogPostItem[] = [
   {
@@ -306,7 +306,7 @@ export async function POST(request: Request) {
     lastModified: "2026-11-10",
     readTime: "11 min read",
     desc: "Why traditional backlinks fail in AI search, and how to structure your web architecture for generative citations across ChatGPT, Perplexity, and Google AI Overviews.",
-    author: AUTHOR_DISHA_RAJPUT,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["seo-and-geo", "premium-content", "web-development"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -410,7 +410,7 @@ export async function POST(request: Request) {
     lastModified: "2026-11-09",
     readTime: "9 min read",
     desc: "Why email open rates drop to 19% while WhatsApp Cloud API achieves 98% open rates and 15-second lead qualification across B2B enterprise funnels.",
-    author: AUTHOR_DISHA_RAJPUT,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["retention-marketing", "crm-systems", "paid-advertising"],
     relatedProjectSlug: "the-kesari-bagh",
     content: `
@@ -843,7 +843,7 @@ export async function processInventoryChunks(items: any[]) {
     lastModified: "2026-11-06",
     readTime: "10 min read",
     desc: "Why public likes produce zero B2B pipeline, and how recommendation engines in 2026 use 'Sends Per Reach' and saves to distribute enterprise content.",
-    author: AUTHOR_DISHA_RAJPUT,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["social-media-management", "premium-content", "paid-advertising"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -4508,7 +4508,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-22",
     readTime: "8 min read",
     desc: "Did your organic traffic suddenly drop? Run this 7-step technical triage protocol to diagnose whether technical code pushes, indexing, or algorithms caused the decline.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["seo-and-geo", "web-development", "premium-content"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -4648,7 +4648,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-16",
     readTime: "6 min read",
     desc: "Why social media growth in 2026 is about relevance, not beating the algorithm. Discover the 4-part content framework that drives saves, shares, and high-ticket inquiries.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["social-media-management", "premium-content", "paid-advertising"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -4748,7 +4748,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-22",
     readTime: "8 min read",
     desc: "When does your business outgrow HubSpot or Salesforce? Discover why growing B2B teams are building custom Supabase CRMs to eliminate software bloat and seat fees.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["crm-systems", "web-development", "retention-marketing"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -4913,7 +4913,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-22",
     readTime: "8 min read",
     desc: "How B2B brands get cited in ChatGPT, Perplexity, and AI Overviews. Discover why Google rankings are no longer enough and how to build machine-readable entity trust.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["seo-and-geo", "web-development", "crm-systems", "premium-content"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -5052,7 +5052,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-13",
     readTime: "6 min read",
     desc: "Strong branding combines visual design principles with human cognitive psychology to influence what buyers notice, remember, and trust about a business.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["web-development", "premium-content", "social-media-management"],
     relatedProjectSlug: "starx",
     content: `
@@ -5117,7 +5117,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-09",
     readTime: "7 min read",
     desc: "A strong brand begins before the first font, colour, or logo is chosen. Explore our 10-step architectural framework for building a memorable brand.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["premium-content", "web-development", "seo-and-geo"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -5182,7 +5182,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-08",
     readTime: "6 min read",
     desc: "First impressions happen in milliseconds. Learn how consistent branding, clear copy, sub-second load speeds, and social proof build instant buyer trust.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["web-development", "crm-systems", "seo-and-geo"],
     relatedProjectSlug: "starx",
     content: `
@@ -5235,7 +5235,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-12",
     readTime: "8 min read",
     desc: "Learn how Traditional SEO, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO) unite into one search engineering architecture.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["seo-and-geo", "web-development", "premium-content"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -5303,7 +5303,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-06",
     readTime: "6 min read",
     desc: "Your website is often where buyers first experience your brand. Discover how branding and UI/UX engineering directly govern conversion rates and retention.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["web-development", "crm-systems", "premium-content"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -5355,7 +5355,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-09-30",
     readTime: "6 min read",
     desc: "Building a product is only half the battle. Discover how integrated SEO, paid media, content, and CRM automation help startups build authority and pipeline.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["paid-advertising", "seo-and-geo", "social-media-management", "web-development"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -5406,7 +5406,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-09-25",
     readTime: "6 min read",
     desc: "Likes and views are vanity metrics if your CRM stays empty. Learn why high social engagement fails to convert and how to engineer a real social sales funnel.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["social-media-management", "premium-content", "retention-marketing", "crm-systems"],
     relatedProjectSlug: "starx",
     content: `
@@ -5454,7 +5454,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-22",
     readTime: "7 min read",
     desc: "Spreadsheets and manual WhatsApp threads quietly leak revenue. Discover the exact operational threshold to deploy custom PostgreSQL CRM infrastructure.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["crm-systems", "retention-marketing", "web-development"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -5505,7 +5505,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-11",
     readTime: "7 min read",
     desc: "A visually appealing website without lead-capture mechanics is just a digital brochure. We diagnose the 7 structural flaws killing your conversion rate.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["web-development", "seo-and-geo", "crm-systems", "paid-advertising"],
     relatedProjectSlug: "flyinglyte",
     content: `
@@ -5545,7 +5545,7 @@ Sitemap: https://www.infrivasolutions.com/sitemap.xml
     lastModified: "2026-10-22",
     readTime: "8 min read",
     desc: "Immediate paid traction vs. compounding organic equity. A technical breakdown and 12-month capital allocation model for Google Ads versus Full-Stack SEO & GEO.",
-    author: DEFAULT_AUTHOR,
+    author: AUTHOR_ARPAN_TYAGI,
     relatedServiceSlugs: ["seo-and-geo", "paid-advertising", "web-development"],
     relatedProjectSlug: "starx",
     content: `

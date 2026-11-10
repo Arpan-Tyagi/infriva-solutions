@@ -205,6 +205,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+40% increase in qualified leads & 1.1s LCP",
     },
     relatedBlogSlugs: [
+      "nextjs-16-inp-optimization-sub-50ms-web-vitals",
       "progressive-b2b-lead-funnels-nextjs-form-conversion",
       "nextjs-react-server-components-rsc-mobile-lcp-optimization",
       "how-we-engineered-sub-50ms-global-ttfb-nextjs-cloudflare-workers",
@@ -371,6 +372,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct booking share & +22% repeat guest rate",
     },
     relatedBlogSlugs: [
+      "zero-downtime-postgresql-schema-migrations-nextjs-supabase",
       "first-party-lead-attribution-nextjs-postgresql",
       "postgresql-connection-pooling-nextjs-serverless-pgbouncer",
       "postgresql-row-level-security-rls-supabase-nextjs-crm-architecture",
@@ -537,6 +539,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+40% lead growth & 1.1s LCP",
     },
     relatedBlogSlugs: [
+      "generative-engine-optimization-geo-ai-search-citations-2026",
       "schema-org-entity-graph-architecture-nextjs-geo",
       "seo-aeo-geo-three-strategies",
       "seo-vs-google-ads-which-is-better-for-your-business",
@@ -866,6 +869,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+22% repeat guest rate & +0.4★ review score lift",
     },
     relatedBlogSlugs: [
+      "whatsapp-cloud-api-vs-email-sms-b2b-retention-pipeline",
       "how-to-build-a-whatsapp-cloud-api-recovery-engine-nextjs-postgresql",
       "why-every-small-business-needs-crm-software",
       "why-your-social-media-gets-attention-but-not-customers",
@@ -1030,6 +1034,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+40% lead capture & -55% funnel drop-off",
     },
     relatedBlogSlugs: [
+      "the-2026-social-media-algorithm-sends-per-reach-b2b",
       "how-to-build-a-brand-from-scratch-start-with-strategy",
       "why-some-brands-feel-instantly-right-the-psychology-behind-great-branding",
       "why-your-social-media-gets-attention-but-not-customers",
@@ -1193,6 +1198,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct bookings & +0.4★ guest review rating",
     },
     relatedBlogSlugs: [
+      "the-2026-social-media-algorithm-sends-per-reach-b2b",
       "why-your-social-media-gets-attention-but-not-customers",
       "why-some-brands-feel-instantly-right-the-psychology-behind-great-branding",
       "how-digital-marketing-helps-startups-build-their-brand",

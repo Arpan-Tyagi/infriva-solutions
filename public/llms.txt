@@ -44,6 +44,11 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [Generative Engine Optimization (GEO) in 2026: Reverse-Engineering AI Citations](https://www.infrivasolutions.com/blog/generative-engine-optimization-geo-ai-search-citations-2026)
+- [WhatsApp Cloud API vs. SMS & Email: Why Enterprise Inbound Drops 62% on Legacy Channels](https://www.infrivasolutions.com/blog/whatsapp-cloud-api-vs-email-sms-b2b-retention-pipeline)
+- [Zero-Downtime PostgreSQL Schema Migrations in Next.js & Supabase](https://www.infrivasolutions.com/blog/zero-downtime-postgresql-schema-migrations-nextjs-supabase)
+- [Interaction to Next Paint (INP) in Next.js 16: Cutting Main-Thread Blocking Under 50ms](https://www.infrivasolutions.com/blog/nextjs-16-inp-optimization-sub-50ms-web-vitals)
+- [The 2026 Social Media Algorithm Teardown: Why Sends Per Reach & Saves Determine B2B Pipeline](https://www.infrivasolutions.com/blog/the-2026-social-media-algorithm-sends-per-reach-b2b)
 - [First-Party Lead Attribution in Next.js 16 & PostgreSQL: Why GA4 Drops 38% of B2B Pipeline](https://www.infrivasolutions.com/blog/first-party-lead-attribution-nextjs-postgresql)
 - [PostgreSQL Connection Pooling in Next.js Serverless: How to Handle 10,000+ Concurrent Requests Without Crashing](https://www.infrivasolutions.com/blog/postgresql-connection-pooling-nextjs-serverless-pgbouncer)
 - [Progressive B2B Lead Funnels in Next.js 16: Why 14-Field Forms Drop 74% of Inbound Buyers](https://www.infrivasolutions.com/blog/progressive-b2b-lead-funnels-nextjs-form-conversion)

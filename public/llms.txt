@@ -44,6 +44,7 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [Event-Driven Webhook Ingestion in Next.js 16: Zero-Loss Architecture](https://www.infrivasolutions.com/blog/event-driven-webhook-ingestion-nextjs-16-postgresql-zero-loss)
 - [Generative Engine Optimization (GEO) in 2026: Reverse-Engineering AI Citations](https://www.infrivasolutions.com/blog/generative-engine-optimization-geo-ai-search-citations-2026)
 - [WhatsApp Cloud API vs. SMS & Email: Why Enterprise Inbound Drops 62% on Legacy Channels](https://www.infrivasolutions.com/blog/whatsapp-cloud-api-vs-email-sms-b2b-retention-pipeline)
 - [Zero-Downtime PostgreSQL Schema Migrations in Next.js & Supabase](https://www.infrivasolutions.com/blog/zero-downtime-postgresql-schema-migrations-nextjs-supabase)

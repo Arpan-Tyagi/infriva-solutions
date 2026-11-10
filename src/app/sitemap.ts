@@ -3,7 +3,7 @@
  * @description Dynamic XML Sitemap Generator (Next.js Metadata Route)
  *
  * Next.js automatically executes this function at build time to generate `/sitemap.xml`.
- * It indexes all 50 public content URLs across marketing, services, case studies, blog articles, and legal documents.
+ * It indexes all 51 public content URLs across marketing, services, case studies, blog articles, and legal documents.
  *
  * Search Engine Optimization (SEO) Architecture:
  * 1. Base URL Resolution:

@@ -372,6 +372,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct booking share & +22% repeat guest rate",
     },
     relatedBlogSlugs: [
+      "event-driven-webhook-ingestion-nextjs-16-postgresql-zero-loss",
       "zero-downtime-postgresql-schema-migrations-nextjs-supabase",
       "first-party-lead-attribution-nextjs-postgresql",
       "postgresql-connection-pooling-nextjs-serverless-pgbouncer",
@@ -704,6 +705,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct bookings & ~18% OTA commission saved",
     },
     relatedBlogSlugs: [
+      "event-driven-webhook-ingestion-nextjs-16-postgresql-zero-loss",
       "first-party-lead-attribution-nextjs-postgresql",
       "meta-conversions-api-nextjs-postgresql-server-side-tracking",
       "seo-vs-google-ads-which-is-better-for-your-business",

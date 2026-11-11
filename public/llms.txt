@@ -44,6 +44,7 @@
 
 ## Featured Engineering Insights (Blog)
 
+- [PostgreSQL Full-Text Search vs. Algolia in Next.js 16: Sub-10ms Search Without SaaS Tax](https://www.infrivasolutions.com/blog/postgresql-full-text-search-vs-algolia-nextjs-16)
 - [Event-Driven Webhook Ingestion in Next.js 16: Zero-Loss Architecture](https://www.infrivasolutions.com/blog/event-driven-webhook-ingestion-nextjs-16-postgresql-zero-loss)
 - [Generative Engine Optimization (GEO) in 2026: Reverse-Engineering AI Citations](https://www.infrivasolutions.com/blog/generative-engine-optimization-geo-ai-search-citations-2026)
 - [WhatsApp Cloud API vs. SMS & Email: Why Enterprise Inbound Drops 62% on Legacy Channels](https://www.infrivasolutions.com/blog/whatsapp-cloud-api-vs-email-sms-b2b-retention-pipeline)

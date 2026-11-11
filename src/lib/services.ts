@@ -205,6 +205,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+40% increase in qualified leads & 1.1s LCP",
     },
     relatedBlogSlugs: [
+      "postgresql-full-text-search-vs-algolia-nextjs-16",
       "nextjs-16-inp-optimization-sub-50ms-web-vitals",
       "progressive-b2b-lead-funnels-nextjs-form-conversion",
       "nextjs-react-server-components-rsc-mobile-lcp-optimization",
@@ -372,6 +373,7 @@ export const SERVICES_LIST: ServiceItem[] = [
       metric: "+35% direct booking share & +22% repeat guest rate",
     },
     relatedBlogSlugs: [
+      "postgresql-full-text-search-vs-algolia-nextjs-16",
       "event-driven-webhook-ingestion-nextjs-16-postgresql-zero-loss",
       "zero-downtime-postgresql-schema-migrations-nextjs-supabase",
       "first-party-lead-attribution-nextjs-postgresql",
